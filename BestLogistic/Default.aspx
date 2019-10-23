@@ -1,0 +1,62 @@
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BestLogistic._Default" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <div class="col-md-12 col-lg-5 quote mx-auto p-0">
+        <h3 class="font-weight-bolder">Quote Your Parcel Here!</h3>
+        <div class="quote-content px-sm-3">
+            <form class="" action="#" method="post">
+                <div class="row m-0">
+                    <div class="col-6">
+                        <h5 class="font-weight-bold">From:</h5>
+                        <div class="form-group form-group-default required">
+                            <label for="fromPostCode">POSTCODE</label>
+                            <input type="text" class="form-control" id="fromPostCode" name="" value="" required>
+                        </div>
+                        <div class="form-group form-group-default required">
+                            <label for="fromLocation">LOCATION</label>
+                            <input type="text" class="form-control" id="fromLocation" name="" value="" required>
+                        </div>
+                        <h5 class="font-weight-bold">City:</h5>
+                        <h5 class="font-weight-bold">State:</h5>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="font-weight-bold">To:</h5>
+                        <div class="form-group form-group-default required">
+                            <label for="toPostCode">POSTCODE</label>
+                            <input type="text" class="form-control" id="toPostCode" name="" value="" required>
+                        </div>
+                        <div class="form-group form-group-default required">
+                            <label for="toLocation">LOCATION</label>
+                            <input type="text" class="form-control" id="toLocation" name="" value="" required>
+                        </div>
+                        <h5 class="font-weight-bold">City:</h5>
+                        <h5 class="font-weight-bold">State:</h5>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-6">
+                        <div class="form-group form-group-default required">
+                            <label for="weight">WEIGHT(KG)</label>
+                            <input type="text" class="form-control" id="weight" name="" value="" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <label for="" class="col-md-4">Parcel's Type</label>
+                    <div class="col-md-6">
+                        <fieldset id="packageType">
+                            <input type="radio" value="" id="parcelType" name="packageType" checked>
+                            <label class="mr-3" for="parcelType">Parcel</label>
+                            <input type="radio" value="" id="documentType" name="packageType">
+                            <label for="documentType">Document</label>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="button" name="button" class="quote-btn">Quote</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</asp:Content>

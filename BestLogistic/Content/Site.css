@@ -1,0 +1,168 @@
+﻿/*
+Index
+1) Header
+2) Common
+3) Quote
+*/
+
+:root {
+    --primary-color: #010b4c;
+    --primary-font: Montserrat;
+}
+
+* {
+    font-family: var(--primary-font);
+}
+
+.text-default {
+    color: var(--primary-color);
+}
+
+.bg-default {
+    background-color: var(--primary-color);
+}
+
+/* -------------------- HEADER ------------------ */
+.header {
+    background-color: white;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.header-nav-link {
+    text-decoration: none;
+    color: black;
+    margin: 4px;
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.header-nav-link:hover {
+    opacity: 0.5;
+}
+
+.register-btn, .signin-btn {
+    border: var(--primary-color) solid 2px;
+    border-radius: 32px;
+    width: 96px;
+}
+
+.signin-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#signin-tab, #register-tab {
+    color: var(--primary-color);
+    background-color: #eeeeee;
+    font-weight: bold;
+}
+
+#signin-tab.active, #register-tab.active {
+    background-color: white;
+}
+
+/* -------------------- HEADER END ------------------ */
+
+.form-group-default {
+    background-color: white;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    padding-top: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 4px;
+    overflow: hidden;
+    color: var(--primary-color);
+    -webkit-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+}
+
+    .form-group-default > .form-control {
+        border: none;
+        padding: 0;
+        height: 18px;
+        color: grey;
+    }
+
+    .form-group-default.required:after {
+        color: #f55753;
+        content: "*";
+        font-family: arial;
+        font-size: 20px;
+        position: absolute;
+        right: 15px;
+        top: 9px;
+    }
+
+    .form-group-default label {
+        font-size: 0.75rem;
+    }
+
+/* --------------------- Quote -------------------- */
+.quote {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    max-width: 500px;
+    color: var(--primary-color);
+    font-weight: bolder;
+}
+
+.quote-content {
+    background-color: var(--primary-color);
+    border-radius: 16px;
+    padding: 24px 0;
+    color: white;
+}
+
+@media screen and (max-width: 1199px) {
+    .quote {
+        position: static;
+    }
+}
+
+.quote-btn {
+    border-radius: 8px;
+    border: none;
+    background-color: #D71921;
+    font-weight: bold;
+    padding: 4px 18px;
+    color: white;
+}
+
+/* ---------------- Quote End ---------- */
+/* ----------------- Tracking ------------------- */
+.track {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    max-width: 240px;
+    color: var(--primary-color);
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1199px) {
+    .track {
+        position: static;
+    }
+}
+
+.container-default {
+    background-color: var(--primary-color);
+    border-radius: 16px;
+    padding: 24px 0;
+    color: white;
+}
+
+.track-btn {
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary-color);
+    font-weight: bold;
+    padding: 4px 18px;
+    color: white;
+}
+/* ----------------- Tracking End ------------------- */
