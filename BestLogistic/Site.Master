@@ -38,100 +38,124 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-    </form>
-    <header class="header">
-        <nav class="navbar navbar-expand-md container">
-            <a class="navbar-brand" href="/">
-                <img class="header-logo" src="images/logo.png" alt="logo" style="width: 128px;">
-            </a>
-            <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav ml-auto text-right align-items-end">
-                    <li class="nav-item"><a class="nav-link header-nav-link" href="/">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link header-nav-link" href="#">SEND PACKAGE</a></li>
-                    <li class="nav-item"><a class="nav-link header-nav-link" href="Tracking.aspx">TRACKING</a></li>
-                    <%--<li class="nav-item">
-                        <a class="nav-link header-nav-link register-btn" data-toggle="modal" data-target="#modal" href="#modal-register">
-                            REGISTER
-                        </a>
-                    </li>--%>
-                    <li class="nav-item">
-                        <button class="nav-link header-nav-link signin-btn" data-toggle="modal" data-target="#modal">
-                            <i class="fas fa-user fa-fw"></i>
-                            SIGN IN
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <div class="modal fade" id="modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <img src="images/logo.png" alt="logo" style="width: 256px;" />
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
+        <header class="header">
+            <nav class="navbar navbar-expand-md container">
+                <a class="navbar-brand" href="/">
+                    <img class="header-logo" src="images/logo.png" alt="logo" style="width: 128px;">
+                </a>
+                <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto text-right align-items-end">
+                        <li class="nav-item"><a class="nav-link header-nav-link" href="/">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link header-nav-link" href="#">SEND PACKAGE</a></li>
+                        <li class="nav-item"><a class="nav-link header-nav-link" href="Tracking.aspx">TRACKING</a></li>
+                        <%--<li class="nav-item">
+                            <a class="nav-link header-nav-link register-btn" data-toggle="modal" data-target="#modal" href="#modal-register">
+                                REGISTER
+                            </a>
+                        </li>--%>
+                        <li class="nav-item">
+                            <button type="button" class="nav-link header-nav-link signin-btn" data-toggle="modal" data-target="#modal">
+                                <i class="fas fa-user fa-fw"></i>
+                                SIGN IN
+                            </button>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="nav nav-tabs" role="tablist">
-                    <%--<h4 class="modal-title bg-default text-light">Sign In</h4>
-                    <h4 class="modal-title bg-default text-light">Register</h4>--%>
-                    <li class="col-6 p-0"><a class="nav-item nav-link active text-center" id="signin-tab" data-toggle="tab" href="#modal-signin" role="tab" aria-controls="modal-signin" aria-selected="true">Sign In</a></li>
-					<li class="col-6 p-0"><a class="nav-item nav-link text-center" id="register-tab" data-toggle="tab" href="#modal-register" role="tab" aria-controls="modal-register" aria-selected="false">Register</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="modal-signin" class="tab-pane fade show active" role="tabpanel" aria-labelledby="signin-tab">
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group required">
-                                    <label for="signin-email">Email</label>
-                                    <input type="text" class="form-control" id="signin-email" name="" value="" placeholder="Email" required>
-                                </div>
-                                <div class="form-group required">
-                                    <label for="signin-password">Password</label>
-                                    <input type="password" class="form-control" id="signin-password" name="" value="" placeholder="Password" required >
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer border-0">
-                            <button type="button" class="btn btn-lg btn-block text-light bg-default" data-dismiss="modal">Sign in</button>
-                            <a href="#"></a>
-                        </div>
+            </nav>
+        </header>
+        <div class="modal fade" id="modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <img src="images/logo.png" alt="logo" style="width: 256px;" />
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div id="modal-register" class="tab-pane fade" role="tabpanel" aria-labelledby="register-tab">
-                        <div class="modal-body">
-                            <form>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <%--<h4 class="modal-title bg-default text-light">Sign In</h4>
+                        <h4 class="modal-title bg-default text-light">Register</h4>--%>
+                        <li class="col-6 p-0"><a class="nav-item nav-link active text-center" id="signin-tab" data-toggle="tab" href="#modal-signin" role="tab" aria-controls="modal-signin" aria-selected="true">Sign In</a></li>
+					    <li class="col-6 p-0"><a class="nav-item nav-link text-center" id="register-tab" data-toggle="tab" href="#modal-register" role="tab" aria-controls="modal-register" aria-selected="false">Register</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="modal-signin" class="tab-pane fade show active" role="tabpanel" aria-labelledby="signin-tab">
+                            <div class="modal-body">
                                 <div class="form-group required">
-                                    <label for="register-email">Email</label>
-                                    <input type="text" class="form-control" id="register-email" name="" value="" placeholder="Email" required>
+                                    <%--<label for="signin-email">Email</label>
+                                    <input type="text" class="form-control" id="signin-email" name="" value="" placeholder="Email" required>--%>
+                                    <asp:Label runat="server" AssociatedControlID="SignInEmail" Text="Email" />
+                                    <asp:TextBox runat="server" ID="SignInEmail" TextMode="Email" placeholder="Email" CssClass="form-control" />
+                                    <asp:RegularExpressionValidator runat="server" ID="revSignInEmail" ControlToValidate="SignInEmail"
+                                        ErrorMessage="Invalid email format" ValidationGroup="vgSignIn" ForeColor="Red" 
+                                        ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
                                 </div>
                                 <div class="form-group required">
-                                    <label for="register-password">Password</label>
-                                    <input type="password" class="form-control" id="register-password" name="" value="" placeholder="Password" required >
+                                    <%--<label for="signin-password">Password</label>
+                                    <input type="password" class="form-control" id="signin-password" name="" value="" placeholder="Password" required >--%>
+                                    <asp:Label runat="server" AssociatedControlID="SignInPassword" Text="Password" />
+                                    <asp:TextBox runat="server" ID="SignInPassword" TextMode="Password" 
+                                        placeholder="Password" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator runat="server" ID="rfvSignInPassword" ControlToValidate="SignInPassword" 
+                                        ErrorMessage="Password cannot be empty" ValidationGroup="vgSignIn" ForeColor="Red" Display="Dynamic" />
                                 </div>
-                                <div class="form-group required">
-                                    <label for="register-confirm-password">Confirm Password</label>
-                                    <input type="password" class="form-control" id="register-confirm-password" name="" value="" placeholder="Confirm password" required >
-                                </div>
-                            </form>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <asp:Button runat="server" ID="SignInBtn" Text="Sign in" CssClass="btn btn-lg btn-block text-light bg-default"
+                                    ValidationGroup="vgSignIn"/>
+                            </div>
                         </div>
-                        <div class="modal-footer border-0">
-                            <button type="button" class="btn btn-lg btn-block text-light bg-default" data-dismiss="modal">Register</button>
-                            <a href="#"></a>
+                        <div id="modal-register" class="tab-pane fade" role="tabpanel" aria-labelledby="register-tab">
+                            <div class="modal-body">
+                                <div class="form-group required">
+                                    <%--<label for="register-email">Email</label>
+                                    <input type="text" class="form-control" id="register-email" name="" value="" placeholder="Email" required>--%>
+                                    <asp:Label runat="server" AssociatedControlID="RegisterEmail" Text="Email" />
+                                    <asp:TextBox runat="server" ID="RegisterEmail" TextMode="Email" placeholder="Email" CssClass="form-control" />
+                                    <asp:RegularExpressionValidator runat="server" ID="rgvRegisterEmail" ControlToValidate="RegisterEmail"
+                                        ErrorMessage="Invalid email format" ValidationGroup="vgRegister" ForeColor="Red" 
+                                        ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
+                                </div>
+                                <div class="form-group required">
+                                    <%--<label for="register-password">Password</label>
+                                    <input type="password" class="form-control" id="register-password" name="" value="" placeholder="Password" required >--%>
+                                    <asp:Label runat="server" AssociatedControlID="RegisterPassword" Text="Password" />
+                                    <asp:TextBox runat="server" ID="RegisterPassword" TextMode="Password" 
+                                        placeholder="Password" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator runat="server" ID="rfvRegisterPassword" ControlToValidate="RegisterPassword" 
+                                        ErrorMessage="Password cannot be empty" ValidationGroup="vgRegister" ForeColor="Red" 
+                                        Display="Dynamic" />
+                                </div>
+                                <div class="form-group required">
+                                    <%--<label for="register-confirm-password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="register-confirm-password" name="" value="" placeholder="Confirm password" required >--%>
+                                    <asp:Label runat="server" AssociatedControlID="RegisterConfirmPassword" Text="Confirm password" />
+                                    <asp:TextBox runat="server" ID="RegisterConfirmPassword" TextMode="Password" 
+                                        placeholder="Confirm Password" CssClass="form-control" />
+                                    <asp:CompareValidator runat="server" ID="cvRegisterConfirmPassword" ControlToCompare="RegisterPassword"
+                                        ControlToValidate="RegisterConfirmPassword" ErrorMessage="Passwords are different" 
+                                        ValidationGroup="vgRegister" ForeColor="Red" Display="Dynamic"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <asp:Button runat="server" ID="RegisterBtn" Text="Register" CssClass="btn btn-lg btn-block text-light bg-default"
+                                    ValidationGroup="vgRegister"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        </asp:ContentPlaceHolder>
-        <%--<hr />
-        <footer>
-            <p>&copy; <%: DateTime.Now.Year %> - Best Logistic</p>
-        </footer>--%>
-    </div>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <%--<hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Best Logistic</p>
+            </footer>--%>
+        </div>
+    </form>
 </body>
 </html>

@@ -80,26 +80,26 @@ Index
     transition: background-color 0.2s ease;
 }
 
-    .form-group-default > .form-control {
-        border: none;
-        padding: 0;
-        height: 18px;
-        color: grey;
-    }
+.form-group-default > .form-control {
+    border: none;
+    padding: 0;
+    height: 18px;
+    color: grey;
+}
 
-    .form-group-default.required:after {
-        color: #f55753;
-        content: "*";
-        font-family: arial;
-        font-size: 20px;
-        position: absolute;
-        right: 15px;
-        top: 9px;
-    }
+.form-group-default.required:after {
+    color: #f55753;
+    content: "*";
+    font-family: arial;
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 9px;
+}
 
-    .form-group-default label {
-        font-size: 0.75rem;
-    }
+.form-group-default label {
+    font-size: 0.75rem;
+}
 
 /* --------------------- Quote -------------------- */
 .quote {
