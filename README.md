@@ -1,8 +1,12 @@
 # BestLogistic
 Programming Elective II (2) Assignment
 
-HENG JUN XI SWE1704023
+Team Member:
 
-LOH SHU YI SWE1704010
+(Name)  (Student Id)  (Github Account)
 
-LIM CAROL SWE1704205
+Heng Jun Xi	SWE1704023  HengJunXi
+
+Loh Shu Yi	SWE1704010  Loh-Shuyi
+
+Lim Carol	SWE1704205  carol8888
