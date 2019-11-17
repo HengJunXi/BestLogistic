@@ -166,3 +166,57 @@ Index
     color: white;
 }
 /* ----------------- Tracking End ------------------- */
+/* ----------------- Dashboard start ------------------- */
+.dashboard-border {
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+
+}
+
+.vertical-center {
+    margin-bottom:auto;
+    margin-top:auto;
+}
+
+.dashboard-out-border {
+    border-style: groove ;
+    border-width: 2px;
+    border-radius: 8px;
+    margin: 0 8px 0 8px;
+}
+
+.dashboard-upper {
+    background-color: var(--primary-color);
+    font: var(--primary-font);
+}
+
+.dashboard-pic {
+    width: 150px;
+    height: 150px;
+}
+
+.dashboard-name {
+    font: var(--primary-font);
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.dashboard-margin {
+    margin: 8px 0 8px 0;
+}
+
+@media (min-width: 992px) {
+    .col-lg-2-4 {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+
+@media (max-width: 576px){
+    .vertical-center {
+        margin-bottom: 15px;
+        margin-top: auto;
+    }
+}
