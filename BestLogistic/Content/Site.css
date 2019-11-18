@@ -48,8 +48,13 @@ Index
     width: 96px;
 }
 
-.signin-btn {
+.btn-default {
     background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-default:hover {
+    opacity: 0.9;
     color: white;
 }
 
@@ -166,11 +171,10 @@ Index
     color: white;
 }
 /* ----------------- Tracking End ------------------- */
-/* ----------------- Dashboard start ------------------- */
+/* ----------------- Dashboard X Profile start ------------------- */
 .dashboard-border {
     border: 2px solid var(--primary-color);
     border-radius: 8px;
-
 }
 
 .vertical-center {
@@ -205,6 +209,21 @@ Index
     margin: 8px 0 8px 0;
 }
 
+.profile-margin {
+    margin: 0 0 0 24px;
+}
+
+.profile-title-text {
+    margin-left: 15px;
+}
+
+.p-8 {
+    padding: 8px 0px 8px 0px;
+}
+.p-10 {
+    padding: 10px 0px 10px 0px;
+}
+
 @media (min-width: 992px) {
     .col-lg-2-4 {
         -ms-flex: 0 0 20%;
@@ -220,3 +239,5 @@ Index
         margin-top: auto;
     }
 }
+
+/* ----------------- Dashboard X Profile end ------------------- */
