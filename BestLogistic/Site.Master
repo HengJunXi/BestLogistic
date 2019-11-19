@@ -58,7 +58,7 @@
                             </a>
                         </li>--%>
                         <li class="nav-item">
-                            <button type="button" class="nav-link header-nav-link signin-btn" data-toggle="modal" data-target="#modal">
+                            <button type="button" class="nav-link header-nav-link signin-btn btn-default" data-toggle="modal" data-target="#modal">
                                 <i class="fas fa-user fa-fw"></i>
                                 SIGN IN
                             </button>

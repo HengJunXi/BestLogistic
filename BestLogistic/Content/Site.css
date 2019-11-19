@@ -48,8 +48,13 @@ Index
     width: 96px;
 }
 
-.signin-btn {
+.btn-default {
     background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-default:hover {
+    opacity: 0.9;
     color: white;
 }
 
@@ -166,12 +171,78 @@ Index
     color: white;
 }
 /* ----------------- Tracking End ------------------- */
+/* ----------------- Dashboard X Profile start ------------------- */
+.dashboard-border {
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+}
 
-/*-------------------Send Package-------------------- */
+.vertical-center {
+    margin-bottom:auto;
+    margin-top:auto;
+}
+
+.dashboard-out-border {
+    border-style: groove ;
+    border-width: 2px;
+    border-radius: 8px;
+    margin: 0 8px 0 8px;
+}
+
+.dashboard-upper {
+    background-color: var(--primary-color);
+    font: var(--primary-font);
+}
+
+.dashboard-pic {
+    width: 150px;
+    height: 150px;
+}
+
+.dashboard-name {
+    font: var(--primary-font);
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.dashboard-margin {
+    margin: 8px 0 8px 0;
+}
+
+.profile-margin {
+    margin: 0 0 0 24px;
+}
+
+.profile-title-text {
+    margin-left: 15px;
+}
+
+.p-8 {
+    padding: 8px 0px 8px 0px;
+}
+.p-10 {
+    padding: 10px 0px 10px 0px;
+}
+
+@media (min-width: 992px) {
+    .col-lg-2-4 {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
 
 
+@media (max-width: 576px){
+    .vertical-center {
+        margin-bottom: 15px;
+        margin-top: auto;
+    }
+}
+
+/* ----------------- Dashboard X Profile end ------------------- */
+
+/*-------------------Send Package -------------------------------*/
 .background-grey {
     background-color: #dce5f04f;
 }
-
-/*-------------------Send Package End----------------*/
