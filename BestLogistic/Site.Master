@@ -50,7 +50,7 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav ml-auto text-right align-items-end">
                         <li class="nav-item"><a class="nav-link header-nav-link" href="/">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link header-nav-link" href="#">SEND PACKAGE</a></li>
+                        <li class="nav-item"><a class="nav-link header-nav-link" href="SendPackage.aspx">SEND PACKAGE</a></li>
                         <li class="nav-item"><a class="nav-link header-nav-link" href="Tracking.aspx">TRACKING</a></li>
                         <%--<li class="nav-item">
                             <a class="nav-link header-nav-link register-btn" data-toggle="modal" data-target="#modal" href="#modal-register">
@@ -151,10 +151,10 @@
         <div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <%--<hr />
-            <footer>
+            <hr />
+            <footer class="text-center">
                 <p>&copy; <%: DateTime.Now.Year %> - Best Logistic</p>
-            </footer>--%>
+            </footer>
         </div>
     </form>
 </body>
