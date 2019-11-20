@@ -240,7 +240,21 @@ Index
     }
 }
 
+
 /* ----------------- Dashboard X Profile end ------------------- */
+/* ----------------- Check out start ------------------- */
+
+.collapse-border {
+    border: 2px solid var(--primary-color);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.btm-nor-rad {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+/* ----------------- Check out end ------------------- */
 
 /*-------------------Send Package -------------------------------*/
 .background-grey {

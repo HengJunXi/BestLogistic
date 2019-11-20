@@ -71,15 +71,15 @@
                         <asp:TextBox ID="postCode" runat="server" Text="14300" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class=" col-md-3 col-sm-6 form-group">
-                        <asp:Label ID="Label5" runat="server" Text="City" Font-Bold="true"></asp:Label><br />
+                        <asp:Label ID="Label5" runat="server" Text="Location" Font-Bold="true"></asp:Label><br />
                         <asp:TextBox ID="location" runat="server" Text="Nibong Tebal" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="col-md-3 col-sm-6 form-group">
-                        <asp:Label ID="Label6" runat="server" Text="State" Font-Bold="true"></asp:Label><br />
+                        <asp:Label ID="Label6" runat="server" Text="City" Font-Bold="true"></asp:Label><br />
                         <asp:TextBox ID="city" runat="server" Text="Nibong Tebal" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="col-md-3 col-sm-6 form-group">
-                        <asp:Label ID="Label7" runat="server" Text="Country" Font-Bold="true"></asp:Label><br />
+                        <asp:Label ID="Label7" runat="server" Text="State" Font-Bold="true"></asp:Label><br />
                         <asp:TextBox ID="state" runat="server" Text="Penang" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
