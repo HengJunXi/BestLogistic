@@ -10,7 +10,7 @@
 namespace BestLogistic {
     
     
-    public partial class WebForm3 {
+    public partial class Checkout {
         
         /// <summary>
         /// Label1 control.

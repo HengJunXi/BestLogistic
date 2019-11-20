@@ -169,6 +169,8 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Tracking.aspx" />
     <Content Include="SendPackage.aspx" />
+    <Content Include="obj\Debug\BestLogistic.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -298,7 +300,6 @@
     <Folder Include="bin\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

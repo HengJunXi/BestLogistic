@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Send Package Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SendPackage.aspx.cs" Inherits="BestLogistic.WebForm1" %>
+﻿<%@ Page Title="Send Package Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SendPackage.aspx.cs" Inherits="BestLogistic.SendPackage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="font-weight-bold text-center" style="padding:6px;font-weight:900;font-size:1.3em; margin-bottom:5px;">

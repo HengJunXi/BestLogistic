@@ -10,7 +10,7 @@
 namespace BestLogistic {
     
     
-    public partial class WebForm2 {
+    public partial class Profile {
         
         /// <summary>
         /// Label1 control.

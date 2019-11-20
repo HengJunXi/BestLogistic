@@ -10,7 +10,7 @@
 namespace BestLogistic {
     
     
-    public partial class WebForm1 {
+    public partial class SendPackage {
         
         /// <summary>
         /// CheckBox1 control.
