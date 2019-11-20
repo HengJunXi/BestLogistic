@@ -144,6 +144,7 @@
     <Content Include="Global.asax" />
     <Content Include="Icons\user-solid.svg" />
     <Content Include="Images\logo.png" />
+    <Content Include="OrderSummary.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="OrderSummary.aspx.cs">
+      <DependentUpon>OrderSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderSummary.aspx.designer.cs">
+      <DependentUpon>OrderSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

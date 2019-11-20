@@ -256,6 +256,12 @@ Index
 }
 /* ----------------- Check out end ------------------- */
 
+.thick-border {
+    border-top-width: 3px;
+    border-top-style:solid;
+    border-top-color: white;
+}
+
 /*-------------------Send Package -------------------------------*/
 .background-grey {
     background-color: #dce5f04f;
