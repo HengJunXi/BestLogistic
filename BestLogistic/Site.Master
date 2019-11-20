@@ -52,6 +52,8 @@
                         <li class="nav-item"><a class="nav-link header-nav-link" href="/">HOME</a></li>
                         <li class="nav-item"><a class="nav-link header-nav-link" href="SendPackage.aspx">SEND PACKAGE</a></li>
                         <li class="nav-item"><a class="nav-link header-nav-link" href="Tracking.aspx">TRACKING</a></li>
+                        <li class="nav-item"><a class="nav-link header-nav-link" href="Dashboard.aspx">DASHBOARD</a></li>
+                        <li class="nav-item"><a class="nav-link header-nav-link" href="Profile.aspx">PROFILE</a></li>
                         <%--<li class="nav-item">
                             <a class="nav-link header-nav-link register-btn" data-toggle="modal" data-target="#modal" href="#modal-register">
                                 REGISTER
