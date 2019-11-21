@@ -143,7 +143,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Icons\user-solid.svg" />
+    <Content Include="Images\done.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\pic.png" />
     <Content Include="OrderSummary.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />

@@ -3,10 +3,11 @@
     <div class="container">
         <div class="dashboard-margin dashboard-out-border ">
             <div class="m-3 text-center">
-                <h2>Payment Successful</h2>
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/done.png" Width="56px" Height="56px" />
+                <h2>Payment Successful!</h2>
             </div>
             <div class="mb-3 text-center">
-                <h2>Thank you for using us</h2>
+                <h2>Thank you for using us!</h2>
             </div>
             <div class="container">
                 <div class="row dashboard-margin">
@@ -88,6 +89,9 @@
                         </div>                
                     </div>
                 </div>
+            </div>
+            <div class="m-3 d-flex justify-content-end">
+                <asp:Button ID="btnNextSend" runat="server" Text="Send Another Package" CssClass="btn btn-default" Font-Size="Large" OnClick="btnNextSend_Click" />
             </div>
         </div>
     </div>

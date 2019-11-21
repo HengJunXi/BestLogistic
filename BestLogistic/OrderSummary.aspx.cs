@@ -13,5 +13,10 @@ namespace BestLogistic
         {
 
         }
+
+        protected void btnNextSend_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SendPackage.aspx");
+        }
     }
 }
