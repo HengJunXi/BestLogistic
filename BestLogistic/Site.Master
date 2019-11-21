@@ -11,7 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <script src="https://kit.fontawesome.com/a06c7371fc.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a06c7371fc.js"></script>
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -38,7 +38,6 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-    
         <header class="header">
             <nav class="navbar navbar-expand-md container">
                 <a class="navbar-brand" href="/">
@@ -52,31 +51,43 @@
                         <li class="nav-item"><a class="nav-link header-nav-link" href="/">HOME</a></li>
                         <li class="nav-item"><a class="nav-link header-nav-link" href="SendPackage.aspx">SEND PACKAGE</a></li>
                         <li class="nav-item"><a class="nav-link header-nav-link" href="Tracking.aspx">TRACKING</a></li>
-                        <%--<li class="nav-item">
-                            <a class="nav-link header-nav-link register-btn" data-toggle="modal" data-target="#modal" href="#modal-register">
-                                REGISTER
-                            </a>
-                        </li>--%>
+                        <asp:Panel runat="server" ID="HeaderDashboardNavItem" Visible="false">
+                            <li class="nav-item"><a class="nav-link header-nav-link" href="Dashboard.aspx">DASHBOARD</a></li>
+                        </asp:Panel>
                         <li class="nav-item">
-                            <button type="button" class="nav-link header-nav-link signin-btn btn-default" data-toggle="modal" data-target="#modal">
-                                <i class="fas fa-user fa-fw"></i>
+                            <asp:LinkButton runat="server" ID="HeaderModalBtn" Text="Full Name"
+                                CssClass="nav-link header-nav-link signin-btn btn-default" 
+                                data-toggle="modal" data-target="#modal">
+                                <i class="fas fa-user fa-fw"></i>&nbsp;
                                 SIGN IN
-                            </button>
+                            </asp:LinkButton>
+                            <asp:Panel runat="server" ID="HeaderProfileBtn" Visible="false">
+                                <div class="btn-group">
+                                    <a type="button" class="btn btn-default" href="Profile.aspx">
+                                    <i class="fas fa-user fa-fw"></i>&nbsp;
+                                    <%=new BestLogistic.Controllers.Repository().GetUser(Session["uid"].ToString())%>
+                                    </a>
+                                    <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                    <asp:Button runat="server" ID="SignOutBtn" Text="Sign out"
+                                        CssClass="dropdown-item" OnClick="SignOutBtn_Click"/>
+                                    </div>
+                                </div>
+                            </asp:Panel>
                         </li>
                     </ul>
                 </div>
             </nav>
         </header>
         <div class="modal fade" id="modal">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header border-0">
                         <img src="images/logo.png" alt="logo" style="width: 256px;" />
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <ul class="nav nav-tabs" role="tablist">
-                        <%--<h4 class="modal-title bg-default text-light">Sign In</h4>
-                        <h4 class="modal-title bg-default text-light">Register</h4>--%>
                         <li class="col-6 p-0"><a class="nav-item nav-link active text-center" id="signin-tab" data-toggle="tab" href="#modal-signin" role="tab" aria-controls="modal-signin" aria-selected="true">Sign In</a></li>
 					    <li class="col-6 p-0"><a class="nav-item nav-link text-center" id="register-tab" data-toggle="tab" href="#modal-register" role="tab" aria-controls="modal-register" aria-selected="false">Register</a></li>
                     </ul>
@@ -84,64 +95,94 @@
                         <div id="modal-signin" class="tab-pane fade show active" role="tabpanel" aria-labelledby="signin-tab">
                             <div class="modal-body">
                                 <div class="form-group required">
-                                    <%--<label for="signin-email">Email</label>
-                                    <input type="text" class="form-control" id="signin-email" name="" value="" placeholder="Email" required>--%>
                                     <asp:Label runat="server" AssociatedControlID="SignInEmail" Text="Email" />
-                                    <asp:TextBox runat="server" ID="SignInEmail" TextMode="Email" placeholder="Email" CssClass="form-control" />
+                                    <asp:TextBox runat="server" ID="SignInEmail" TextMode="Email" placeholder="Eg. example@example.com" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvSignInEmail" runat="server" ErrorMessage="Email cannot be empty" ControlToValidate="SignInEmail" 
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSignIn"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator runat="server" ID="revSignInEmail" ControlToValidate="SignInEmail"
                                         ErrorMessage="Invalid email format" ValidationGroup="vgSignIn" ForeColor="Red" 
                                         ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
                                 </div>
                                 <div class="form-group required">
-                                    <%--<label for="signin-password">Password</label>
-                                    <input type="password" class="form-control" id="signin-password" name="" value="" placeholder="Password" required >--%>
                                     <asp:Label runat="server" AssociatedControlID="SignInPassword" Text="Password" />
                                     <asp:TextBox runat="server" ID="SignInPassword" TextMode="Password" 
-                                        placeholder="Password" CssClass="form-control" />
+                                        placeholder="Enter your password" CssClass="form-control" />
                                     <asp:RequiredFieldValidator runat="server" ID="rfvSignInPassword" ControlToValidate="SignInPassword" 
                                         ErrorMessage="Password cannot be empty" ValidationGroup="vgSignIn" ForeColor="Red" Display="Dynamic" />
                                 </div>
                             </div>
-                            <div class="modal-footer border-0">
+                            <div class="modal-footer border-0 pt-0">
                                 <asp:Button runat="server" ID="SignInBtn" Text="Sign in" CssClass="btn btn-lg btn-block text-light bg-default"
-                                    ValidationGroup="vgSignIn"/>
+                                    ValidationGroup="vgSignIn" OnClick="SignInBtn_Click"/>
                             </div>
                         </div>
                         <div id="modal-register" class="tab-pane fade" role="tabpanel" aria-labelledby="register-tab">
                             <div class="modal-body">
-                                <div class="form-group required">
-                                    <%--<label for="register-email">Email</label>
-                                    <input type="text" class="form-control" id="register-email" name="" value="" placeholder="Email" required>--%>
-                                    <asp:Label runat="server" AssociatedControlID="RegisterEmail" Text="Email" />
-                                    <asp:TextBox runat="server" ID="RegisterEmail" TextMode="Email" placeholder="Email" CssClass="form-control" />
-                                    <asp:RegularExpressionValidator runat="server" ID="rgvRegisterEmail" ControlToValidate="RegisterEmail"
-                                        ErrorMessage="Invalid email format" ValidationGroup="vgRegister" ForeColor="Red" 
-                                        ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
-                                </div>
-                                <div class="form-group required">
-                                    <%--<label for="register-password">Password</label>
-                                    <input type="password" class="form-control" id="register-password" name="" value="" placeholder="Password" required >--%>
-                                    <asp:Label runat="server" AssociatedControlID="RegisterPassword" Text="Password" />
-                                    <asp:TextBox runat="server" ID="RegisterPassword" TextMode="Password" 
-                                        placeholder="Password" CssClass="form-control" />
-                                    <asp:RequiredFieldValidator runat="server" ID="rfvRegisterPassword" ControlToValidate="RegisterPassword" 
-                                        ErrorMessage="Password cannot be empty" ValidationGroup="vgRegister" ForeColor="Red" 
-                                        Display="Dynamic" />
-                                </div>
-                                <div class="form-group required">
-                                    <%--<label for="register-confirm-password">Confirm Password</label>
-                                    <input type="password" class="form-control" id="register-confirm-password" name="" value="" placeholder="Confirm password" required >--%>
-                                    <asp:Label runat="server" AssociatedControlID="RegisterConfirmPassword" Text="Confirm password" />
-                                    <asp:TextBox runat="server" ID="RegisterConfirmPassword" TextMode="Password" 
-                                        placeholder="Confirm Password" CssClass="form-control" />
-                                    <asp:CompareValidator runat="server" ID="cvRegisterConfirmPassword" ControlToCompare="RegisterPassword"
-                                        ControlToValidate="RegisterConfirmPassword" ErrorMessage="Passwords are different" 
-                                        ValidationGroup="vgRegister" ForeColor="Red" Display="Dynamic"/>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group required">
+                                            <asp:Label runat="server" AssociatedControlID="RegisterEmail" Text="Email" />
+                                            <asp:TextBox runat="server" ID="RegisterEmail" TextMode="Email" placeholder="Eg. example@example.com" CssClass="form-control" />
+                                            <asp:RequiredFieldValidator ID="rfvRegisterEmail" runat="server" ErrorMessage="Email cannot be empty" ControlToValidate="RegisterEmail" 
+                                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgRegister"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator runat="server" ID="revRegisterEmail" ControlToValidate="RegisterEmail"
+                                                ErrorMessage="Invalid email format" ValidationGroup="vgRegister" ForeColor="Red" 
+                                                ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
+                                        </div>
+                                        <div class="form-group required">
+                                            <asp:Label runat="server" AssociatedControlID="RegisterPassword" Text="Password" />
+                                            <asp:TextBox runat="server" ID="RegisterPassword" TextMode="Password" 
+                                                placeholder="Enter your password" CssClass="form-control" />
+                                            <asp:RequiredFieldValidator runat="server" ID="rfvRegisterPassword" ControlToValidate="RegisterPassword" 
+                                                ErrorMessage="Password cannot be empty" ValidationGroup="vgRegister" ForeColor="Red" 
+                                                Display="Dynamic" />
+                                        </div>
+                                        <div class="form-group required">
+                                            <asp:Label runat="server" AssociatedControlID="RegisterConfirmPassword" Text="Confirm Password" />
+                                            <asp:TextBox runat="server" ID="RegisterConfirmPassword" TextMode="Password" 
+                                                placeholder="Confirm your password" CssClass="form-control" />
+                                            <asp:CompareValidator runat="server" ID="cvRegisterConfirmPassword" ControlToCompare="RegisterPassword"
+                                                ControlToValidate="RegisterConfirmPassword" ErrorMessage="Passwords are different" 
+                                                ValidationGroup="vgRegister" ForeColor="Red" Display="Dynamic"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group required">
+                                            <asp:Label runat="server" AssociatedControlID="RegisterFullName" Text="Full Name" />
+                                            <asp:TextBox runat="server" ID="RegisterFullName" TextMode="SingleLine" placeholder="Eg. Michael Jackson" CssClass="form-control" />
+                                            <asp:RequiredFieldValidator runat="server" ID="rfvRegisterFullName" ControlToValidate="RegisterFullName" 
+                                                ErrorMessage="Name cannot be empty" ValidationGroup="vgRegister" ForeColor="Red" 
+                                                Display="Dynamic" />
+                                        </div>
+                                        <asp:Label runat="server" AssociatedControlID="RegisterIdNumber" Text="Identity Number" />
+                                        <div class="form-group required row mb-0">
+                                            <div class="form-group required col-4">
+                                                <asp:DropDownList ID="RegisterIdType" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Value="1">I/C</asp:ListItem>
+                                                    <asp:ListItem Value="2">Old I/C</asp:ListItem>
+                                                    <asp:ListItem Value="3">Passport</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                            <div class="form-group required col-8">
+                                                <asp:TextBox runat="server" ID="RegisterIdNumber" TextMode="SingleLine" placeholder="Eg. 801231021234 (Without '-')" CssClass="form-control" />
+                                                <asp:RequiredFieldValidator runat="server" ID="rfvRegisterIdNumber" ControlToValidate="RegisterIdNumber" 
+                                                    ErrorMessage="Identity number cannot be empty" ValidationGroup="vgRegister" ForeColor="Red" 
+                                                    Display="Dynamic" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group required">
+                                            <asp:Label runat="server" AssociatedControlID="RegisterDob" Text="Date of Birth"></asp:Label>
+                                            <asp:TextBox runat="server" ID="RegisterDob" TextMode="Date" placeholder="" CssClass="form-control" />
+                                            <asp:RequiredFieldValidator runat="server" ID="rfvRegisterDob" ControlToValidate="RegisterDob" 
+                                                ErrorMessage="Date of birth cannot be empty" ValidationGroup="vgRegister" ForeColor="Red" 
+                                                Display="Dynamic"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="modal-footer border-0">
+                            <div class="modal-footer border-0 pt-0">
                                 <asp:Button runat="server" ID="RegisterBtn" Text="Register" CssClass="btn btn-lg btn-block text-light bg-default"
-                                    ValidationGroup="vgRegister"/>
+                                    ValidationGroup="vgRegister" OnClick="RegisterBtn_Click"/>
                             </div>
                         </div>
                     </div>

@@ -15,6 +15,42 @@ namespace BestLogistic
     {
 
         /// <summary>
+        /// HeaderDashboardNavItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel HeaderDashboardNavItem;
+
+        /// <summary>
+        /// HeaderModalBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton HeaderModalBtn;
+
+        /// <summary>
+        /// HeaderProfileBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel HeaderProfileBtn;
+
+        /// <summary>
+        /// SignOutBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SignOutBtn;
+
+        /// <summary>
         /// SignInEmail control.
         /// </summary>
         /// <remarks>
@@ -22,6 +58,15 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SignInEmail;
+
+        /// <summary>
+        /// rfvSignInEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSignInEmail;
 
         /// <summary>
         /// revSignInEmail control.
@@ -69,13 +114,22 @@ namespace BestLogistic
         protected global::System.Web.UI.WebControls.TextBox RegisterEmail;
 
         /// <summary>
-        /// rgvRegisterEmail control.
+        /// rfvRegisterEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgvRegisterEmail;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRegisterEmail;
+
+        /// <summary>
+        /// revRegisterEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revRegisterEmail;
 
         /// <summary>
         /// RegisterPassword control.
@@ -112,6 +166,69 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator cvRegisterConfirmPassword;
+
+        /// <summary>
+        /// RegisterFullName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RegisterFullName;
+
+        /// <summary>
+        /// rfvRegisterFullName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRegisterFullName;
+
+        /// <summary>
+        /// RegisterIdType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RegisterIdType;
+
+        /// <summary>
+        /// RegisterIdNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RegisterIdNumber;
+
+        /// <summary>
+        /// rfvRegisterIdNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRegisterIdNumber;
+
+        /// <summary>
+        /// RegisterDob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RegisterDob;
+
+        /// <summary>
+        /// rfvRegisterDob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRegisterDob;
 
         /// <summary>
         /// RegisterBtn control.

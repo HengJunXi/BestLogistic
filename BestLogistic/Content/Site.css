@@ -22,6 +22,10 @@ Index
     background-color: var(--primary-color);
 }
 
+.checkbox-default > label {
+    margin-left: 8px;
+}
+
 /* -------------------- HEADER ------------------ */
 .header {
     background-color: white;
@@ -42,10 +46,12 @@ Index
     opacity: 0.5;
 }
 
-.register-btn, .signin-btn {
+.signin-btn {
     border: var(--primary-color) solid 2px;
     border-radius: 32px;
-    width: 96px;
+    min-width: 96px;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
 }
 
 .btn-default {
@@ -59,12 +65,17 @@ Index
 }
 
 #signin-tab, #register-tab {
-    color: var(--primary-color);
+    color: #999;
     background-color: #eeeeee;
     font-weight: bold;
 }
 
+#signin-tab:hover, #register-tab:hover {
+    background-color: #ddd;
+}
+
 #signin-tab.active, #register-tab.active {
+    color: var(--primary-color);
     background-color: white;
 }
 
@@ -108,9 +119,9 @@ Index
 
 /* --------------------- Quote -------------------- */
 .quote {
-    position: absolute;
+    /*position: absolute;
     top: 20%;
-    right: 10%;
+    right: 10%;*/
     max-width: 500px;
     color: var(--primary-color);
     font-weight: bolder;
@@ -138,12 +149,16 @@ Index
     color: white;
 }
 
+.h-flow-radio-btn-list > label {
+    margin-left: 4px;
+    margin-right: 32px;
+}
 /* ---------------- Quote End ---------- */
 /* ----------------- Tracking ------------------- */
 .track {
-    position: absolute;
+    /*position: absolute;
     top: 20%;
-    left: 5%;
+    left: 5%;*/
     max-width: 240px;
     color: var(--primary-color);
     font-weight: bolder;
