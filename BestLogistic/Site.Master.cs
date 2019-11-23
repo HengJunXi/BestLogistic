@@ -16,6 +16,16 @@ namespace BestLogistic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // redirect back to home page if not signed in
+            string path = HttpContext.Current.Request.Url.AbsolutePath;
+            Debug.WriteLine(path);
+            if (!Authentication.IsSignedIn() 
+                && !path.Equals("/default.aspx")
+                && !path.Equals("/SendPackage")
+                && !path.Equals("/Tracking"))
+            {
+                Response.Redirect("~/", true);
+            }
             ChangeHeader();
         }
 

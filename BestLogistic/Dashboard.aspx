@@ -5,7 +5,7 @@
             <div class="col-sm-3 text-center dashboard-margin">
                 <img src="images/pic.png" class="img-thumbnail dashboard-pic">
                 <div class="dashboard-name">
-                    Loh Shu Yi
+                    <asp:Label ID="Username" runat="server"/>
                 </div>
             </div>
             <div class="col-sm-9 row dashboard-margin ">

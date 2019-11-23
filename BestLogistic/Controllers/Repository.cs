@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using BestLogistic.Models;
 
 namespace BestLogistic.Controllers
 {
@@ -17,7 +18,6 @@ namespace BestLogistic.Controllers
                 "database=" + Credential.DATABASE + "; " +
                 "uid=" + Credential.UID + "; " +
                 "password=" + Credential.PASSWORD + ";";
-        
         public string GetHashSalt(string email)
         {
             string query = "SELECT hash_salt FROM [user] WHERE email=@EMAIL;";
@@ -44,9 +44,9 @@ namespace BestLogistic.Controllers
             return string.Empty;
         }
 
-        public string SignInUser(string email, string password)
+        public string[] SignInUser(string email, string password)
         {
-            string query = "SELECT uid FROM [user] WHERE email=@EMAIL AND password_hash=@PASSWORD;";
+            string query = "SELECT uid, name FROM [user] WHERE email=@EMAIL AND password_hash=@PASSWORD;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -60,10 +60,13 @@ namespace BestLogistic.Controllers
                 {
                     adapter.Fill(ds);
                     if (ds.Tables[0].Rows.Count != 0)
-                        return ds.Tables[0].Rows[0].Field<Guid>("uid").ToString();
+                        return new string[] {
+                            ds.Tables[0].Rows[0].Field<Guid>("uid").ToString(),
+                            ds.Tables[0].Rows[0].Field<string>("name")
+                        };
                 }
             }
-            return string.Empty;
+            return null;
         }
 
         public void RegisterUser(string email, string passwordHash, string hashSalt,
@@ -89,12 +92,11 @@ namespace BestLogistic.Controllers
             }
         }
 
-        public string GetUser(string uid)
+        public User GetUser(string uid)
         {
-            //string query = "SELECT uid, email, phone_number, home_number, name," +
-            //    "id_type, id_number, date_of_birth, address, location, postcode " +
-            //    "FROM [user] WHERE uid=@UID;";
-            string query = "SELECT name FROM [user] WHERE uid=@UID;";
+            string query = "SELECT uid, email, phone_number, home_number, name, " +
+                "id_type, id_number, date_of_birth, address, location, postcode " +
+                "FROM [user] WHERE uid=@UID;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -107,10 +109,10 @@ namespace BestLogistic.Controllers
                 {
                     adapter.Fill(ds);
                     if (ds.Tables[0].Rows.Count != 0)
-                        return ds.Tables[0].Rows[0].Field<string>("name");
+                        return new User(ds.Tables[0].Rows[0]);
                 }
             }
-            return string.Empty;
+            return null;
         }
     }
 }

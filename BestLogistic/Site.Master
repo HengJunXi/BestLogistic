@@ -65,7 +65,7 @@
                                 <div class="btn-group">
                                     <a type="button" class="btn btn-default" href="Profile.aspx">
                                     <i class="fas fa-user fa-fw"></i>&nbsp;
-                                    <%=new BestLogistic.Controllers.Repository().GetUser(Session["uid"].ToString())%>
+                                    <%=BestLogistic.Controllers.Authentication.GetUsername()%>
                                     </a>
                                     <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                                     </button>

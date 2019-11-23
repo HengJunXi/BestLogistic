@@ -139,10 +139,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
+    <Content Include="Database\create_database.sql" />
+    <Content Include="Database\create_state_postcode.sql" />
+    <Content Include="Database\database_operation.sql" />
+    <Content Include="Database\create_point.sql" />
+    <Content Include="Database\populate_database.sql" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Icons\truck-solid.svg" />
     <Content Include="Icons\user-solid.svg" />
+    <Content Include="Icons\warehouse-solid.svg" />
     <Content Include="Images\done.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\pic.png" />

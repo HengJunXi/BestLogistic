@@ -10,6 +10,21 @@ namespace BestLogistic.Controllers
 {
     public static class Authentication
     {
+        public static bool IsSignedIn()
+        {
+            return HttpContext.Current.Session["uid"] != null;
+        }
+
+        public static string GetUid()
+        {
+            return (string)HttpContext.Current.Session["uid"];
+        }
+
+        public static string GetUsername()
+        {
+            return (string)HttpContext.Current.Session["username"];
+        }
+
         public static string SignInUser(string email, string password)
         {
             Repository repository = new Repository();
@@ -24,9 +39,12 @@ namespace BestLogistic.Controllers
 
                 try
                 {
-                    string uid = repository.SignInUser(email, passwordHash);
-                    HttpContext.Current.Session["uid"] = uid;
-                    return uid;
+                    string[] result = repository.SignInUser(email, passwordHash);
+                    if (result == null)
+                        return string.Empty;
+                    HttpContext.Current.Session["uid"] = result[0];
+                    HttpContext.Current.Session["username"] = result[1];
+                    return result[0];
                 } 
                 catch (SqlException e)
                 {
@@ -69,6 +87,7 @@ namespace BestLogistic.Controllers
         public static void SignOutUser()
         {
             HttpContext.Current.Session.Remove("uid");
+            HttpContext.Current.Session.Remove("username");
         }
     }
 }
