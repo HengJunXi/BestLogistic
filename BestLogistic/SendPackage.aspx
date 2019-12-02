@@ -47,37 +47,28 @@
                 
                     <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="SenderPostal" Text="POSTAL CODE"/>
-                            <asp:TextBox runat="server" ID="SenderPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"/>
+                            <asp:TextBox runat="server" ID="SenderPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"
+                                AutoPostBack="true" OnTextChanged="SenderPostal_TextChanged" />
                             <asp:RequiredFieldValidator ID="SPosValid" runat="server" ErrorMessage="Postal code cannot be empty" ControlToValidate="SenderPostal" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="SenderLocation" Text="LOCATION"/>
-                            <asp:DropDownList ID="SenderLocation" runat="server" AutoPostBack="True" CssClass="form-control" Height="25px">
-                                <asp:ListItem Value="Sepang"></asp:ListItem>
-                                <asp:ListItem Value="Taman Jasa"></asp:ListItem>
-                                <asp:ListItem Value="Taman Pekaka"></asp:ListItem>
+                            <asp:DropDownList ID="SenderLocation" runat="server" CssClass="form-control" Height="25px" 
+                                AutoPostBack="True" OnSelectedIndexChanged="SenderLocation_SelectedIndexChanged">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="SLocationValid" runat="server" ErrorMessage="Location cannot be empty" ControlToValidate="SenderLocation" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SCity" Text="CITY"/>
-                            <asp:DropDownList ID="SCity" runat="server" AutoPostBack="True" CssClass="form-control" Height="25px">
-                                <asp:ListItem Value="Sepang"></asp:ListItem>
-                                <asp:ListItem Value="Taman Jasa"></asp:ListItem>
-                                <asp:ListItem Value="Taman Pekaka"></asp:ListItem>
-                            </asp:DropDownList>
+                            <label>CITY</label>
+                            <asp:TextBox runat="server" ID="SCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="SCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="SCity" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SState" Text="STATE"/>
-                             <asp:DropDownList ID="SState" runat="server" AutoPostBack="True" CssClass="form-control" Height="25px">
-                                 <asp:ListItem Value="Selangor"></asp:ListItem>
-                                <asp:ListItem Value="Pulau Pinang"></asp:ListItem>
-                                <asp:ListItem Value="Sabah"></asp:ListItem>
-                            </asp:DropDownList>
+                            <label>STATE</label>
+                            <asp:TextBox runat="server" ID="SState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="SStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="SState" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
@@ -115,37 +106,28 @@
                 
                     <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="ReceiverPostal" Text="POSTAL CODE"/>
-                            <asp:TextBox runat="server" ID="ReceiverPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"/>
+                            <asp:TextBox runat="server" ID="ReceiverPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"
+                                AutoPostBack="true" OnTextChanged="ReceiverPostal_TextChanged" />
                             <asp:RequiredFieldValidator ID="RPosValid" runat="server" ErrorMessage="Postal code cannot be empty" ControlToValidate="ReceiverPostal" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                      <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="ReceiverLocation" Text="LOCATION"/>
-                            <asp:DropDownList ID="ReceiverLocation" runat="server" CssClass="form-control" Height="25px">
-                                <asp:ListItem Value="Sepang"></asp:ListItem>
-                                <asp:ListItem Value="Taman Jasa"></asp:ListItem>
-                                <asp:ListItem Value="Taman Pekaka"></asp:ListItem>
+                            <asp:DropDownList ID="ReceiverLocation" runat="server" CssClass="form-control" Height="25px"
+                                AutoPostBack="true" OnSelectedIndexChanged="ReceiverLocation_SelectedIndexChanged">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Location cannot be empty" ControlToValidate="ReceiverLocation" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="RCity" Text="CITY"/>
-                            <asp:DropDownList ID="RCity" runat="server" AutoPostBack="True" CssClass="form-control" Height="25px">
-                                <asp:ListItem Value="Sepang"></asp:ListItem>
-                                <asp:ListItem Value="Taman Jasa"></asp:ListItem>
-                                <asp:ListItem Value="Taman Pekaka"></asp:ListItem>
-                            </asp:DropDownList>
+                            <label>CITY</label>
+                            <asp:TextBox runat="server" ID="RCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="RCity" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="RState" Text="STATE"/>
-                             <asp:DropDownList ID="RState" runat="server" AutoPostBack="True" CssClass="form-control" Height="25px">
-                                 <asp:ListItem Value="Selangor"></asp:ListItem>
-                                <asp:ListItem Value="Pulau Pinang"></asp:ListItem>
-                                <asp:ListItem Value="Sabah"></asp:ListItem>
-                            </asp:DropDownList>
+                            <label>STATE</label>
+                            <asp:TextBox runat="server" ID="RState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="RState" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
@@ -264,5 +246,20 @@
                     <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" />
         </div>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            $('#MainContent_SenderLocation').select2({
+                placeholder: {
+                    id: '',
+                    text: 'Postal code is required'
+                }
+            });
+            $('#MainContent_ReceiverLocation').select2({
+                placeholder: {
+                    id: '',
+                    text: 'Postal code is required'
+                }
+            });
+        });
+    </script>
 </asp:Content>

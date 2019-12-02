@@ -30,7 +30,25 @@ namespace BestLogistic
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FromLocation;
+        protected global::System.Web.UI.WebControls.DropDownList FromLocation;
+
+        /// <summary>
+        /// FromCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FromCity;
+
+        /// <summary>
+        /// FromState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FromState;
 
         /// <summary>
         /// ToPostCode control.
@@ -48,7 +66,25 @@ namespace BestLogistic
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ToLocation;
+        protected global::System.Web.UI.WebControls.DropDownList ToLocation;
+
+        /// <summary>
+        /// ToCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ToCity;
+
+        /// <summary>
+        /// ToState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ToState;
 
         /// <summary>
         /// Weight control.

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BestLogistic._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+    <div class="container px-1 px-sm-3">
         <div class="col-md-12 col-lg-5 quote p-0">
             <h3 class="font-weight-bolder my-3">Quote Your Parcel Here!</h3>
             <div class="quote-content px-sm-3">
@@ -10,27 +10,43 @@
                         <h5 class="font-weight-bold">From:</h5>
                         <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="FromPostCode" Text="POSTCODE"/>
-                            <asp:TextBox runat="server" ID="FromPostCode" TextMode="SingleLine" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="FromPostCode" TextMode="SingleLine" CssClass="form-control" 
+                                AutoPostBack="true" OnTextChanged="FromPostCode_TextChanged" />
                         </div>
                         <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="FromLocation" Text="LOCATION"/>
-                            <asp:TextBox runat="server" ID="FromLocation" TextMode="SingleLine" CssClass="form-control" />
+                            <asp:DropDownList ID="FromLocation" runat="server" CssClass="form-control" 
+                                AutoPostBack="true" OnSelectedIndexChanged="FromLocation_SelectedIndexChanged"></asp:DropDownList>
                         </div>
-                        <h5 class="font-weight-bold">City:</h5>
-                        <h5 class="font-weight-bold">State:</h5>
+                        <div class="d-flex">
+                            <h5 class="font-weight-bold pr-2">City:</h5>
+                            <asp:Label runat="server" ID="FromCity" CssClass="h5" />
+                        </div>
+                        <div class="d-flex">
+                            <h5 class="font-weight-bold pr-2">State:</h5>
+                            <asp:Label runat="server" ID="FromState" CssClass="h5" />
+                        </div>
                     </div>
                     <div class="col-6">
                         <h5 class="font-weight-bold">To:</h5>
                         <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="ToPostCode" Text="POSTCODE"/>
-                            <asp:TextBox runat="server" ID="ToPostCode" TextMode="SingleLine" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="ToPostCode" TextMode="SingleLine" CssClass="form-control" 
+                                AutoPostBack="true" OnTextChanged="ToPostCode_TextChanged" />
                         </div>
                         <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="ToLocation" Text="LOCATION"/>
-                            <asp:TextBox runat="server" ID="ToLocation" TextMode="SingleLine" CssClass="form-control" />
+                            <asp:DropDownList ID="ToLocation" runat="server" CssClass="form-control" 
+                                AutoPostBack="true" OnSelectedIndexChanged="ToLocation_SelectedIndexChanged"></asp:DropDownList>
                         </div>
-                        <h5 class="font-weight-bold">City:</h5>
-                        <h5 class="font-weight-bold">State:</h5>
+                        <div class="d-flex">
+                            <h5 class="font-weight-bold pr-2">City:</h5>
+                            <asp:Label runat="server" ID="ToCity" CssClass="h5" />
+                        </div>
+                        <div class="d-flex">
+                            <h5 class="font-weight-bold pr-2">State:</h5>
+                            <asp:Label runat="server" ID="ToState" CssClass="h5" />
+                        </div>
                     </div>
                 </div>
                 <div class="row m-0">
@@ -63,4 +79,20 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#MainContent_FromLocation').select2({
+                placeholder: {
+                    id: '',
+                    text: 'Postcode is required'
+                }
+            });
+            $('#MainContent_ToLocation').select2({
+                placeholder: {
+                    id: '',
+                    text: 'Postcode is required'
+                }
+            });
+        });
+    </script>
 </asp:Content>
