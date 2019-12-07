@@ -82,6 +82,8 @@
             // 
             // SenderDetails
             // 
+            this.SenderDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SenderDetails.Controls.Add(this.tbSenderState);
             this.SenderDetails.Controls.Add(this.tbSenderLocation);
             this.SenderDetails.Controls.Add(this.SenderPosCode);
@@ -99,58 +101,74 @@
             this.SenderDetails.Controls.Add(this.SenderContactNo);
             this.SenderDetails.Controls.Add(this.SenderName);
             this.SenderDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderDetails.Location = new System.Drawing.Point(32, 51);
+            this.SenderDetails.Location = new System.Drawing.Point(24, 41);
+            this.SenderDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SenderDetails.Name = "SenderDetails";
-            this.SenderDetails.Size = new System.Drawing.Size(729, 254);
+            this.SenderDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SenderDetails.Size = new System.Drawing.Size(547, 206);
             this.SenderDetails.TabIndex = 7;
             this.SenderDetails.TabStop = false;
             this.SenderDetails.Text = "Sender Details";
             // 
             // tbSenderState
             // 
-            this.tbSenderState.Location = new System.Drawing.Point(509, 204);
+            this.tbSenderState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSenderState.Location = new System.Drawing.Point(382, 166);
+            this.tbSenderState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderState.MaximumSize = new System.Drawing.Size(400, 23);
             this.tbSenderState.Name = "tbSenderState";
-            this.tbSenderState.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderState.Size = new System.Drawing.Size(138, 23);
             this.tbSenderState.TabIndex = 15;
             // 
             // tbSenderLocation
             // 
-            this.tbSenderLocation.Location = new System.Drawing.Point(509, 153);
+            this.tbSenderLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSenderLocation.Location = new System.Drawing.Point(382, 124);
+            this.tbSenderLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderLocation.MaximumSize = new System.Drawing.Size(400, 23);
             this.tbSenderLocation.Name = "tbSenderLocation";
-            this.tbSenderLocation.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderLocation.Size = new System.Drawing.Size(138, 23);
             this.tbSenderLocation.TabIndex = 14;
             // 
             // SenderPosCode
             // 
             this.SenderPosCode.AutoSize = true;
             this.SenderPosCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderPosCode.Location = new System.Drawing.Point(22, 156);
+            this.SenderPosCode.Location = new System.Drawing.Point(16, 127);
+            this.SenderPosCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderPosCode.Name = "SenderPosCode";
-            this.SenderPosCode.Size = new System.Drawing.Size(100, 20);
+            this.SenderPosCode.Size = new System.Drawing.Size(84, 17);
             this.SenderPosCode.TabIndex = 8;
             this.SenderPosCode.Text = "Postal Code";
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(509, 100);
+            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox7.Location = new System.Drawing.Point(382, 81);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox7.MaximumSize = new System.Drawing.Size(400, 23);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(182, 26);
+            this.textBox7.Size = new System.Drawing.Size(138, 23);
             this.textBox7.TabIndex = 13;
             // 
             // tbSenderContactNo
             // 
-            this.tbSenderContactNo.Location = new System.Drawing.Point(509, 52);
+            this.tbSenderContactNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSenderContactNo.Location = new System.Drawing.Point(382, 42);
+            this.tbSenderContactNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderContactNo.MaximumSize = new System.Drawing.Size(400, 23);
             this.tbSenderContactNo.Name = "tbSenderContactNo";
-            this.tbSenderContactNo.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderContactNo.Size = new System.Drawing.Size(138, 23);
             this.tbSenderContactNo.TabIndex = 12;
             // 
             // SenderState
             // 
             this.SenderState.AutoSize = true;
             this.SenderState.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderState.Location = new System.Drawing.Point(374, 207);
+            this.SenderState.Location = new System.Drawing.Point(280, 168);
+            this.SenderState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderState.Name = "SenderState";
-            this.SenderState.Size = new System.Drawing.Size(48, 20);
+            this.SenderState.Size = new System.Drawing.Size(41, 17);
             this.SenderState.TabIndex = 11;
             this.SenderState.Text = "State";
             // 
@@ -158,9 +176,10 @@
             // 
             this.SenderCity.AutoSize = true;
             this.SenderCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderCity.Location = new System.Drawing.Point(22, 207);
+            this.SenderCity.Location = new System.Drawing.Point(16, 168);
+            this.SenderCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderCity.Name = "SenderCity";
-            this.SenderCity.Size = new System.Drawing.Size(38, 20);
+            this.SenderCity.Size = new System.Drawing.Size(31, 17);
             this.SenderCity.TabIndex = 10;
             this.SenderCity.Text = "City";
             // 
@@ -168,47 +187,57 @@
             // 
             this.SenderLocation.AutoSize = true;
             this.SenderLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderLocation.Location = new System.Drawing.Point(374, 153);
+            this.SenderLocation.Location = new System.Drawing.Point(280, 124);
+            this.SenderLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderLocation.Name = "SenderLocation";
-            this.SenderLocation.Size = new System.Drawing.Size(73, 20);
+            this.SenderLocation.Size = new System.Drawing.Size(62, 17);
             this.SenderLocation.TabIndex = 9;
             this.SenderLocation.Text = "Location";
             // 
             // tbSenderCity
             // 
-            this.tbSenderCity.Location = new System.Drawing.Point(157, 204);
+            this.tbSenderCity.Location = new System.Drawing.Point(118, 166);
+            this.tbSenderCity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderCity.MaximumSize = new System.Drawing.Size(200, 0);
             this.tbSenderCity.Name = "tbSenderCity";
-            this.tbSenderCity.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderCity.Size = new System.Drawing.Size(138, 23);
             this.tbSenderCity.TabIndex = 7;
             // 
             // tbSenderPosCode
             // 
-            this.tbSenderPosCode.Location = new System.Drawing.Point(157, 153);
+            this.tbSenderPosCode.Location = new System.Drawing.Point(118, 124);
+            this.tbSenderPosCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderPosCode.MaximumSize = new System.Drawing.Size(200, 0);
             this.tbSenderPosCode.Name = "tbSenderPosCode";
-            this.tbSenderPosCode.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderPosCode.Size = new System.Drawing.Size(138, 23);
             this.tbSenderPosCode.TabIndex = 6;
             // 
             // tbSenderEmail
             // 
-            this.tbSenderEmail.Location = new System.Drawing.Point(157, 100);
+            this.tbSenderEmail.Location = new System.Drawing.Point(118, 81);
+            this.tbSenderEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderEmail.MaximumSize = new System.Drawing.Size(200, 0);
             this.tbSenderEmail.Name = "tbSenderEmail";
-            this.tbSenderEmail.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderEmail.Size = new System.Drawing.Size(138, 23);
             this.tbSenderEmail.TabIndex = 5;
             // 
             // tbSenderName
             // 
-            this.tbSenderName.Location = new System.Drawing.Point(157, 52);
+            this.tbSenderName.Location = new System.Drawing.Point(118, 42);
+            this.tbSenderName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbSenderName.MaximumSize = new System.Drawing.Size(200, 0);
             this.tbSenderName.Name = "tbSenderName";
-            this.tbSenderName.Size = new System.Drawing.Size(182, 26);
+            this.tbSenderName.Size = new System.Drawing.Size(138, 23);
             this.tbSenderName.TabIndex = 4;
             // 
             // SenderAddress
             // 
             this.SenderAddress.AutoSize = true;
             this.SenderAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderAddress.Location = new System.Drawing.Point(374, 106);
+            this.SenderAddress.Location = new System.Drawing.Point(280, 86);
+            this.SenderAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderAddress.Name = "SenderAddress";
-            this.SenderAddress.Size = new System.Drawing.Size(71, 20);
+            this.SenderAddress.Size = new System.Drawing.Size(60, 17);
             this.SenderAddress.TabIndex = 3;
             this.SenderAddress.Text = "Address";
             // 
@@ -216,9 +245,10 @@
             // 
             this.SenderEmail.AutoSize = true;
             this.SenderEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderEmail.Location = new System.Drawing.Point(22, 100);
+            this.SenderEmail.Location = new System.Drawing.Point(16, 81);
+            this.SenderEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderEmail.Name = "SenderEmail";
-            this.SenderEmail.Size = new System.Drawing.Size(51, 20);
+            this.SenderEmail.Size = new System.Drawing.Size(42, 17);
             this.SenderEmail.TabIndex = 2;
             this.SenderEmail.Text = "Email";
             // 
@@ -226,9 +256,10 @@
             // 
             this.SenderContactNo.AutoSize = true;
             this.SenderContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderContactNo.Location = new System.Drawing.Point(374, 55);
+            this.SenderContactNo.Location = new System.Drawing.Point(280, 45);
+            this.SenderContactNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderContactNo.Name = "SenderContactNo";
-            this.SenderContactNo.Size = new System.Drawing.Size(97, 20);
+            this.SenderContactNo.Size = new System.Drawing.Size(82, 17);
             this.SenderContactNo.TabIndex = 1;
             this.SenderContactNo.Text = "Contact No.";
             // 
@@ -236,14 +267,17 @@
             // 
             this.SenderName.AutoSize = true;
             this.SenderName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SenderName.Location = new System.Drawing.Point(22, 52);
+            this.SenderName.Location = new System.Drawing.Point(16, 42);
+            this.SenderName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SenderName.Name = "SenderName";
-            this.SenderName.Size = new System.Drawing.Size(53, 20);
+            this.SenderName.Size = new System.Drawing.Size(45, 17);
             this.SenderName.TabIndex = 0;
             this.SenderName.Text = "Name";
             // 
             // ReceiverDetails
             // 
+            this.ReceiverDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ReceiverDetails.Controls.Add(this.tbReceiverState);
             this.ReceiverDetails.Controls.Add(this.tbReceiverLocation);
             this.ReceiverDetails.Controls.Add(this.ReceiverPosCode);
@@ -261,58 +295,66 @@
             this.ReceiverDetails.Controls.Add(this.ReceiverContactNo);
             this.ReceiverDetails.Controls.Add(this.ReceiverName);
             this.ReceiverDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverDetails.Location = new System.Drawing.Point(32, 340);
+            this.ReceiverDetails.Location = new System.Drawing.Point(24, 276);
+            this.ReceiverDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ReceiverDetails.Name = "ReceiverDetails";
-            this.ReceiverDetails.Size = new System.Drawing.Size(729, 254);
+            this.ReceiverDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ReceiverDetails.Size = new System.Drawing.Size(547, 206);
             this.ReceiverDetails.TabIndex = 8;
             this.ReceiverDetails.TabStop = false;
             this.ReceiverDetails.Text = "Receiver Details";
             // 
             // tbReceiverState
             // 
-            this.tbReceiverState.Location = new System.Drawing.Point(509, 204);
+            this.tbReceiverState.Location = new System.Drawing.Point(382, 166);
+            this.tbReceiverState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverState.Name = "tbReceiverState";
-            this.tbReceiverState.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverState.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverState.TabIndex = 15;
             // 
             // tbReceiverLocation
             // 
-            this.tbReceiverLocation.Location = new System.Drawing.Point(509, 153);
+            this.tbReceiverLocation.Location = new System.Drawing.Point(382, 124);
+            this.tbReceiverLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverLocation.Name = "tbReceiverLocation";
-            this.tbReceiverLocation.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverLocation.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverLocation.TabIndex = 14;
             // 
             // ReceiverPosCode
             // 
             this.ReceiverPosCode.AutoSize = true;
             this.ReceiverPosCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverPosCode.Location = new System.Drawing.Point(22, 156);
+            this.ReceiverPosCode.Location = new System.Drawing.Point(16, 127);
+            this.ReceiverPosCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverPosCode.Name = "ReceiverPosCode";
-            this.ReceiverPosCode.Size = new System.Drawing.Size(100, 20);
+            this.ReceiverPosCode.Size = new System.Drawing.Size(84, 17);
             this.ReceiverPosCode.TabIndex = 8;
             this.ReceiverPosCode.Text = "Postal Code";
             // 
             // tbReceiverAddress
             // 
-            this.tbReceiverAddress.Location = new System.Drawing.Point(509, 100);
+            this.tbReceiverAddress.Location = new System.Drawing.Point(382, 81);
+            this.tbReceiverAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverAddress.Name = "tbReceiverAddress";
-            this.tbReceiverAddress.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverAddress.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverAddress.TabIndex = 13;
             // 
             // tbReceiverContactNo
             // 
-            this.tbReceiverContactNo.Location = new System.Drawing.Point(509, 52);
+            this.tbReceiverContactNo.Location = new System.Drawing.Point(382, 42);
+            this.tbReceiverContactNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverContactNo.Name = "tbReceiverContactNo";
-            this.tbReceiverContactNo.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverContactNo.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverContactNo.TabIndex = 12;
             // 
             // ReceiverState
             // 
             this.ReceiverState.AutoSize = true;
             this.ReceiverState.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverState.Location = new System.Drawing.Point(374, 207);
+            this.ReceiverState.Location = new System.Drawing.Point(280, 168);
+            this.ReceiverState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverState.Name = "ReceiverState";
-            this.ReceiverState.Size = new System.Drawing.Size(48, 20);
+            this.ReceiverState.Size = new System.Drawing.Size(41, 17);
             this.ReceiverState.TabIndex = 11;
             this.ReceiverState.Text = "State";
             // 
@@ -320,9 +362,10 @@
             // 
             this.ReceiverCity.AutoSize = true;
             this.ReceiverCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverCity.Location = new System.Drawing.Point(22, 207);
+            this.ReceiverCity.Location = new System.Drawing.Point(16, 168);
+            this.ReceiverCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverCity.Name = "ReceiverCity";
-            this.ReceiverCity.Size = new System.Drawing.Size(38, 20);
+            this.ReceiverCity.Size = new System.Drawing.Size(31, 17);
             this.ReceiverCity.TabIndex = 10;
             this.ReceiverCity.Text = "City";
             // 
@@ -330,47 +373,53 @@
             // 
             this.ReceiverLocation.AutoSize = true;
             this.ReceiverLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverLocation.Location = new System.Drawing.Point(374, 153);
+            this.ReceiverLocation.Location = new System.Drawing.Point(280, 124);
+            this.ReceiverLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverLocation.Name = "ReceiverLocation";
-            this.ReceiverLocation.Size = new System.Drawing.Size(73, 20);
+            this.ReceiverLocation.Size = new System.Drawing.Size(62, 17);
             this.ReceiverLocation.TabIndex = 9;
             this.ReceiverLocation.Text = "Location";
             // 
             // tbReceiverCity
             // 
-            this.tbReceiverCity.Location = new System.Drawing.Point(157, 204);
+            this.tbReceiverCity.Location = new System.Drawing.Point(118, 166);
+            this.tbReceiverCity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverCity.Name = "tbReceiverCity";
-            this.tbReceiverCity.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverCity.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverCity.TabIndex = 7;
             // 
             // tbReceiverPosCode
             // 
-            this.tbReceiverPosCode.Location = new System.Drawing.Point(157, 153);
+            this.tbReceiverPosCode.Location = new System.Drawing.Point(118, 124);
+            this.tbReceiverPosCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverPosCode.Name = "tbReceiverPosCode";
-            this.tbReceiverPosCode.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverPosCode.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverPosCode.TabIndex = 6;
             // 
             // tbReceiverEmail
             // 
-            this.tbReceiverEmail.Location = new System.Drawing.Point(157, 100);
+            this.tbReceiverEmail.Location = new System.Drawing.Point(118, 81);
+            this.tbReceiverEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverEmail.Name = "tbReceiverEmail";
-            this.tbReceiverEmail.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverEmail.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverEmail.TabIndex = 5;
             // 
             // tbReceiverName
             // 
-            this.tbReceiverName.Location = new System.Drawing.Point(157, 52);
+            this.tbReceiverName.Location = new System.Drawing.Point(118, 42);
+            this.tbReceiverName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbReceiverName.Name = "tbReceiverName";
-            this.tbReceiverName.Size = new System.Drawing.Size(182, 26);
+            this.tbReceiverName.Size = new System.Drawing.Size(138, 23);
             this.tbReceiverName.TabIndex = 4;
             // 
             // ReceiverAddress
             // 
             this.ReceiverAddress.AutoSize = true;
             this.ReceiverAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverAddress.Location = new System.Drawing.Point(374, 106);
+            this.ReceiverAddress.Location = new System.Drawing.Point(280, 86);
+            this.ReceiverAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverAddress.Name = "ReceiverAddress";
-            this.ReceiverAddress.Size = new System.Drawing.Size(71, 20);
+            this.ReceiverAddress.Size = new System.Drawing.Size(60, 17);
             this.ReceiverAddress.TabIndex = 3;
             this.ReceiverAddress.Text = "Address";
             // 
@@ -378,9 +427,10 @@
             // 
             this.ReceiverEmail.AutoSize = true;
             this.ReceiverEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverEmail.Location = new System.Drawing.Point(22, 100);
+            this.ReceiverEmail.Location = new System.Drawing.Point(16, 81);
+            this.ReceiverEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverEmail.Name = "ReceiverEmail";
-            this.ReceiverEmail.Size = new System.Drawing.Size(51, 20);
+            this.ReceiverEmail.Size = new System.Drawing.Size(42, 17);
             this.ReceiverEmail.TabIndex = 2;
             this.ReceiverEmail.Text = "Email";
             // 
@@ -388,9 +438,10 @@
             // 
             this.ReceiverContactNo.AutoSize = true;
             this.ReceiverContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverContactNo.Location = new System.Drawing.Point(374, 55);
+            this.ReceiverContactNo.Location = new System.Drawing.Point(280, 45);
+            this.ReceiverContactNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverContactNo.Name = "ReceiverContactNo";
-            this.ReceiverContactNo.Size = new System.Drawing.Size(97, 20);
+            this.ReceiverContactNo.Size = new System.Drawing.Size(82, 17);
             this.ReceiverContactNo.TabIndex = 1;
             this.ReceiverContactNo.Text = "Contact No.";
             // 
@@ -398,14 +449,17 @@
             // 
             this.ReceiverName.AutoSize = true;
             this.ReceiverName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReceiverName.Location = new System.Drawing.Point(22, 52);
+            this.ReceiverName.Location = new System.Drawing.Point(16, 42);
+            this.ReceiverName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ReceiverName.Name = "ReceiverName";
-            this.ReceiverName.Size = new System.Drawing.Size(53, 20);
+            this.ReceiverName.Size = new System.Drawing.Size(45, 17);
             this.ReceiverName.TabIndex = 0;
             this.ReceiverName.Text = "Name";
             // 
             // ParcelDetails
             // 
+            this.ParcelDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ParcelDetails.Controls.Add(this.rbDocument);
             this.ParcelDetails.Controls.Add(this.rbParcel);
             this.ParcelDetails.Controls.Add(this.tbWeight);
@@ -418,9 +472,11 @@
             this.ParcelDetails.Controls.Add(this.Pieces);
             this.ParcelDetails.Controls.Add(this.ParcelType);
             this.ParcelDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParcelDetails.Location = new System.Drawing.Point(32, 626);
+            this.ParcelDetails.Location = new System.Drawing.Point(24, 509);
+            this.ParcelDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ParcelDetails.Name = "ParcelDetails";
-            this.ParcelDetails.Size = new System.Drawing.Size(729, 214);
+            this.ParcelDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ParcelDetails.Size = new System.Drawing.Size(547, 174);
             this.ParcelDetails.TabIndex = 9;
             this.ParcelDetails.TabStop = false;
             this.ParcelDetails.Text = "Parcel Details";
@@ -429,9 +485,10 @@
             // 
             this.rbDocument.AutoSize = true;
             this.rbDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbDocument.Location = new System.Drawing.Point(284, 52);
+            this.rbDocument.Location = new System.Drawing.Point(213, 42);
+            this.rbDocument.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbDocument.Name = "rbDocument";
-            this.rbDocument.Size = new System.Drawing.Size(107, 24);
+            this.rbDocument.Size = new System.Drawing.Size(90, 21);
             this.rbDocument.TabIndex = 16;
             this.rbDocument.TabStop = true;
             this.rbDocument.Text = "Document";
@@ -441,9 +498,10 @@
             // 
             this.rbParcel.AutoSize = true;
             this.rbParcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbParcel.Location = new System.Drawing.Point(161, 52);
+            this.rbParcel.Location = new System.Drawing.Point(121, 42);
+            this.rbParcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbParcel.Name = "rbParcel";
-            this.rbParcel.Size = new System.Drawing.Size(78, 24);
+            this.rbParcel.Size = new System.Drawing.Size(66, 21);
             this.rbParcel.TabIndex = 15;
             this.rbParcel.TabStop = true;
             this.rbParcel.Text = "Parcel";
@@ -451,59 +509,66 @@
             // 
             // tbWeight
             // 
-            this.tbWeight.Location = new System.Drawing.Point(509, 153);
+            this.tbWeight.Location = new System.Drawing.Point(382, 124);
+            this.tbWeight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbWeight.Name = "tbWeight";
-            this.tbWeight.Size = new System.Drawing.Size(182, 26);
+            this.tbWeight.Size = new System.Drawing.Size(138, 23);
             this.tbWeight.TabIndex = 14;
             // 
             // ValueofContent
             // 
             this.ValueofContent.AutoSize = true;
             this.ValueofContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ValueofContent.Location = new System.Drawing.Point(23, 157);
+            this.ValueofContent.Location = new System.Drawing.Point(17, 128);
+            this.ValueofContent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ValueofContent.Name = "ValueofContent";
-            this.ValueofContent.Size = new System.Drawing.Size(117, 18);
+            this.ValueofContent.Size = new System.Drawing.Size(96, 15);
             this.ValueofContent.TabIndex = 8;
             this.ValueofContent.Text = "Value of Content";
             // 
             // tbContent
             // 
-            this.tbContent.Location = new System.Drawing.Point(509, 100);
+            this.tbContent.Location = new System.Drawing.Point(382, 81);
+            this.tbContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbContent.Name = "tbContent";
-            this.tbContent.Size = new System.Drawing.Size(182, 26);
+            this.tbContent.Size = new System.Drawing.Size(138, 23);
             this.tbContent.TabIndex = 13;
             // 
             // weight
             // 
             this.weight.AutoSize = true;
             this.weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.weight.Location = new System.Drawing.Point(374, 153);
+            this.weight.Location = new System.Drawing.Point(280, 124);
+            this.weight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.weight.Name = "weight";
-            this.weight.Size = new System.Drawing.Size(61, 20);
+            this.weight.Size = new System.Drawing.Size(52, 17);
             this.weight.TabIndex = 9;
             this.weight.Text = "Weight";
             // 
             // tbValueofContent
             // 
-            this.tbValueofContent.Location = new System.Drawing.Point(157, 153);
+            this.tbValueofContent.Location = new System.Drawing.Point(118, 124);
+            this.tbValueofContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbValueofContent.Name = "tbValueofContent";
-            this.tbValueofContent.Size = new System.Drawing.Size(182, 26);
+            this.tbValueofContent.Size = new System.Drawing.Size(138, 23);
             this.tbValueofContent.TabIndex = 6;
             // 
             // tbPieces
             // 
-            this.tbPieces.Location = new System.Drawing.Point(157, 100);
+            this.tbPieces.Location = new System.Drawing.Point(118, 81);
+            this.tbPieces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbPieces.Name = "tbPieces";
-            this.tbPieces.Size = new System.Drawing.Size(182, 26);
+            this.tbPieces.Size = new System.Drawing.Size(138, 23);
             this.tbPieces.TabIndex = 5;
             // 
             // Content
             // 
             this.Content.AutoSize = true;
             this.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Content.Location = new System.Drawing.Point(374, 106);
+            this.Content.Location = new System.Drawing.Point(280, 86);
+            this.Content.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Content.Name = "Content";
-            this.Content.Size = new System.Drawing.Size(67, 20);
+            this.Content.Size = new System.Drawing.Size(57, 17);
             this.Content.TabIndex = 3;
             this.Content.Text = "Content";
             // 
@@ -511,9 +576,10 @@
             // 
             this.Pieces.AutoSize = true;
             this.Pieces.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pieces.Location = new System.Drawing.Point(22, 103);
+            this.Pieces.Location = new System.Drawing.Point(16, 84);
+            this.Pieces.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Pieces.Name = "Pieces";
-            this.Pieces.Size = new System.Drawing.Size(60, 20);
+            this.Pieces.Size = new System.Drawing.Size(50, 17);
             this.Pieces.TabIndex = 2;
             this.Pieces.Text = "Pieces";
             // 
@@ -521,34 +587,41 @@
             // 
             this.ParcelType.AutoSize = true;
             this.ParcelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParcelType.Location = new System.Drawing.Point(22, 52);
+            this.ParcelType.Location = new System.Drawing.Point(16, 42);
+            this.ParcelType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ParcelType.Name = "ParcelType";
-            this.ParcelType.Size = new System.Drawing.Size(98, 20);
+            this.ParcelType.Size = new System.Drawing.Size(84, 17);
             this.ParcelType.TabIndex = 0;
             this.ParcelType.Text = "Parcel Type";
             // 
             // UpdateBtn
             // 
+            this.UpdateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.UpdateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateBtn.Location = new System.Drawing.Point(668, 863);
+            this.UpdateBtn.Location = new System.Drawing.Point(501, 701);
+            this.UpdateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.UpdateBtn.Name = "UpdateBtn";
-            this.UpdateBtn.Size = new System.Drawing.Size(93, 37);
+            this.UpdateBtn.Size = new System.Drawing.Size(70, 30);
             this.UpdateBtn.TabIndex = 14;
             this.UpdateBtn.Text = "Update";
             this.UpdateBtn.UseVisualStyleBackColor = true;
             // 
             // UpdateParcelDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 922);
+            this.ClientSize = new System.Drawing.Size(600, 609);
             this.Controls.Add(this.UpdateBtn);
             this.Controls.Add(this.ParcelDetails);
             this.Controls.Add(this.ReceiverDetails);
             this.Controls.Add(this.SenderDetails);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(616, 648);
             this.Name = "UpdateParcelDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TrackingNo";
             this.SenderDetails.ResumeLayout(false);
             this.SenderDetails.PerformLayout();

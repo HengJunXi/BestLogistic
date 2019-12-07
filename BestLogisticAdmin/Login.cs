@@ -16,5 +16,14 @@ namespace BestLogisticAdmin
         {
             InitializeComponent();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Best_Logistic_Administrator main_form = new Best_Logistic_Administrator();
+            main_form.ShowDialog();
+            this.Close();
+            
+        }
     }
 }
