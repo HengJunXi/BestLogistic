@@ -80,10 +80,8 @@ namespace BestLogisticAdmin
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
 
-            // If the no button was pressed ...
             if (result == DialogResult.No)
             {
-                // cancel the closure of the form.
                 e.Cancel = true;
             }
             
@@ -94,6 +92,11 @@ namespace BestLogisticAdmin
             Authentication.SignOutStaff();
             Login login = new Login();
             login.Show();
+        }
+
+        private void Best_Logistic_Administrator_Load(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
         }
     }
 }
