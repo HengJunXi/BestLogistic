@@ -104,6 +104,18 @@ CREATE TABLE dbo.tracking
 	FOREIGN KEY (arrival_point) REFERENCES dbo.point,
 )
 
+CREATE TABLE dbo.staff
+(
+	[uid] uniqueidentifier DEFAULT NEWID(),
+	branch_id varchar(255),
+	staff_id varchar(255) IDENTITY(10000, 1),
+	[name] varchar(255),
+	password_hash varchar(255),
+	hash_salt varchar(255) unique,
+	PRIMARY KEY ([uid]),
+	FOREIGN KEY (branch_id) REFERENCES dbo.point,
+)
+
 INSERT INTO [dbo].[id_type] ([type]) VALUES ('IC Number'), ('Old IC Number'), ('Passport');
 
 INSERT INTO parcel_status (status) VALUES ('Pending'), ('Pick-up'), ('In transit'), ('Out of delivery'), ('Delivered');
@@ -112,3 +124,8 @@ INSERT INTO [user] (uid, password_hash, hash_salt, email, name, id_type, id_numb
 ('2E075DF1-7144-4077-B925-000AA23DC10F', 'NNSYPl6OI60v+eC50qdN55E24fc=', 'oNXKoe2TCAwboEV9rk76eQ==', 'heng@heng.com', 'Heng Jun Xi', 1, '980510080000', '1998-05-10'),
 ('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', '/o+xUzI3ZR6l/G8d15q/wv6ySgY=', 'Qx8Pk3B1ZSc19pZCFLChvw==', 'loh@loh.com', 'Loh Shu Yi', 1, '980330080000', '1998-03-30'),
 ('C1713FC0-118D-4650-9314-26480E210F8D', 'yCV9BB0Zha9pMyuZ7Bn/4Py1Qqk=', 'lavcNAWHs5Nr7722Lxw6gg==', 'lim@lim.com', 'Lim Carol', 1, '980327080000', '1998-03-27');
+
+INSERT INTO staff (uid, password_hash, hash_salt, branch_id, name) VALUES 
+('2E075DF1-7144-4077-B925-000AA23DC10F', 'NNSYPl6OI60v+eC50qdN55E24fc=', 'oNXKoe2TCAwboEV9rk76eQ==', 'ChIJRb7LRg02zDERETaXXhc-QyU', 'Heng Jun Xi'),
+('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', '/o+xUzI3ZR6l/G8d15q/wv6ySgY=', 'Qx8Pk3B1ZSc19pZCFLChvw==', 'ChIJ7ciSyEquSjARqdvRktxutKI', 'Loh Shu Yi'),
+('C1713FC0-118D-4650-9314-26480E210F8D', 'yCV9BB0Zha9pMyuZ7Bn/4Py1Qqk=', 'lavcNAWHs5Nr7722Lxw6gg==', 'ChIJTfBUxjVs2jER3vZ-g6U8JkI', 'Lim Carol');
