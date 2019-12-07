@@ -108,7 +108,7 @@ CREATE TABLE dbo.staff
 (
 	[uid] uniqueidentifier DEFAULT NEWID(),
 	branch_id varchar(255),
-	staff_id varchar(255) IDENTITY(10000, 1),
+	staff_id int IDENTITY(10000, 1),
 	[name] varchar(255),
 	password_hash varchar(255),
 	hash_salt varchar(255) unique,
