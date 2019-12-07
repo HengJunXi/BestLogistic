@@ -24,6 +24,7 @@ namespace BestLogisticAdmin
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
+            
             MessageBox.Show("Add Success!");
         }
 
@@ -44,6 +45,11 @@ namespace BestLogisticAdmin
                     // Closes the parent form.
                     this.Close();
                 }
+            }
+            else
+            {
+                
+                ConfirmBtn.Enabled = true;
             }
         }
     }
