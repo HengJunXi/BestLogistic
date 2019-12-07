@@ -1,5 +1,14 @@
 USE best_logistic;
 
+DROP TABLE IF EXISTS dbo.staff
+DROP TABLE IF EXISTS dbo.tracking
+DROP TABLE IF EXISTS dbo.transport
+DROP TABLE IF EXISTS dbo.pick_up_info
+DROP TABLE IF EXISTS dbo.parcel
+DROP TABLE IF EXISTS dbo.parcel_status
+DROP TABLE IF EXISTS dbo.[user]
+DROP TABLE IF EXISTS dbo.id_type
+
 CREATE TABLE dbo.id_type 
 (
 	id tinyint IDENTITY PRIMARY KEY,
@@ -61,6 +70,7 @@ CREATE TABLE dbo.parcel
 	receiver_location varchar(70),
 	receiver_postcode char(5),
 	status tinyint,
+	deleted bool DEFAULT false,
 	PRIMARY KEY (tracking_number),
 	FOREIGN KEY ([user_uid]) REFERENCES dbo.[user],
 	FOREIGN KEY (sender_id_type) REFERENCES dbo.id_type,
@@ -127,7 +137,7 @@ INSERT INTO staff (uid, password_hash, hash_salt, branch_id, name) VALUES
 ('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', '/o+xUzI3ZR6l/G8d15q/wv6ySgY=', 'Qx8Pk3B1ZSc19pZCFLChvw==', 'ChIJ7ciSyEquSjARqdvRktxutKI', 'Loh Shu Yi'),
 ('C1713FC0-118D-4650-9314-26480E210F8D', 'yCV9BB0Zha9pMyuZ7Bn/4Py1Qqk=', 'lavcNAWHs5Nr7722Lxw6gg==', 'ChIJTfBUxjVs2jER3vZ-g6U8JkI', 'Lim Carol');
 
-INSERT INTO parcel (tracking_number, type, pieces, value, weight, delivery_fee, pick_up_fee, sender_postcode, sender_location, receiver_postcode, receiver_location) VALUES
-('2E075DF1-7144-4077-B925-000AA23DC10F', 0, 1, 10, 1, 5, 0, '50460', 'Wisma Putra', '81800', 'Kampung AC Batu 18'),
-('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', 0, 5, 10, 4, 10, 5, '81800', 'Kampung AC Batu 18', '14300', 'Taman Pekaka'),
-('C1713FC0-118D-4650-9314-26480E210F8D', 1, 3, 2, 0.5, 4.5, 1.5, '14300', 'Taman Pekaka', '50460', 'Wisma Putra');
+INSERT INTO parcel (tracking_number, user_uid, sender_id_type, type, pieces, value, weight, delivery_fee, service, pick_up_fee, sender_postcode, sender_location, receiver_postcode, receiver_location) VALUES
+('2E075DF1-7144-4077-B925-000AA23DC10F', null, 1, 0, 1, 10, 1, 5, 0, 0, '50460', 'Wisma Putra', '81800', 'Kampung AC Batu 18'),
+('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', null, 1, 0, 5, 10, 4, 10, 1, 5, '81800', 'Kampung AC Batu 18', '14300', 'Taman Pekaka'),
+('C1713FC0-118D-4650-9314-26480E210F8D', null, 1, 1, 3, 2, 0.5, 4.5, 1, 1.5, '14300', 'Taman Pekaka', '50460', 'Wisma Putra');

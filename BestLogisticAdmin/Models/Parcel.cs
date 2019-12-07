@@ -185,7 +185,7 @@ namespace BestLogisticAdmin.Models
         public static Parcel Get(string trackingNumber)
         {
             //string query = "SELECT * FROM dbo.parcel WHERE tracking_number=@TN;";
-            string query = "SELECT parcel.*, T.post_office AS sender_city, T.state_code AS sender_state, S.area AS receiver_city, S.state_code AS receiver_state FROM dbo.parcel INNER JOIN dbo.postcode T ON parcel.sender_postcode=T.postcode INNER JOIN dbo.postcode S ON parcel.receiver_postcode=S.postcode WHERE tracking_number=@TN AND parcel.sender_postcode=T.postcode AND parcel.sender_location=T.area AND parcel.receiver_postcode=S.postcode AND parcel.receiver_location=S.area;";
+            string query = "SELECT parcel.*, T.post_office AS sender_city, T.state_code AS sender_state, S.area AS receiver_city, S.state_code AS receiver_state FROM dbo.parcel INNER JOIN dbo.postcode T ON parcel.sender_postcode=T.postcode INNER JOIN dbo.postcode S ON parcel.receiver_postcode=S.postcode WHERE tracking_number=@TN AND deleted=0 AND parcel.sender_postcode=T.postcode AND parcel.sender_location=T.area AND parcel.receiver_postcode=S.postcode AND parcel.receiver_location=S.area;";
             
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -281,7 +281,8 @@ namespace BestLogisticAdmin.Models
 
         public static void Delete(string trackingNumber)
         {
-            string query = "DELETE FROM dbo.parcel WHERE tracking_number=@TN;";
+            //string query = "DELETE FROM dbo.parcel WHERE tracking_number=@TN;";
+            string query = "UPDATE dbo.parcel SET deleted=1 WHERE tracking_number=@TN;";
 
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))

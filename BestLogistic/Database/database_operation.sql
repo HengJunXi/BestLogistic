@@ -88,3 +88,17 @@ SELECT post_office, state_code from postcode WHERE postcode='' AND area='';
 //    "Lee Rou", "lee@lee.com", "0123456789", "67, Lorong Cantik", "14300", "Taman Pekaka", false, false, 1, new decimal(4.5), 
 //    "content", 1.3f, new decimal(5.6), 0);
 //Parcel.Delete("2E075DF1-7144-4077-B925-000AA23DC10F");
+
+SELECT parcel.*
+, T.post_office AS sender_city, T.state_code AS sender_state
+, S.area AS receiver_city, S.state_code AS receiver_state 
+FROM dbo.parcel 
+INNER JOIN dbo.postcode T ON parcel.sender_postcode=T.postcode 
+INNER JOIN dbo.postcode S ON parcel.receiver_postcode=S.postcode 
+WHERE 
+-- tracking_number='2E075DF1-7144-4077-B925-000AA23DC10F'
+-- AND 
+parcel.deleted=0 AND 
+parcel.sender_postcode=T.postcode AND parcel.sender_location=T.area
+AND parcel.receiver_postcode=S.postcode AND parcel.receiver_location=S.area
+;
