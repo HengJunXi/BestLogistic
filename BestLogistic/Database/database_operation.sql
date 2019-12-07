@@ -35,7 +35,7 @@ INSERT INTO parcel (address, location, postcode, service, type, pieces,
 content, value, weight, delivery_fee, pick_up_fee, user_uid, sender_name,
 sender_id_type, sender_id_number, sender_phone, sender_email, sender_address,
 sender_location, sender_postcode, receiver_name, receiver_phone, receiver_email,
-receiver_address, receiver_location, receiver_postcode, status) VALUES (..., 0);
+receiver_address, receiver_location, receiver_postcode, status) VALUES (..., 1);
 -- if a parcel is request for pick up
 INSERT INTO pick_up_info (tracking_number, pick_up_date, pick_up_time, remark) 
 VALUES (...);
@@ -43,7 +43,7 @@ VALUES (...);
 -- parcel in the starting point
 INSERT INTO tracking (tracking_number, trip, departure_point) 
 VALUES (..., 1, ...);
-UPDATE parcel SET status=1 WHERE tracking_number='';
+UPDATE parcel SET status=2 WHERE tracking_number='';
 
 -- start delivery to next point
 UPDATE tracking SET departure_datetime='', arrival_point='' 
@@ -55,7 +55,7 @@ WHERE tracking_number='' AND arrival_datetime=NULL;
 UPDATE tracking SET arrival_datetime=''
 WHERE tracking_number=... AND trip=prev_trip;
 -- if arrived at last point
-UPDATE parcel SET status=2 WHERE tracking_number='';
+UPDATE parcel SET status=4 WHERE tracking_number='';
 -- else
 INSERT INTO tracking (tracking_number, trip, departure_point) 
 VALUES (..., prev_trip+1, ...);
@@ -64,14 +64,14 @@ VALUES (..., prev_trip+1, ...);
 UPDATE parcel SET status=3 WHERE tracking_number='';
 
 -- if received by receiver
-UPDATE parcel SET status=4 WHERE tracking_number='';
+UPDATE parcel SET status=5 WHERE tracking_number='';
 
 -- calculate number of 
-SELECT COUNT(*) FROM parcel WHERE uid='' AND status=0; -- pending
-SELECT COUNT(*) FROM parcel WHERE uid='' AND status=1; -- pick-up
-SELECT COUNT(*) FROM parcel WHERE uid='' AND status=2; -- in transit
-SELECT COUNT(*) FROM parcel WHERE uid='' AND status=3; -- out of delivery
-SELECT COUNT(*) FROM parcel WHERE uid='' AND status=4; -- delivered
+SELECT COUNT(*) FROM parcel WHERE uid='' AND status=1; -- pending
+SELECT COUNT(*) FROM parcel WHERE uid='' AND status=2; -- pick-up
+SELECT COUNT(*) FROM parcel WHERE uid='' AND status=3; -- in transit
+SELECT COUNT(*) FROM parcel WHERE uid='' AND status=4; -- out of delivery
+SELECT COUNT(*) FROM parcel WHERE uid='' AND status=5; -- delivered
 
 -- get all location (area) from postcode
 SELECT area FROM postcode WHERE postcode='';
@@ -80,4 +80,11 @@ SELECT area FROM postcode WHERE postcode='';
 SELECT post_office, state_code from postcode WHERE postcode='' AND area='';
 
 
-
+//Parcel parcel = Parcel.Get("2E075DF1-7144-4077-B925-000AA23DC10F");
+//Parcel.Create("Lim Wei Ting", "wei@wei.com", 1, "123456789011", "0123456789", "No. 88, Jalan ABC", "50460", "Wisma Putra",
+//    "Lee Rou", "lee@lee.com", "receiverPhone", "67, Lorong Cantik", "14300", "Taman Pekaka", false, false, 1, new decimal(4.5),
+//    "content", 1.3f, new decimal(5.6), 0, "ChIJRb7LRg02zDERETaXXhc-QyU");
+//Parcel.Update("E3E333F6-FE16-48B0-B0FE-226C5EFE19FD", "Lim Wei Ting", "wei@wei.com", 1, "123456789011", "0123456789", "No. 88, Jalan ABC", "50460", "Wisma Putra",
+//    "Lee Rou", "lee@lee.com", "0123456789", "67, Lorong Cantik", "14300", "Taman Pekaka", false, false, 1, new decimal(4.5), 
+//    "content", 1.3f, new decimal(5.6), 0);
+//Parcel.Delete("2E075DF1-7144-4077-B925-000AA23DC10F");

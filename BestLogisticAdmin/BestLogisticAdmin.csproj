@@ -67,6 +67,7 @@
     <Compile Include="Controllers\Authentication.cs" />
     <Compile Include="Controllers\Credential.cs" />
     <Compile Include="Controllers\Repository.cs" />
+    <Compile Include="Controllers\Utility.cs" />
     <Compile Include="CreateNewParcel.cs">
       <SubType>Form</SubType>
     </Compile>

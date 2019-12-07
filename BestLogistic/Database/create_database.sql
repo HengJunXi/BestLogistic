@@ -36,9 +36,6 @@ CREATE TABLE dbo.parcel_status
 CREATE TABLE dbo.parcel 
 (
 	tracking_number uniqueidentifier DEFAULT NEWID(),
-	[address] varchar(255),
-	[location] varchar(70),
-	postcode char(5),
 	[service] bit,
 	[type] bit,
 	pieces tinyint,
@@ -129,3 +126,8 @@ INSERT INTO staff (uid, password_hash, hash_salt, branch_id, name) VALUES
 ('2E075DF1-7144-4077-B925-000AA23DC10F', 'NNSYPl6OI60v+eC50qdN55E24fc=', 'oNXKoe2TCAwboEV9rk76eQ==', 'ChIJRb7LRg02zDERETaXXhc-QyU', 'Heng Jun Xi'),
 ('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', '/o+xUzI3ZR6l/G8d15q/wv6ySgY=', 'Qx8Pk3B1ZSc19pZCFLChvw==', 'ChIJ7ciSyEquSjARqdvRktxutKI', 'Loh Shu Yi'),
 ('C1713FC0-118D-4650-9314-26480E210F8D', 'yCV9BB0Zha9pMyuZ7Bn/4Py1Qqk=', 'lavcNAWHs5Nr7722Lxw6gg==', 'ChIJTfBUxjVs2jER3vZ-g6U8JkI', 'Lim Carol');
+
+INSERT INTO parcel (tracking_number, type, pieces, value, weight, delivery_fee, pick_up_fee, sender_postcode, sender_location, receiver_postcode, receiver_location) VALUES
+('2E075DF1-7144-4077-B925-000AA23DC10F', 0, 1, 10, 1, 5, 0, '50460', 'Wisma Putra', '81800', 'Kampung AC Batu 18'),
+('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', 0, 5, 10, 4, 10, 5, '81800', 'Kampung AC Batu 18', '14300', 'Taman Pekaka'),
+('C1713FC0-118D-4650-9314-26480E210F8D', 1, 3, 2, 0.5, 4.5, 1.5, '14300', 'Taman Pekaka', '50460', 'Wisma Putra');
