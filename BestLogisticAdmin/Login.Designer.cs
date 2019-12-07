@@ -45,9 +45,9 @@
             this.username.Location = new System.Drawing.Point(110, 195);
             this.username.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(100, 22);
+            this.username.Size = new System.Drawing.Size(77, 22);
             this.username.TabIndex = 0;
-            this.username.Text = "Username";
+            this.username.Text = "User ID";
             // 
             // password
             // 
@@ -66,7 +66,7 @@
             this.tbUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbUsername.Location = new System.Drawing.Point(250, 193);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(2);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(216, 27);
             this.tbUsername.TabIndex = 2;
@@ -76,7 +76,7 @@
             this.tbPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassword.Location = new System.Drawing.Point(250, 244);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(216, 27);
@@ -87,7 +87,7 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(250, 301);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 31);
             this.button1.TabIndex = 5;
@@ -100,7 +100,7 @@
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::BestLogisticAdmin.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(91, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(416, 138);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -119,7 +119,7 @@
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.password);
             this.Controls.Add(this.username);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

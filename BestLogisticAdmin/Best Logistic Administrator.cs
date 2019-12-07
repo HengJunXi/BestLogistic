@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestLogisticAdmin.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,6 +69,34 @@ namespace BestLogisticAdmin
             {
                 this.Close();
             }
+        }
+
+        private void Best_Logistic_Administrator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            const string message = "Are you sure that you want to logout?";
+            const string caption = "Form Closing";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            
+        }
+
+        private void Best_Logistic_Administrator_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Authentication.SignOutStaff();
+            Login login = new Login();
+            login.Show();
+        }
+
+        private void Best_Logistic_Administrator_Load(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
         }
     }
 }

@@ -167,6 +167,9 @@
             this.Name = "Best_Logistic_Administrator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Best_Logistic_Administrator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Best_Logistic_Administrator_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Best_Logistic_Administrator_FormClosed);
+            this.Load += new System.EventHandler(this.Best_Logistic_Administrator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
