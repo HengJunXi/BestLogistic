@@ -61,7 +61,7 @@ namespace BestLogisticAdmin.Controllers
             return null;
         }
 
-        public static void SignOutUser()
+        public static void SignOutStaff()
         {
             CurrentStaff = null;
         }
