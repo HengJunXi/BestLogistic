@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /BestLogistic/Controllers/Credential.cs
+/BestLogisticAdmin/Controllers/Credential.cs
