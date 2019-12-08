@@ -96,7 +96,7 @@ namespace BestLogisticAdmin
 
         private void Best_Logistic_Administrator_Load(object sender, EventArgs e)
         {
-            dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
+            //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
         }
     }
 }
