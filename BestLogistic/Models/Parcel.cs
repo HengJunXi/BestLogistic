@@ -132,7 +132,7 @@ namespace BestLogistic.Models
             string receiverName, string receiverEmail, string receiverPhone, string receiverAddress, 
             string receiverPostCode, string receiverLocation, bool parcelService, bool parcelType, byte parcelPieces, 
             decimal valueOfContent, string content, float weight, decimal deliveryFee, decimal pickUpFee,
-            DateTime pickUpDate, DateTime pickUpTime, string pickUpRemark)
+            DateTime? pickUpDate, DateTime? pickUpTime, string pickUpRemark)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {

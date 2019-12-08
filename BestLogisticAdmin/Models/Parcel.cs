@@ -272,6 +272,11 @@ namespace BestLogisticAdmin.Models
             }
         }
 
+        public static void SetTrip(string trackingNumber, string tripId)
+        {
+            string query;
+        }
+
         public static void Update(int trackingNumber, string senderName, string senderEmail, byte senderIdType, string senderIdNumber,
             string senderPhone, string senderAddress, string senderPostCode, string senderLocation,
             string receiverName, string receiverEmail, string receiverPhone, string receiverAddress,
