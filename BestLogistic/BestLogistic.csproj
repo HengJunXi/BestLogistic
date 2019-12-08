@@ -139,6 +139,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
+    <Content Include="Database\best_logistic.sql" />
     <Content Include="Database\create_database.sql" />
     <Content Include="Database\create_route.sql" />
     <Content Include="Database\create_state_postcode.sql" />
@@ -267,6 +268,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Parcel.cs" />
     <Compile Include="OrderSummary.aspx.cs">
       <DependentUpon>OrderSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

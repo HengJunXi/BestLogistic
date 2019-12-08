@@ -14,43 +14,24 @@ namespace BestLogisticAdmin.Models
     {
         public readonly int TrackingNumber;
         public readonly string UserUid;
-        public string SenderName;
-        public byte SenderIdType;
-        public string SenderIdNumber;
-        public string SenderEmail;
-        public string SenderPhone;
-        public string SenderAddress;
-        public string SenderPostCode;
-        public string SenderLocation;
-        public string SenderCity;
-        public string SenderState;
+        
+        public readonly byte SenderIdType;
+        public readonly string SenderIdNumber;
+        public readonly PersonInfo Sender;
+        public readonly PersonInfo Receiver;
 
-        public string ReceiverName;
-        public string ReceiverEmail;
-        public string ReceiverPhone;
-        public string ReceiverAddress;
-        public string ReceiverPostCode;
-        public string ReceiverLocation;
-        public string ReceiverCity;
-        public string ReceiverState;
+        public readonly DateTime DateCreated;
+        public readonly bool ParcelService;
+        public readonly bool ParcelType;
+        public readonly byte ParcelPieces;
+        public readonly decimal ValueOfContent;
+        public readonly string Content;
+        public readonly float Weight;
+        public readonly decimal DeliveryFee;
+        public readonly decimal PickUpFee;
 
-        public DateTime DateCreated;
-        public bool ParcelService;
-        public bool ParcelType;
-        public byte ParcelPieces;
-        public decimal ValueOfContent;
-        public string Content;
-        public float Weight;
-        public decimal DeliveryFee;
-        public decimal PickUpFee;
-
-        public byte Status;
-        public string Departure;
-        public string Arrival;
-        public DateTime? DepTime;
-        public DateTime? ArrTime;
-        public string DepartureId;
-        public string ArrivalId;
+        public readonly Trip ParcelTrip;
+        public readonly PickUpInfo PickUp;
 
         //public Parcel(string trackingNumber, string senderName, string senderEmail, string senderPhone, string senderAddress, string senderPostCode, string senderLocation, string senderCity, string senderState, string receiverName, string receiverEmail, string receiverPhone, string receiverAddress, string receiverPostCode, string receiverLocation, string receiverCity, string receiverState, bool parcelType, int parcelPieces, double valueOfContent, string content, double weight)
         //{
@@ -80,26 +61,31 @@ namespace BestLogisticAdmin.Models
 
         private Parcel(DataRow dataRow)
         {
+            Sender = new PersonInfo();
+            Receiver = new PersonInfo();
+            ParcelTrip = new Trip();
+            PickUp = new PickUpInfo();
+
             TrackingNumber = dataRow.Field<int>("tracking_number");
             UserUid = dataRow.Field<Guid?>("user_uid").ToString();
-            SenderName = dataRow.Field<string>("sender_name");
+            Sender.Name = dataRow.Field<string>("sender_name");
             SenderIdType = dataRow.Field<byte>("sender_id_type");
             SenderIdNumber = dataRow.Field<string>("sender_id_number");
-            SenderEmail = dataRow.Field<string>("sender_email");
-            SenderPhone = dataRow.Field<string>("sender_phone");
-            SenderAddress = dataRow.Field<string>("sender_address");
-            SenderPostCode = dataRow.Field<string>("sender_postcode");
-            SenderLocation = dataRow.Field<string>("sender_location");
-            SenderCity = dataRow.Field<string>("sender_city");
-            SenderState = dataRow.Field<string>("sender_state");
-            ReceiverName = dataRow.Field<string>("receiver_name");
-            ReceiverEmail = dataRow.Field<string>("receiver_email");
-            ReceiverPhone = dataRow.Field<string>("receiver_phone");
-            ReceiverAddress = dataRow.Field<string>("receiver_address");
-            ReceiverPostCode = dataRow.Field<string>("receiver_postcode");
-            ReceiverLocation = dataRow.Field<string>("receiver_location");
-            ReceiverCity = dataRow.Field<string>("receiver_city");
-            ReceiverState = dataRow.Field<string>("receiver_state");
+            Sender.Email = dataRow.Field<string>("sender_email");
+            Sender.Phone = dataRow.Field<string>("sender_phone");
+            Sender.Address = dataRow.Field<string>("sender_address");
+            Sender.PostCode = dataRow.Field<string>("sender_postcode");
+            Sender.Location = dataRow.Field<string>("sender_location");
+            Sender.City = dataRow.Field<string>("sender_city");
+            Sender.State = dataRow.Field<string>("sender_state");
+            Receiver.Name = dataRow.Field<string>("receiver_name");
+            Receiver.Email = dataRow.Field<string>("receiver_email");
+            Receiver.Phone = dataRow.Field<string>("receiver_phone");
+            Receiver.Address = dataRow.Field<string>("receiver_address");
+            Receiver.PostCode = dataRow.Field<string>("receiver_postcode");
+            Receiver.Location = dataRow.Field<string>("receiver_location");
+            Receiver.City = dataRow.Field<string>("receiver_city");
+            Receiver.State = dataRow.Field<string>("receiver_state");
             ParcelService = dataRow.Field<bool>("service");
             ParcelType = dataRow.Field<bool>("type");
             ParcelPieces = dataRow.Field<byte>("pieces");
@@ -110,20 +96,20 @@ namespace BestLogisticAdmin.Models
             PickUpFee = dataRow.Field<decimal>("pick_up_fee");
             DateCreated = dataRow.Field<DateTime>("date_created");
 
-            Status = dataRow.Field<byte>("status");
-            Departure = dataRow.Field<string>("departure");
-            Arrival = dataRow.Field<string>("arrival");
-            DepTime = dataRow.Field<DateTime?>("departure_datetime");
-            ArrTime = dataRow.Field<DateTime?>("arrival_datetime");
-            DepartureId = dataRow.Field<string>("departure_point");
-            ArrivalId = dataRow.Field<string>("arrival_point");
+            ParcelTrip.Status = dataRow.Field<byte>("status");
+            ParcelTrip.Departure = dataRow.Field<string>("departure");
+            ParcelTrip.Arrival = dataRow.Field<string>("arrival");
+            ParcelTrip.DepTime = dataRow.Field<DateTime?>("departure_datetime");
+            ParcelTrip.ArrTime = dataRow.Field<DateTime?>("arrival_datetime");
+            ParcelTrip.DepartureId = dataRow.Field<string>("departure_point");
+            ParcelTrip.ArrivalId = dataRow.Field<string>("arrival_point");
         }
 
         public static void Create(string senderName, string senderEmail, byte senderIdType, string senderIdNumber, 
             string senderPhone, string senderAddress, string senderPostCode, string senderLocation, 
             string receiverName, string receiverEmail, string receiverPhone, string receiverAddress, 
-            string receiverPostCode, string receiverLocation, bool parcelService, bool parcelType, byte parcelPieces, 
-            decimal valueOfContent, string content, float weight, decimal deliveryFee, decimal pickUpFee, string branchId)
+            string receiverPostCode, string receiverLocation, bool parcelType, byte parcelPieces, 
+            decimal valueOfContent, string content, float weight, decimal deliveryFee, string branchId)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -167,8 +153,8 @@ namespace BestLogisticAdmin.Models
                             cmd.Parameters.AddWithValue("@VALUE", valueOfContent);
                             cmd.Parameters.AddWithValue("@WEIGHT", weight);
                             cmd.Parameters.AddWithValue("@DFEE", deliveryFee);
-                            cmd.Parameters.AddWithValue("@SERVICE", parcelService);
-                            cmd.Parameters.AddWithValue("@PFEE", pickUpFee);
+                            cmd.Parameters.AddWithValue("@SERVICE", false);
+                            cmd.Parameters.AddWithValue("@PFEE", 0);
 
                             cmd.Parameters.AddWithValue("@SNAME", senderName);
                             cmd.Parameters.AddWithValue("@SIDTYPE", senderIdType);
@@ -223,8 +209,9 @@ namespace BestLogisticAdmin.Models
             string query = "SELECT P.*, S.post_office AS sender_city, S.state_code AS sender_state, " +
                 "R.area AS receiver_city, R.state_code AS receiver_state, " +
                 "T.status, PD.name AS departure, PA.name AS arrival, T.departure_point, T.arrival_point, " +
-                "T.departure_datetime, T.arrival_datetime " +
+                "T.departure_datetime, T.arrival_datetime, PU.pick_up_date, PU.pick_up_time, PU.remark " +
                 "FROM parcel P " +
+                "LEFT JOIN pick_up_info PU ON P.tracking_number = PU.tracking_number " +
                 "INNER JOIN postcode S ON P.sender_postcode=S.postcode " +
                 "INNER JOIN postcode R ON P.receiver_postcode=R.postcode " +
                 "INNER JOIN parcel_trip PT ON P.tracking_number=PT.tracking_number " +

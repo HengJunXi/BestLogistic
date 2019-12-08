@@ -79,19 +79,19 @@ SELECT area FROM postcode WHERE postcode='';
 -- get city (post_office) and state from postcode and area
 SELECT post_office, state_code from postcode WHERE postcode='' AND area='';
 
-
 //Parcel parcel = Parcel.Get(1000000003);
-//tbUsername.Text = parcel.Departure;
+//tbUsername.Text = parcel.Sender.Name;
 //Parcel.Create("Lim Wei Ting", "wei@wei.com", 1, "123456789011", "0123456789", "No. 88, Jalan ABC", "50460", "Wisma Putra",
-//    "Lee Rou", "lee@lee.com", "receiverPhone", "67, Lorong Cantik", "14300", "Taman Pekaka", false, false, 1, new decimal(4.5),
-//    "content", 1.3f, new decimal(5.6), 0, "ChIJw06LDtrFzTER578ZF_6Z-gg");
+//    "Lee Rou", "lee@lee.com", "receiverPhone", "67, Lorong Cantik", "14300", "Taman Pekaka", false, 1, new decimal(4.5),
+//    "content", 1.3f, new decimal(5.6), "ChIJw06LDtrFzTER578ZF_6Z-gg");
+
 //Parcel.Update(1000000003, "Heng Jun Xi", "wei@wei.com", 1, "123456789011", "0123456789", "No. 88, Jalan ABC", "50460", "Wisma Putra",
 //    "Loh Shu Yi", "lee@lee.com", "0123456789", "67, Lorong Cantik", "14300", "Taman Pekaka", false, false, 1, new decimal(4.5),
 //    "content", 1.3f, new decimal(5.6), 0);
 //Parcel.Delete(1000000003);
 //List<Parcel> list = Parcel.GetParcelsFromBranch("ChIJw06LDtrFzTER578ZF_6Z-gg");
 //Debug.WriteLine(list.Count);
-//Debug.WriteLine(list[0].Departure);
+//Debug.WriteLine(list[0].ParcelTrip.Departure);
 
 SELECT parcel.*
 , T.post_office AS sender_city, T.state_code AS sender_state

@@ -70,14 +70,14 @@ CREATE TABLE dbo.parcel
 	receiver_address varchar(255),
 	receiver_location varchar(70),
 	receiver_postcode char(5),
-	status tinyint,
+	--status tinyint,
 	deleted bit DEFAULT 0,
 	PRIMARY KEY (tracking_number),
 	FOREIGN KEY ([user_uid]) REFERENCES dbo.[user],
 	FOREIGN KEY (sender_id_type) REFERENCES dbo.id_type,
 	FOREIGN KEY (sender_postcode, sender_location) REFERENCES dbo.postcode,
 	FOREIGN KEY (receiver_postcode, receiver_location) REFERENCES dbo.postcode,
-	FOREIGN KEY (status) REFERENCES dbo.parcel_status
+	--FOREIGN KEY (status) REFERENCES dbo.parcel_status
 )
 
 CREATE TABLE dbo.pick_up_info

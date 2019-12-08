@@ -14,7 +14,7 @@ namespace BestLogistic.Controllers
 {
     public class Repository
     {
-        private readonly string connectionString =
+        public static readonly string connectionString =
                 "server=" + Credential.SERVER + "; " +
                 "database=" + Credential.DATABASE + "; " +
                 "uid=" + Credential.UID + "; " +
