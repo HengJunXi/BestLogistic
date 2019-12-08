@@ -98,5 +98,11 @@ namespace BestLogisticAdmin
         {
             //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
         }
+
+        private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            UpdateParcelDetails update = new UpdateParcelDetails();
+            update.ShowDialog();
+        }
     }
 }

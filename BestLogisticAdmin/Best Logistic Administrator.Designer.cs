@@ -33,9 +33,9 @@
             this.changeRoute = new System.Windows.Forms.Button();
             this.deleteParcel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.checkAll = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.checkAll = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,6 +112,12 @@
             this.dataGridView1.Size = new System.Drawing.Size(860, 363);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
+            this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_RowHeaderMouseDoubleClick);
+            // 
+            // checkAll
+            // 
+            this.checkAll.HeaderText = " ";
+            this.checkAll.Name = "checkAll";
             // 
             // checkedListBox1
             // 
@@ -153,11 +159,6 @@
             this.checkedListBox2.Size = new System.Drawing.Size(860, 23);
             this.checkedListBox2.TabIndex = 6;
             this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.CheckedListBox2_SelectedIndexChanged);
-            // 
-            // checkAll
-            // 
-            this.checkAll.HeaderText = " ";
-            this.checkAll.Name = "checkAll";
             // 
             // Best_Logistic_Administrator
             // 
