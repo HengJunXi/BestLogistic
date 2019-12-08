@@ -1,7 +1,8 @@
 USE best_logistic;
 
 DROP TABLE IF EXISTS dbo.staff
-DROP TABLE IF EXISTS dbo.tracking
+DROP TABLE IF EXISTS dbo.parcel_trip
+DROP TABLE IF EXISTS dbo.trip
 DROP TABLE IF EXISTS dbo.transport
 DROP TABLE IF EXISTS dbo.pick_up_info
 DROP TABLE IF EXISTS dbo.parcel
@@ -44,7 +45,7 @@ CREATE TABLE dbo.parcel_status
 
 CREATE TABLE dbo.parcel 
 (
-	tracking_number uniqueidentifier DEFAULT NEWID(),
+	tracking_number int IDENTITY(1000000000,1),
 	[service] bit,
 	[type] bit,
 	pieces tinyint,
@@ -70,7 +71,7 @@ CREATE TABLE dbo.parcel
 	receiver_location varchar(70),
 	receiver_postcode char(5),
 	status tinyint,
-	deleted bool DEFAULT false,
+	deleted bit DEFAULT 0,
 	PRIMARY KEY (tracking_number),
 	FOREIGN KEY ([user_uid]) REFERENCES dbo.[user],
 	FOREIGN KEY (sender_id_type) REFERENCES dbo.id_type,
@@ -81,7 +82,7 @@ CREATE TABLE dbo.parcel
 
 CREATE TABLE dbo.pick_up_info
 (
-	tracking_number uniqueidentifier,
+	tracking_number int,
 	pick_up_date date,
 	pick_up_time time,
 	remark varchar(511),
@@ -95,20 +96,44 @@ CREATE TABLE dbo.transport
 	car_model varchar(255)
 )
 
-CREATE TABLE dbo.tracking
+--CREATE TABLE dbo.tracking
+--(
+--	tracking_number uniqueidentifier,
+--	trip tinyint,
+--	plate_number varchar(255),
+--	departure_point varchar(255),
+--	arrival_point varchar(255),
+--	departure_datetime datetime,
+--	arrival_datetime datetime,
+--	status bit,
+--	PRIMARY KEY (tracking_number, trip),
+--	FOREIGN KEY (tracking_number) REFERENCES dbo.parcel,
+--	FOREIGN KEY (departure_point) REFERENCES dbo.point,
+--	FOREIGN KEY (arrival_point) REFERENCES dbo.point,	
+--)
+
+CREATE TABLE dbo.trip
 (
-	tracking_number uniqueidentifier,
-	trip tinyint,
-	plate_number varchar(255),
+	trip_id uniqueidentifier DEFAULT newid(),
+	date_created datetime DEFAULT getdate(),
 	departure_point varchar(255),
 	arrival_point varchar(255),
 	departure_datetime datetime,
 	arrival_datetime datetime,
-	status bit,
-	PRIMARY KEY (tracking_number, trip),
+	plate_number varchar(255),
+	[status] tinyint,
+	PRIMARY KEY (trip_id),
+	FOREIGN KEY (plate_number) REFERENCES dbo.transport,
+	FOREIGN KEY (departure_point, arrival_point) REFERENCES dbo.route,
+)
+
+CREATE TABLE dbo.parcel_trip
+(
+	trip_id uniqueidentifier,
+	tracking_number int,
+	PRIMARY KEY (trip_id, tracking_number),
+	FOREIGN KEY (trip_id) REFERENCES dbo.trip,
 	FOREIGN KEY (tracking_number) REFERENCES dbo.parcel,
-	FOREIGN KEY (departure_point) REFERENCES dbo.point,
-	FOREIGN KEY (arrival_point) REFERENCES dbo.point,
 )
 
 CREATE TABLE dbo.staff
@@ -125,7 +150,11 @@ CREATE TABLE dbo.staff
 
 INSERT INTO [dbo].[id_type] ([type]) VALUES ('IC Number'), ('Old IC Number'), ('Passport');
 
-INSERT INTO parcel_status (status) VALUES ('Pending'), ('Pick-up'), ('In transit'), ('Out of delivery'), ('Delivered');
+INSERT INTO parcel_status ([status]) VALUES ('Pending'), ('Pick-up'), ('In transit'), ('Out of delivery'), ('Delivered');
+
+INSERT INTO transport VALUES 
+('WC3456', 'Grey Van'),
+('WK6785', 'White Van');
 
 INSERT INTO [user] (uid, password_hash, hash_salt, email, name, id_type, id_number, date_of_birth) VALUES 
 ('2E075DF1-7144-4077-B925-000AA23DC10F', 'NNSYPl6OI60v+eC50qdN55E24fc=', 'oNXKoe2TCAwboEV9rk76eQ==', 'heng@heng.com', 'Heng Jun Xi', 1, '980510080000', '1998-05-10'),
@@ -137,7 +166,57 @@ INSERT INTO staff (uid, password_hash, hash_salt, branch_id, name) VALUES
 ('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', '/o+xUzI3ZR6l/G8d15q/wv6ySgY=', 'Qx8Pk3B1ZSc19pZCFLChvw==', 'ChIJ7ciSyEquSjARqdvRktxutKI', 'Loh Shu Yi'),
 ('C1713FC0-118D-4650-9314-26480E210F8D', 'yCV9BB0Zha9pMyuZ7Bn/4Py1Qqk=', 'lavcNAWHs5Nr7722Lxw6gg==', 'ChIJTfBUxjVs2jER3vZ-g6U8JkI', 'Lim Carol');
 
-INSERT INTO parcel (tracking_number, user_uid, sender_id_type, type, pieces, value, weight, delivery_fee, service, pick_up_fee, sender_postcode, sender_location, receiver_postcode, receiver_location) VALUES
-('2E075DF1-7144-4077-B925-000AA23DC10F', null, 1, 0, 1, 10, 1, 5, 0, 0, '50460', 'Wisma Putra', '81800', 'Kampung AC Batu 18'),
-('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', null, 1, 0, 5, 10, 4, 10, 1, 5, '81800', 'Kampung AC Batu 18', '14300', 'Taman Pekaka'),
-('C1713FC0-118D-4650-9314-26480E210F8D', null, 1, 1, 3, 2, 0.5, 4.5, 1, 1.5, '14300', 'Taman Pekaka', '50460', 'Wisma Putra');
+INSERT INTO parcel (user_uid, sender_id_type, type, pieces, value, weight, delivery_fee, service, pick_up_fee, sender_postcode, sender_location, receiver_postcode, receiver_location) VALUES
+(null, 1, 0, 1, 10, 1, 5, 0, 0, '50460', 'Wisma Putra', '81800', 'Kampung AC Batu 18'),
+(null, 1, 0, 5, 10, 4, 10, 1, 5, '81800', 'Kampung AC Batu 18', '14300', 'Taman Pekaka'),
+(null, 1, 1, 3, 2, 0.5, 4.5, 1, 1.5, '14300', 'Taman Pekaka', '50460', 'Wisma Putra');
+
+INSERT INTO trip (departure_point, arrival_point, status) VALUES 
+('ChIJw06LDtrFzTER578ZF_6Z-gg', NULL, 0),
+('ChIJw06LDtrFzTER578ZF_6Z-gg', NULL, 1),
+('ChIJw06LDtrFzTER578ZF_6Z-gg', 'ChIJ7ZqvbEzKzTER-r67V-ufxtg', 2),
+('ChIJw06LDtrFzTER578ZF_6Z-gg', NULL, 3),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', NULL, 0),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', NULL, 1),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', 'ChIJw06LDtrFzTER578ZF_6Z-gg', 2),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', NULL, 3),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', NULL, 0),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', NULL, 1),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', 'ChIJNWxC8VmzzTERVQYzQ66uwCM', 2),
+('ChIJ7ZqvbEzKzTER-r67V-ufxtg', NULL, 3),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', NULL, 0),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', NULL, 1),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', 'ChIJ7ZqvbEzKzTER-r67V-ufxtg', 2),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', NULL, 3),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', NULL, 0),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', NULL, 1),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', 'ChIJIeom6DpOzDERFh89Ox4KCig', 2),
+('ChIJNWxC8VmzzTERVQYzQ66uwCM', NULL, 3),
+('ChIJIeom6DpOzDERFh89Ox4KCig', NULL, 0),
+('ChIJIeom6DpOzDERFh89Ox4KCig', NULL, 1),
+('ChIJIeom6DpOzDERFh89Ox4KCig', 'ChIJNWxC8VmzzTERVQYzQ66uwCM', 2),
+('ChIJIeom6DpOzDERFh89Ox4KCig', NULL, 3),
+('ChIJIeom6DpOzDERFh89Ox4KCig', NULL, 0),
+('ChIJIeom6DpOzDERFh89Ox4KCig', NULL, 1),
+('ChIJIeom6DpOzDERFh89Ox4KCig', 'ChIJoxijCENpzDERzC5DDRq2J8E', 2),
+('ChIJIeom6DpOzDERFh89Ox4KCig', NULL, 3),
+('ChIJoxijCENpzDERzC5DDRq2J8E', NULL, 0),
+('ChIJoxijCENpzDERzC5DDRq2J8E', NULL, 1),
+('ChIJoxijCENpzDERzC5DDRq2J8E', 'ChIJIeom6DpOzDERFh89Ox4KCig', 2),
+('ChIJoxijCENpzDERzC5DDRq2J8E', NULL, 3),
+('ChIJoxijCENpzDERzC5DDRq2J8E', NULL, 0),
+('ChIJoxijCENpzDERzC5DDRq2J8E', NULL, 1),
+('ChIJoxijCENpzDERzC5DDRq2J8E', 'ChIJexR2dy6TyjERVqDwNY8buBo', 2),
+('ChIJoxijCENpzDERzC5DDRq2J8E', NULL, 3),
+('ChIJexR2dy6TyjERVqDwNY8buBo', NULL, 0),
+('ChIJexR2dy6TyjERVqDwNY8buBo', NULL, 1),
+('ChIJexR2dy6TyjERVqDwNY8buBo', 'ChIJoxijCENpzDERzC5DDRq2J8E', 2),
+('ChIJexR2dy6TyjERVqDwNY8buBo', NULL, 3),
+('ChIJexR2dy6TyjERVqDwNY8buBo', NULL, 0),
+('ChIJexR2dy6TyjERVqDwNY8buBo', NULL, 1),
+('ChIJexR2dy6TyjERVqDwNY8buBo', 'ChIJ7ciSyEquSjARqdvRktxutKI', 2),
+('ChIJexR2dy6TyjERVqDwNY8buBo', NULL, 3),
+('ChIJ7ciSyEquSjARqdvRktxutKI', NULL, 0),
+('ChIJ7ciSyEquSjARqdvRktxutKI', NULL, 1),
+('ChIJ7ciSyEquSjARqdvRktxutKI', 'ChIJexR2dy6TyjERVqDwNY8buBo', 2),
+('ChIJ7ciSyEquSjARqdvRktxutKI', NULL, 3);
