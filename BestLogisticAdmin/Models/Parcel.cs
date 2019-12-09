@@ -238,7 +238,7 @@ namespace BestLogisticAdmin.Models
             return null;
         }
 
-        public static List<Parcel> GetParcelsFromBranch(string branchId)
+        public static DataTable GetParcelsFromBranch(string branchId)
         {
             string query = "SELECT TOP 1 P.*, S.post_office AS sender_city, S.state_code AS sender_state, " +
                 "R.area AS receiver_city, R.state_code AS receiver_state, T.status, T.departure_point, " +
@@ -259,15 +259,15 @@ namespace BestLogisticAdmin.Models
                 conn.Open();
                 cmd.Parameters.AddWithValue("@BID", branchId);
 
-                using (DataSet ds = new DataSet())
+                using (DataTable dt = new DataTable())
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
-                    adapter.Fill(ds);
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        list.Add(new Parcel(ds.Tables[0].Rows[i]));
-                    }
-                    return list;
+                    adapter.Fill(dt);
+                    //for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    //{
+                    //    list.Add(new Parcel(ds.Tables[0].Rows[i]));
+                    //}
+                    return dt;
                 }
             }
         }

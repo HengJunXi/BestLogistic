@@ -58,11 +58,17 @@
     <Compile Include="changeRoute.Designer.cs">
       <DependentUpon>changeRoute.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangeStatus.cs">
+    <Compile Include="EndTrip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeStatus.Designer.cs">
-      <DependentUpon>ChangeStatus.cs</DependentUpon>
+    <Compile Include="EndTrip.Designer.cs">
+      <DependentUpon>EndTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartTrip.Designer.cs">
+      <DependentUpon>StartTrip.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Authentication.cs" />
     <Compile Include="Controllers\Credential.cs" />
@@ -99,8 +105,11 @@
     <EmbeddedResource Include="changeRoute.resx">
       <DependentUpon>changeRoute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChangeStatus.resx">
-      <DependentUpon>ChangeStatus.cs</DependentUpon>
+    <EmbeddedResource Include="EndTrip.resx">
+      <DependentUpon>EndTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartTrip.resx">
+      <DependentUpon>StartTrip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateNewParcel.resx">
       <DependentUpon>CreateNewParcel.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿using BestLogisticAdmin.Controllers;
+using BestLogisticAdmin.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace BestLogisticAdmin
 {
     public partial class Best_Logistic_Administrator : Form
     {
+        public String branchId;
         public Best_Logistic_Administrator()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace BestLogisticAdmin
 
         private void changeRoute_Click(object sender, EventArgs e)
         {
-            changeRoute routePage = new changeRoute();
+            AssignRoute routePage = new AssignRoute();
             routePage.ShowDialog();
         }
 
@@ -32,18 +34,8 @@ namespace BestLogisticAdmin
 
         private void ChangeStatus_Click(object sender, EventArgs e)
         {
-            ChangeStatus statusPage = new ChangeStatus();
+            StartTrip statusPage = new StartTrip();
             statusPage.ShowDialog();
-        }
-
-        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            checkedListBox1.ClearSelected();
-        }
-
-        private void CheckedListBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            checkedListBox2.ClearSelected();
         }
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -62,12 +54,12 @@ namespace BestLogisticAdmin
             // If the no button was pressed ...
             if (result == DialogResult.No)
             {
-                // cancel the closure of the form.
-                this.Close();
+                // will auto close
+                
             }
             else
             {
-                this.Close();
+                
             }
         }
 
@@ -96,6 +88,15 @@ namespace BestLogisticAdmin
 
         private void Best_Logistic_Administrator_Load(object sender, EventArgs e)
         {
+            Staff staff = Authentication.CurrentStaff;
+            branchId = staff.BranchId;
+
+            DataTable dt = Parcel.GetParcelsFromBranch(branchId);
+            DataTable dt1 = new DataTable();
+
+            dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+            
+            dataGridView1.DataSource = dt1;
             //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
         }
 
@@ -103,6 +104,59 @@ namespace BestLogisticAdmin
         {
             UpdateParcelDetails update = new UpdateParcelDetails();
             update.ShowDialog();
+        }
+
+        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                comboBox1.Enabled = true;
+            }
+            else
+            {
+                comboBox1.Enabled = false;
+                comboBox3.Enabled = false;
+            }
+        }
+
+        private void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                comboBox2.Enabled = true;
+            }
+            else
+            {
+                comboBox2.Enabled = false;
+                
+            }
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex > -1)
+            {
+                comboBox3.Enabled = true;
+            }
+            
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            EndTrip endTripForm = new EndTrip();
+            endTripForm.ShowDialog();
+        }
+
+        private void RegisterOnline_Click(object sender, EventArgs e)
+        {
+            OnlineLodge lodge = new OnlineLodge();
+            lodge.ShowDialog();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            OnlinePickUpRequest pickUpRequest = new OnlinePickUpRequest();
+            pickUpRequest.ShowDialog();
         }
     }
 }
