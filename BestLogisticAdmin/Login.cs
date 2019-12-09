@@ -21,12 +21,20 @@ namespace BestLogisticAdmin
 
         private void Button1_Click(object sender, EventArgs e)
         {
+
+            if (tbUsername.Text == "" || tbPassword.Text == "")
+            {
+                MessageBox.Show("Username and Password cannot be empty", "Error message");
+                return;
+            }
+
             Staff staff = Authentication.SignInStaff(Convert.ToInt32(tbUsername.Text), tbPassword.Text);
 
             if(staff == null)
             {
-                MessageBox.Show("Username and Password are incorrent");
+                MessageBox.Show("Username and Password are incorrent","Error message");
             }
+            
             else
             {
                 this.Hide();
