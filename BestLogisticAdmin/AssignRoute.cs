@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BestLogisticAdmin
 {
-    public partial class changeRoute : Form
+    public partial class AssignRoute : Form
     {
-        public changeRoute()
+        public AssignRoute()
         {
             InitializeComponent();
         }
