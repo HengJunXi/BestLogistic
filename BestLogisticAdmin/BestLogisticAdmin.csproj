@@ -86,9 +86,11 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Parcel.cs" />
     <Compile Include="Models\PersonInfo.cs" />
     <Compile Include="Models\PickUpInfo.cs" />
+    <Compile Include="Models\Route.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Program.cs" />

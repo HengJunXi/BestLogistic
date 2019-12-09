@@ -93,6 +93,10 @@ SELECT post_office, state_code from postcode WHERE postcode='' AND area='';
 //Debug.WriteLine(list.Count);
 //Debug.WriteLine(list[0].ParcelTrip.Departure);
 
+//BestLogistic.Models.Parcel.Create("Laugher", "wei@wei.com", 1, "123456789011", "0123456789", "Jalan GHI", "43900", "Bandar Baru Salak Tinggi",
+//        "Angry", "lee@lee.com", "receiverPhone", "67, Lorong Bunga Raya", "14300", "Taman Pekaka", true, false, 1, new decimal(4.5),
+//        "content", 1.3f, new decimal(5.6), new decimal(3), DateTime.Today, DateTime.Now, "I am beautiful");
+
 SELECT parcel.*
 , T.post_office AS sender_city, T.state_code AS sender_state
 , S.area AS receiver_city, S.state_code AS receiver_state 
