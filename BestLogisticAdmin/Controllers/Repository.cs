@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -68,5 +69,65 @@ namespace BestLogisticAdmin.Controllers
             }
             return null;
         }
+
+        public ArrayList GetAreaFromPostCode(string postcode)
+        {
+            string query = "SELECT area FROM [postcode] WHERE postcode=@PC;";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@PC", postcode);
+
+                using (DataSet ds = new DataSet())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(ds);
+
+                    if (ds.Tables[0].Rows.Count != 0)
+                    {
+                        ArrayList arr = new ArrayList();
+                        foreach (DataRow r in ds.Tables[0].Rows)
+                        {
+                            arr.Add(r.Field<string>("area"));
+                        }
+                        return arr;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public string[] GetCityAndStateFromPostCodeAndLocation(string postcode)
+        {
+            string query = "SELECT post_office, state_name " +
+                "FROM [postcode] JOIN [state] " +
+                "ON (postcode.state_code=state.state_code) " +
+                "WHERE postcode=@PC";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@PC", postcode);
+                //cmd.Parameters.AddWithValue("@AREA", location);
+
+                using (DataSet ds = new DataSet())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(ds);
+
+                    if (ds.Tables[0].Rows.Count != 0)
+                    {
+                        return new string[] {
+                            ds.Tables[0].Rows[0].Field<string>("post_office"),
+                            ds.Tables[0].Rows[0].Field<string>("state_name")
+                        };
+                    }
+                }
+            }
+            return null;
+        }
+
+        
     }
 }
