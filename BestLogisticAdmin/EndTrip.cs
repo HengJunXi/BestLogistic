@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace BestLogisticAdmin
 {
-    public partial class changeRoute : Form
+    public partial class EndTrip : Form
     {
-        public changeRoute()
+        public EndTrip()
         {
             InitializeComponent();
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-            const string message = "Confirm change route? ";
-            const string caption = "Change Route";
+            const string message = "Confirm change status? ";
+            const string caption = "Change Status";
             var result = MessageBox.Show(message, caption,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
@@ -35,6 +35,16 @@ namespace BestLogisticAdmin
             {
                 this.Close();
             }
+        }
+
+        private void Dbstatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Status_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

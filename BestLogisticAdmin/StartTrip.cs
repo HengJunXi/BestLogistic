@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BestLogisticAdmin
 {
-    public partial class ChangeStatus : Form
+    public partial class StartTrip : Form
     {
-        public ChangeStatus()
+        public StartTrip()
         {
             InitializeComponent();
         }
@@ -29,11 +29,11 @@ namespace BestLogisticAdmin
             if (result == DialogResult.No)
             {
                 // cancel the closure of the form.
-                this.Close();
+                
             }
             else
             {
-                this.Close();
+                
             }
         }
 
@@ -46,5 +46,7 @@ namespace BestLogisticAdmin
         {
 
         }
+
+        
     }
 }

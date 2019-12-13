@@ -34,17 +34,28 @@
             this.deleteParcel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.checkAll = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.registerOnline = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // add
             // 
-            this.add.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.add.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.add.AutoSize = true;
-            this.add.Location = new System.Drawing.Point(87, 12);
-            this.add.Margin = new System.Windows.Forms.Padding(3, 3, 100, 3);
+            this.add.Location = new System.Drawing.Point(115, 12);
+            this.add.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.add.MaximumSize = new System.Drawing.Size(150, 25);
             this.add.MinimumSize = new System.Drawing.Size(100, 25);
             this.add.Name = "add";
@@ -56,40 +67,43 @@
             // 
             // changeStatus
             // 
-            this.changeStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.changeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.changeStatus.AutoSize = true;
-            this.changeStatus.Location = new System.Drawing.Point(290, 12);
-            this.changeStatus.Margin = new System.Windows.Forms.Padding(3, 3, 100, 3);
+            this.changeStatus.Location = new System.Drawing.Point(383, 43);
+            this.changeStatus.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.changeStatus.MaximumSize = new System.Drawing.Size(150, 25);
             this.changeStatus.MinimumSize = new System.Drawing.Size(100, 25);
             this.changeStatus.Name = "changeStatus";
             this.changeStatus.Size = new System.Drawing.Size(100, 25);
             this.changeStatus.TabIndex = 1;
-            this.changeStatus.Text = "Change status";
+            this.changeStatus.Text = "Start trip";
             this.changeStatus.UseVisualStyleBackColor = true;
             this.changeStatus.Click += new System.EventHandler(this.ChangeStatus_Click);
             // 
             // changeRoute
             // 
-            this.changeRoute.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.changeRoute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.changeRoute.AutoSize = true;
-            this.changeRoute.Location = new System.Drawing.Point(493, 12);
-            this.changeRoute.Margin = new System.Windows.Forms.Padding(3, 3, 100, 3);
+            this.changeRoute.Location = new System.Drawing.Point(205, 43);
+            this.changeRoute.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.changeRoute.MaximumSize = new System.Drawing.Size(150, 25);
             this.changeRoute.MinimumSize = new System.Drawing.Size(100, 25);
             this.changeRoute.Name = "changeRoute";
             this.changeRoute.Size = new System.Drawing.Size(100, 25);
             this.changeRoute.TabIndex = 2;
-            this.changeRoute.Text = "Change Route";
+            this.changeRoute.Text = "Assign Route";
             this.changeRoute.UseVisualStyleBackColor = true;
             this.changeRoute.Click += new System.EventHandler(this.changeRoute_Click);
             // 
             // deleteParcel
             // 
-            this.deleteParcel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.deleteParcel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteParcel.AutoSize = true;
-            this.deleteParcel.Location = new System.Drawing.Point(696, 12);
-            this.deleteParcel.Margin = new System.Windows.Forms.Padding(3, 3, 100, 3);
+            this.deleteParcel.Location = new System.Drawing.Point(673, 12);
+            this.deleteParcel.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.deleteParcel.MaximumSize = new System.Drawing.Size(150, 25);
             this.deleteParcel.MinimumSize = new System.Drawing.Size(100, 25);
             this.deleteParcel.Name = "deleteParcel";
@@ -107,7 +121,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.checkAll});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 59);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 178);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(860, 363);
             this.dataGridView1.TabIndex = 4;
@@ -119,54 +133,162 @@
             this.checkAll.HeaderText = " ";
             this.checkAll.Name = "checkAll";
             // 
-            // checkedListBox1
+            // registerOnline
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.registerOnline.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBox1.CheckOnClick = true;
-            this.checkedListBox1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Pending",
-            "Pick Up",
-            "Transiting",
-            "Coming In",
-            "Delivering",
-            "Delivered"});
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 463);
-            this.checkedListBox1.MultiColumn = true;
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(860, 23);
-            this.checkedListBox1.TabIndex = 5;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.CheckedListBox1_SelectedIndexChanged);
+            this.registerOnline.AutoSize = true;
+            this.registerOnline.Location = new System.Drawing.Point(293, 12);
+            this.registerOnline.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
+            this.registerOnline.MaximumSize = new System.Drawing.Size(150, 25);
+            this.registerOnline.MinimumSize = new System.Drawing.Size(100, 25);
+            this.registerOnline.Name = "registerOnline";
+            this.registerOnline.Size = new System.Drawing.Size(105, 25);
+            this.registerOnline.TabIndex = 7;
+            this.registerOnline.Text = "Online lodge in";
+            this.registerOnline.UseVisualStyleBackColor = true;
+            this.registerOnline.Click += new System.EventHandler(this.RegisterOnline_Click);
             // 
-            // checkedListBox2
+            // button1
             // 
-            this.checkedListBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBox2.CheckOnClick = true;
-            this.checkedListBox2.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
-            "Home",
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(476, 12);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
+            this.button1.MaximumSize = new System.Drawing.Size(150, 25);
+            this.button1.MinimumSize = new System.Drawing.Size(100, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 25);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Online pick up";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.AutoSize = true;
+            this.button2.Location = new System.Drawing.Point(561, 43);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
+            this.button2.MaximumSize = new System.Drawing.Size(150, 25);
+            this.button2.MinimumSize = new System.Drawing.Size(100, 25);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 25);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "End trip";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(17, 74);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(855, 98);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(61, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Pick up";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(113, 19);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(70, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "In branch";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(217, 19);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(54, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Route";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(427, 19);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(53, 17);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Home";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.comboBox1.Enabled = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
             "Route 1",
             "Route 2",
             "Route 3",
             "Route 4"});
-            this.checkedListBox2.Location = new System.Drawing.Point(12, 501);
-            this.checkedListBox2.MultiColumn = true;
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(860, 23);
-            this.checkedListBox2.TabIndex = 6;
-            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.CheckedListBox2_SelectedIndexChanged);
+            this.comboBox1.Location = new System.Drawing.Point(217, 43);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(181, 21);
+            this.comboBox1.TabIndex = 4;
+            this.comboBox1.Text = "Choose route";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Enabled = false;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(427, 42);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(144, 21);
+            this.comboBox2.TabIndex = 5;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.Enabled = false;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(217, 70);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(181, 21);
+            this.comboBox3.TabIndex = 6;
             // 
             // Best_Logistic_Administrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 536);
-            this.Controls.Add(this.checkedListBox2);
-            this.Controls.Add(this.checkedListBox1);
+            this.ClientSize = new System.Drawing.Size(884, 553);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.registerOnline);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.deleteParcel);
             this.Controls.Add(this.changeRoute);
@@ -180,6 +302,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Best_Logistic_Administrator_FormClosed);
             this.Load += new System.EventHandler(this.Best_Logistic_Administrator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,8 +316,17 @@
         private System.Windows.Forms.Button changeRoute;
         private System.Windows.Forms.Button deleteParcel;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkAll;
+        private System.Windows.Forms.Button registerOnline;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace BestLogisticAdmin
 {
-    partial class changeRoute
+    partial class AssignRoute
     {
         /// <summary>
         /// Required designer variable.

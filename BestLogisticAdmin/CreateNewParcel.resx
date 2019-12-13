@@ -117,4 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="warningEP.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="invalidEP.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>172, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="invalidEP.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAA
+        AAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A////AP///wD///8AAACT/wAAk/////8A////AP///wD///8A////AP///wAAAJP/AACT////
+        /wD///8A////AP///wD///8AAACb/wAz//8AM///AACT/////wD///8A////AP///wAAAJP/ADP//wAz
+        //8AAJP/////AP///wD///8AAACT/wAp//8AKf//ADP//wAz//8AAJP/////AP///wAAAJP/ADP//wAz
+        //8AM///ADP//wAAk/////8A////AAApyv//zP//ACn//wAp//8AM///ADP//wAAk/8AAJP/ADP//wAz
+        //8AM///ACn////M//8AKcr/////AP///wD///8AACnK///M//8AKf//ADP//wAz//8AM///ADP//wAz
+        //8AM///ACn////M//8AKcr/////AP///wD///8A////AP///wAAKcr//8z//wAz//8AM///ADP//wAz
+        //8AM///ADP////M//8AKcr/////AP///wD///8A////AP///wD///8A////AAApyv8COv//Ajr//wI6
+        //8COv//Ajr//wI6//8AKcr/////AP///wD///8A////AP///wD///8A////AP///wAAAJP/DEz//wxM
+        //8MTP//DEz//wxM//8MTP//AACT/////wD///8A////AP///wD///8A////AP///wAAAJP/FWD//xVg
+        //8LWv//C1r//wta//8LWv//FWD//xVg//8AAJP/////AP///wD///8A////AP///wAAAJP/HnP//x5z
+        //8UbP//FGz////M////zP//FGz//xRs//8ec///HnP//wAAk/////8A////AP///wAAAJP/IIP//yCD
+        //8cfv//HH7////M//8AKcr/ACnK///M//8cfv//HH7//yCD//8gg///AACT/////wD///8AACnK///M
+        //8gg///IIP////M//8AKcr/////AP///wAAKcr//8z//yCD//8gg////8z//wApyv////8A////AP//
+        /wAAKcr//8z////M//8AKcr/////AP///wD///8A////AAApyv//zP///8z//wApyv////8A////AP//
+        /wD///8A////AAApyv8AKcr/////AP///wD///8A////AP///wD///8AACnK/wApyv////8A////AP//
+        /wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//
+        /wD///8A//8AAOfnAADDwwAAgYEAAIABAADAAwAA4AcAAPAPAADwDwAA4AcAAMADAACAAQAAgYEAAMPD
+        AADn5wAA//8AAA==
+</value>
+  </data>
 </root>

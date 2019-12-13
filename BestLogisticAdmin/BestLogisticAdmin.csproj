@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,17 +53,35 @@
     <Compile Include="Best Logistic Administrator.Designer.cs">
       <DependentUpon>Best Logistic Administrator.cs</DependentUpon>
     </Compile>
-    <Compile Include="changeRoute.cs">
+    <Compile Include="AssignRoute.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="changeRoute.Designer.cs">
-      <DependentUpon>changeRoute.cs</DependentUpon>
+    <Compile Include="AssignRoute.Designer.cs">
+      <DependentUpon>AssignRoute.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangeStatus.cs">
+    <Compile Include="EndTrip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeStatus.Designer.cs">
-      <DependentUpon>ChangeStatus.cs</DependentUpon>
+    <Compile Include="EndTrip.Designer.cs">
+      <DependentUpon>EndTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineLodge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OnlineLodge.Designer.cs">
+      <DependentUpon>OnlineLodge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OnlinePickUpRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OnlinePickUpRequest.Designer.cs">
+      <DependentUpon>OnlinePickUpRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartTrip.Designer.cs">
+      <DependentUpon>StartTrip.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Authentication.cs" />
     <Compile Include="Controllers\Credential.cs" />
@@ -81,12 +100,10 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Parcel.cs" />
     <Compile Include="Models\ParcelInfo.cs" />
     <Compile Include="Models\PersonInfo.cs" />
     <Compile Include="Models\PickUpInfo.cs" />
-    <Compile Include="Models\Route.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Program.cs" />
@@ -100,11 +117,20 @@
     <EmbeddedResource Include="Best Logistic Administrator.resx">
       <DependentUpon>Best Logistic Administrator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="changeRoute.resx">
-      <DependentUpon>changeRoute.cs</DependentUpon>
+    <EmbeddedResource Include="AssignRoute.resx">
+      <DependentUpon>AssignRoute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChangeStatus.resx">
-      <DependentUpon>ChangeStatus.cs</DependentUpon>
+    <EmbeddedResource Include="EndTrip.resx">
+      <DependentUpon>EndTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OnlineLodge.resx">
+      <DependentUpon>OnlineLodge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OnlinePickUpRequest.resx">
+      <DependentUpon>OnlinePickUpRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartTrip.resx">
+      <DependentUpon>StartTrip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateNewParcel.resx">
       <DependentUpon>CreateNewParcel.cs</DependentUpon>
@@ -140,6 +166,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\invalid.jpg" />
+    <Content Include="Resources\valid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
