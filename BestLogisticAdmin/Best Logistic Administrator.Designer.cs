@@ -46,6 +46,7 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -69,12 +70,12 @@
             // 
             this.changeStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.changeStatus.AutoSize = true;
-            this.changeStatus.Location = new System.Drawing.Point(404, 43);
+            this.changeStatus.Location = new System.Drawing.Point(293, 43);
             this.changeStatus.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.changeStatus.MaximumSize = new System.Drawing.Size(150, 25);
             this.changeStatus.MinimumSize = new System.Drawing.Size(100, 25);
             this.changeStatus.Name = "changeStatus";
-            this.changeStatus.Size = new System.Drawing.Size(100, 25);
+            this.changeStatus.Size = new System.Drawing.Size(127, 25);
             this.changeStatus.TabIndex = 1;
             this.changeStatus.Text = "Start trip";
             this.changeStatus.UseVisualStyleBackColor = true;
@@ -84,7 +85,7 @@
             // 
             this.changeRoute.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.changeRoute.AutoSize = true;
-            this.changeRoute.Location = new System.Drawing.Point(205, 43);
+            this.changeRoute.Location = new System.Drawing.Point(115, 43);
             this.changeRoute.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.changeRoute.MaximumSize = new System.Drawing.Size(150, 25);
             this.changeRoute.MinimumSize = new System.Drawing.Size(100, 25);
@@ -163,12 +164,12 @@
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.AutoSize = true;
-            this.button2.Location = new System.Drawing.Point(609, 43);
+            this.button2.Location = new System.Drawing.Point(498, 43);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.button2.MaximumSize = new System.Drawing.Size(150, 25);
             this.button2.MinimumSize = new System.Drawing.Size(100, 25);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 25);
+            this.button2.Size = new System.Drawing.Size(119, 25);
             this.button2.TabIndex = 9;
             this.button2.Text = "End trip";
             this.button2.UseVisualStyleBackColor = true;
@@ -178,6 +179,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.radioButton6);
             this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.comboBox1);
@@ -202,7 +204,7 @@
             "Route 1",
             "Route 2",
             "Route 3"});
-            this.comboBox3.Location = new System.Drawing.Point(592, 53);
+            this.comboBox3.Location = new System.Drawing.Point(603, 53);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(127, 21);
             this.comboBox3.TabIndex = 7;
@@ -216,7 +218,7 @@
             "Route 4",
             "Route 5",
             "Route 6"});
-            this.comboBox2.Location = new System.Drawing.Point(387, 53);
+            this.comboBox2.Location = new System.Drawing.Point(432, 53);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(127, 21);
             this.comboBox2.TabIndex = 6;
@@ -232,21 +234,21 @@
             "Route 1",
             "Route 2",
             "Route 3"});
-            this.comboBox1.Location = new System.Drawing.Point(188, 53);
+            this.comboBox1.Location = new System.Drawing.Point(265, 53);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(127, 21);
             this.comboBox1.TabIndex = 5;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // radioButton5
             // 
             this.radioButton5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(751, 30);
+            this.radioButton5.Location = new System.Drawing.Point(754, 30);
             this.radioButton5.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(70, 17);
             this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Delivered";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
@@ -254,12 +256,11 @@
             // 
             this.radioButton4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(592, 30);
+            this.radioButton4.Location = new System.Drawing.Point(603, 30);
             this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(68, 17);
             this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Outgoing";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
@@ -268,12 +269,11 @@
             // 
             this.radioButton3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(387, 30);
+            this.radioButton3.Location = new System.Drawing.Point(432, 30);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(68, 17);
             this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Incoming";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
@@ -282,12 +282,11 @@
             // 
             this.radioButton2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(188, 30);
+            this.radioButton2.Location = new System.Drawing.Point(265, 30);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(70, 17);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "In branch";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
@@ -296,14 +295,26 @@
             // 
             this.radioButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(54, 30);
+            this.radioButton1.Location = new System.Drawing.Point(28, 30);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(61, 17);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Pick up";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(120, 30);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(100, 17);
+            this.radioButton6.TabIndex = 8;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Registered here";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
             // 
             // Best_Logistic_Administrator
             // 
@@ -354,5 +365,6 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
     }
 }
