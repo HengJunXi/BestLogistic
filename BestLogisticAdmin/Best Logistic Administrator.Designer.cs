@@ -52,8 +52,7 @@
             // 
             // add
             // 
-            this.add.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.add.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.add.AutoSize = true;
             this.add.Location = new System.Drawing.Point(115, 12);
             this.add.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -68,8 +67,7 @@
             // 
             // changeStatus
             // 
-            this.changeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.changeStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.changeStatus.AutoSize = true;
             this.changeStatus.Location = new System.Drawing.Point(404, 43);
             this.changeStatus.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -84,8 +82,7 @@
             // 
             // changeRoute
             // 
-            this.changeRoute.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.changeRoute.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.changeRoute.AutoSize = true;
             this.changeRoute.Location = new System.Drawing.Point(205, 43);
             this.changeRoute.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -100,8 +97,7 @@
             // 
             // deleteParcel
             // 
-            this.deleteParcel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteParcel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.deleteParcel.AutoSize = true;
             this.deleteParcel.Location = new System.Drawing.Point(695, 12);
             this.deleteParcel.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -136,8 +132,7 @@
             // 
             // registerOnline
             // 
-            this.registerOnline.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.registerOnline.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.registerOnline.AutoSize = true;
             this.registerOnline.Location = new System.Drawing.Point(293, 12);
             this.registerOnline.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -152,8 +147,7 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.AutoSize = true;
             this.button1.Location = new System.Drawing.Point(498, 12);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -167,8 +161,7 @@
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.AutoSize = true;
             this.button2.Location = new System.Drawing.Point(609, 43);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
@@ -198,36 +191,39 @@
             this.groupBox1.Size = new System.Drawing.Size(855, 98);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
             // 
             // comboBox3
             // 
+            this.comboBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comboBox3.Enabled = false;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Route 1",
             "Route 2",
             "Route 3"});
-            this.comboBox3.Location = new System.Drawing.Point(387, 42);
+            this.comboBox3.Location = new System.Drawing.Point(592, 53);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(127, 21);
             this.comboBox3.TabIndex = 7;
             // 
             // comboBox2
             // 
+            this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Route 4",
             "Route 5",
             "Route 6"});
-            this.comboBox2.Location = new System.Drawing.Point(254, 42);
+            this.comboBox2.Location = new System.Drawing.Point(387, 53);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(127, 21);
             this.comboBox2.TabIndex = 6;
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
@@ -236,15 +232,16 @@
             "Route 1",
             "Route 2",
             "Route 3"});
-            this.comboBox1.Location = new System.Drawing.Point(120, 42);
+            this.comboBox1.Location = new System.Drawing.Point(188, 53);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(127, 21);
             this.comboBox1.TabIndex = 5;
             // 
             // radioButton5
             // 
+            this.radioButton5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(520, 19);
+            this.radioButton5.Location = new System.Drawing.Point(751, 30);
             this.radioButton5.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(70, 17);
@@ -255,8 +252,9 @@
             // 
             // radioButton4
             // 
+            this.radioButton4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(387, 19);
+            this.radioButton4.Location = new System.Drawing.Point(592, 30);
             this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(68, 17);
@@ -268,8 +266,9 @@
             // 
             // radioButton3
             // 
+            this.radioButton3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(254, 19);
+            this.radioButton3.Location = new System.Drawing.Point(387, 30);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(68, 17);
@@ -281,8 +280,9 @@
             // 
             // radioButton2
             // 
+            this.radioButton2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(120, 19);
+            this.radioButton2.Location = new System.Drawing.Point(188, 30);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(70, 17);
@@ -294,8 +294,9 @@
             // 
             // radioButton1
             // 
+            this.radioButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1.Location = new System.Drawing.Point(54, 30);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(61, 17);

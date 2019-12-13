@@ -91,12 +91,12 @@ namespace BestLogisticAdmin
             Staff staff = Authentication.CurrentStaff;
             branchId = staff.BranchId;
 
-            DataTable dt = Parcel.GetParcelsFromBranch(branchId);
-            DataTable dt1 = new DataTable();
+            DataTable dt = ParcelController.GetAllInBranchParcels(branchId, branchId);
+            //DataTable dt1 = new DataTable();
 
-            dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+            //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
             
-            dataGridView1.DataSource = dt1;
+            dataGridView1.DataSource = dt;
             //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
         }
 
@@ -152,6 +152,11 @@ namespace BestLogisticAdmin
             {
                 comboBox3.Enabled = false;
             }
+        }
+
+        private void GroupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
