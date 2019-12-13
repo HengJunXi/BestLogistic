@@ -59,6 +59,7 @@
     <Compile Include="AssignRoute.Designer.cs">
       <DependentUpon>AssignRoute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="EndTrip.cs">
       <SubType>Form</SubType>
     </Compile>
