@@ -26,10 +26,7 @@ namespace BestLogisticAdmin.Models
         //    DepartureId = departureId;
         //    ArrivalId = arrivalId;
         //}
-        public void AddParcels (List<Parcel> list)
-        {
-            
-        }
+        
 
         public static Trip GetPendingTrip (string branchId, string destinationBranchId)
         {

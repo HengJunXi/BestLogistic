@@ -198,7 +198,7 @@ namespace BestLogisticAdmin.Controllers
         {
             if (nextBranchId == null) // pending delivery
             {
-                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.to_home=1 AND BP.branch_id=@BID AND deleted=0;";
+                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.to_home=1 AND BP.branch=@BID AND deleted=0;";
                 using (SqlConnection conn = new SqlConnection(Repository.connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -214,7 +214,7 @@ namespace BestLogisticAdmin.Controllers
             }
             else if (nextBranchId.Equals(branchId)) // not assigned
             {
-                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.branch_id=@BID AND BP.next_branch_id IS NULL AND P.deleted=0;";
+                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.branch=@BID AND BP.next_branch IS NULL AND P.deleted=0;";
                 using (SqlConnection conn = new SqlConnection(Repository.connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -230,7 +230,7 @@ namespace BestLogisticAdmin.Controllers
             }
             else // each route
             {
-                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.branch_id=@BID AND BP.next_branch_id=@NBID AND P.deleted=0;";
+                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.branch=@BID AND BP.next_branch=@NBID AND P.deleted=0;";
                 using (SqlConnection conn = new SqlConnection(Repository.connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
