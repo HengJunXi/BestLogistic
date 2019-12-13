@@ -105,42 +105,7 @@ namespace BestLogisticAdmin
             UpdateParcelDetails update = new UpdateParcelDetails();
             update.ShowDialog();
         }
-
-        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton3.Checked)
-            {
-                comboBox1.Enabled = true;
-            }
-            else
-            {
-                comboBox1.Enabled = false;
-                comboBox3.Enabled = false;
-            }
-        }
-
-        private void RadioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton4.Checked)
-            {
-                comboBox2.Enabled = true;
-            }
-            else
-            {
-                comboBox2.Enabled = false;
-                
-            }
-        }
-
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedIndex > -1)
-            {
-                comboBox3.Enabled = true;
-            }
-            
-        }
-
+       
         private void Button2_Click(object sender, EventArgs e)
         {
             EndTrip endTripForm = new EndTrip();
@@ -153,10 +118,40 @@ namespace BestLogisticAdmin
             lodge.ShowDialog();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            OnlinePickUpRequest pickUpRequest = new OnlinePickUpRequest();
-            pickUpRequest.ShowDialog();
+            if (radioButton2.Checked)
+            {
+                comboBox1.Enabled = true;
+            }
+            else
+            {
+                comboBox1.Enabled = false;
+            }
+        }
+
+        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                comboBox2.Enabled = true;
+            }
+            else
+            {
+                comboBox2.Enabled = false;
+            }
+        }
+
+        private void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                comboBox3.Enabled = true;
+            }
+            else
+            {
+                comboBox3.Enabled = false;
+            }
         }
     }
 }

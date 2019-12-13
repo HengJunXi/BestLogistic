@@ -80,6 +80,7 @@
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(520, 400);
             this.Name = "OnlineLodge";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OnlineLodge";
             this.ResumeLayout(false);
             this.PerformLayout();
