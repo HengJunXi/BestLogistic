@@ -31,7 +31,7 @@ namespace BestLogisticAdmin
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-
+            
             string message = "Do you want to confirm the parcel details?";
             string caption = "Confirmation";
             MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
@@ -44,7 +44,34 @@ namespace BestLogisticAdmin
             }
             else
             {
+                int senderIDType = 0;
+                if (cbIdtype.Text == "IC Number")
+                {
+                    senderIDType = 1;
+                }
+                else if (cbIdtype.Text == " Old IC Number")
+                {
+                    senderIDType = 2;
+                }
+                else
+                    senderIDType = 3;
+
+                bool parcelTypeResult;
+                if (rbParcel.Checked)
+                {
+                    parcelTypeResult = true;
+                }
+                else
+                    parcelTypeResult = false;
+
+                PersonInfo sender1 = new PersonInfo(tbSenderName.Text, tbSenderEmail.Text, tbSenderContactNo.Text, tbSenderAddress.Text,
+                    tbSenderPosCode.Text,cbSenderLocation.Text,tbSenderCity.Text,tbSenderState.Text);
+                PersonInfo receiver1 = new PersonInfo(tbReceiverName.Text, tbReceiverEmail.Text, tbReceiverContactNo.Text, tbReceiverAddress.Text,
+                    tbReceiverPosCode.Text, cbReceiverLocation.Text, tbReceiverCity.Text, tbReceiverState.Text);
+                ParcelInfo parcelInfo = new ParcelInfo(false,parcelTypeResult,Convert.ToByte(tbPieces.Text),tbContent.Text,Convert.ToDecimal(tbValueofContent.Text),
+                    Convert.ToSingle(tbWeight.Text),Convert.ToDecimal(price.Text),0);
                 
+                ParcelController.Create(Convert.ToByte(senderIDType),tbSenderidNumber.Text,sender1,receiver1,parcelInfo,Authentication.CurrentStaff.BranchId);
                 MessageBox.Show("Add Success!");
             }
             

@@ -13,7 +13,7 @@ namespace BestLogisticAdmin.Controllers
     public static class ParcelController
     {
         //add new parcel
-        public static void Create(bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
+        public static void Create(byte senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -61,7 +61,7 @@ namespace BestLogisticAdmin.Controllers
 
                             trackingNumber = (int) cmd.ExecuteScalar();
                         }
-                        query = "insert into branch_parcel (branch_id, tracking_number) VALUES (@BID, @TN);";
+                        query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@BID", branchId);
