@@ -160,7 +160,7 @@ namespace BestLogisticAdmin.Controllers
         //view all parcels need to pick up
         public static DataTable GetAllParcelsToPickUp()
         {
-            string query = "select * from parcel P inner join pick_up_info PU on P.tracking_number=PU.tracking_number WHERE PU.status=0 AMD P.deleted=0;";
+            string query = "select * from parcel P inner join pick_up_info PU on P.tracking_number=PU.tracking_number WHERE PU.status=0 AND P.deleted=0;";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
