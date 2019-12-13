@@ -50,7 +50,7 @@ namespace BestLogisticAdmin.Controllers
                     string[] result = repository.SignInStaff(staffId, passwordHash);
                     if (result == null)
                         return null;
-                    CurrentStaff = new Staff(result[0], result[1], Convert.ToInt32(result[2]), result[3]);
+                    CurrentStaff = new Staff(result[0], result[1], Convert.ToInt32(result[2]), result[3], result[4]);
                     return CurrentStaff;
                 }
                 catch (SqlException e)

@@ -26,5 +26,32 @@ namespace BestLogisticAdmin.Models
         //    DepartureId = departureId;
         //    ArrivalId = arrivalId;
         //}
+        public void AddParcels (List<Parcel> list)
+        {
+            
+        }
+
+        public static Trip GetPendingTrip (string branchId, string destinationBranchId)
+        {
+            string query = "SELECT TOP 1 T.* FROM trip T " +
+                "WHERE T.departure_point=@BID AND T.arrival_point=@DBID " +
+                "AND T.departure_datetime IS NULL " +
+                "AND T.status=@STATUS ORDER BY T.date_created DESC;";
+
+            return null;
+        }
+
+        public static Trip GetOutgoingTrip (string branchId, string destinationBranchId)
+        {
+            string query = "SELECT TOP 1 T.* FROM trip T " +
+                "WHERE T.departure_point=@BID AND T.arrival_point=@DBID " +
+                "AND T.departure_datetime IS NOT NULL " +
+                "AND T.arrival_datetime IS NULL " +
+                "AND T.status=@STATUS ORDER BY T.date_created DESC;";
+
+            return null;
+        }
+
+        //public static Trip Get
     }
 }

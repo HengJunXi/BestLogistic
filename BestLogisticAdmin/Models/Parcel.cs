@@ -238,6 +238,208 @@ namespace BestLogisticAdmin.Models
             return null;
         }
 
+        public static void ChangeTrip(string trackingNumber, string oldTripId, string newTripId)
+        {
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string query = string.Empty;
+                        if ( ! string.IsNullOrWhiteSpace(oldTripId) )
+                        {
+                            query = "DELETE FROM parcel_trip WHERE tracking_number=@TN AND trip_id=@OLDTRIP;";
+
+                            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                                cmd.Parameters.AddWithValue("@OLDTRIP", oldTripId);
+
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        
+                        if (! string.IsNullOrWhiteSpace(newTripId) )
+                        {
+                            query = "INSERT INTO parcel_trip VALUES (@TN, @NEWTRIP);";
+
+                            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                                cmd.Parameters.AddWithValue("@NEWTRIP", newTripId);
+
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine(e.Message);
+                        transaction.Rollback();
+                    }
+                }
+            }
+        }
+
+        
+        public static DataTable GetParcelsInBranch(string branchId)
+        {
+            string query = "SELECT P.* FROM parcel P " +
+                "INNER JOIN parcel_trip PT ON P.tracking_number=PT.tracking_number " +
+                "INNER JOIN trip T ON PT.trip_id=T.trip_id " +
+                "WHERE T.departure_point=@BID AND T.status=@STATUS;";
+
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@BID", branchId);
+                cmd.Parameters.AddWithValue("@STATUS", 0);
+                using (DataTable dt = new DataTable())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static void AssignInBranchParcelsToRoute(List<string> trackingNumberList, string destinationBranchId)
+        {
+            for (int i = 0; i < trackingNumberList.Count; i++)
+            {
+                
+                
+                using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+                {
+                    conn.Open();
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string query = "DELETE FROM parcel_trip WHERE tracking_number=@TN";
+                            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                            {
+
+                            }
+                            
+                            query = "INSERT INTO parcel_trip VALUES (@TN, @TRIP);";
+                            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                            {
+
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (SqlException e)
+                        {
+                            Debug.WriteLine(e.Message);
+                            transaction.Rollback();
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        public static DataTable GetParcelsToPickUp(string branchId)
+        {
+            return null;
+        }
+
+        public static DataTable GetParcelsPendingTransit(string branchId, string destinationBranchId)
+        {
+            string query = "SELECT P.* FROM parcel P " +
+                "INNER JOIN parcel_trip PT ON P.tracking_number=PT.tracking_number " +
+                "INNER JOIN trip T ON PT.trip_id=T.trip_id " +
+                "WHERE T.departure_point=@BID AND T.status=@STATUS " +
+                "AND T.arrival_point=@DBID;";
+
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@BID", branchId);
+                cmd.Parameters.AddWithValue("@STATUS", 2);
+                cmd.Parameters.AddWithValue("@DBID", destinationBranchId);
+                using (DataTable dt = new DataTable())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static DataTable GetParcelsOutGoingTransit(string branchId, string destinationBranchId)
+        {
+            string query = "SELECT P.* FROM parcel P " +
+                "INNER JOIN parcel_trip PT ON P.tracking_number=PT.tracking_number " +
+                "INNER JOIN trip T ON PT.trip_id=T.trip_id " +
+                "WHERE T.departure_point=@BID AND T.status=@STATUS " +
+                "AND T.arrival_point=@DBID " +
+                "AND T.depature_datetime IS NOT NULL;";
+
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@BID", branchId);
+                cmd.Parameters.AddWithValue("@STATUS", 2);
+                cmd.Parameters.AddWithValue("@DBID", destinationBranchId);
+                using (DataTable dt = new DataTable())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static DataTable GetParcelsIncomingTransit(string branchId, string sourceBranchId)
+        {
+            string query = "SELECT P.* FROM parcel P " +
+                "INNER JOIN parcel_trip PT ON P.tracking_number=PT.tracking_number " +
+                "INNER JOIN trip T ON PT.trip_id=T.trip_id " +
+                "WHERE T.arrival_point=@BID AND T.status=@STATUS " +
+                "AND T.departure_point=@SBID " +
+                "AND T.depature_datetime IS NOT NULL;";
+
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@BID", branchId);
+                cmd.Parameters.AddWithValue("@STATUS", 2);
+                cmd.Parameters.AddWithValue("@SBID", sourceBranchId);
+                using (DataTable dt = new DataTable())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static DataTable GetParcelsPendingDelivery(string branchId)
+        {
+            return null;
+        }
+
+        public static DataTable GetParcelsInDelivery(string branchId)
+        {
+            return null;
+        }
+
+        public static DataTable GetParcelsDelivered(string branchId)
+        {
+            return null;
+        }
+
         public static DataTable GetParcelsFromBranch(string branchId)
         {
             string query = "SELECT TOP 1 P.*, S.post_office AS sender_city, S.state_code AS sender_state, " +

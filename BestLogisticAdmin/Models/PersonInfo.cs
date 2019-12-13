@@ -8,14 +8,14 @@ namespace BestLogisticAdmin.Models
 {
     public class PersonInfo
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public string PostCode { get; set; }
-        public string Location { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
+        public string Phone { get; private set; }
+        public string Address { get; private set; }
+        public string PostCode { get; private set; }
+        public string Location { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
 
         //public PersonInfo(string name, string email, string phone, string address, string postCode, string location, string city, string state)
         //{

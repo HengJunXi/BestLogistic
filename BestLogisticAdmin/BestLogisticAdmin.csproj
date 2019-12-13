@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,6 +79,7 @@
     </Compile>
     <Compile Include="Controllers\Authentication.cs" />
     <Compile Include="Controllers\Credential.cs" />
+    <Compile Include="Controllers\ParcelController.cs" />
     <Compile Include="Controllers\Repository.cs" />
     <Compile Include="Controllers\Utility.cs" />
     <Compile Include="CreateNewParcel.cs">
@@ -93,6 +95,7 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Parcel.cs" />
+    <Compile Include="Models\ParcelInfo.cs" />
     <Compile Include="Models\PersonInfo.cs" />
     <Compile Include="Models\PickUpInfo.cs" />
     <Compile Include="Models\Staff.cs" />
@@ -154,6 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\invalid.jpg" />
+    <Content Include="Resources\valid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
