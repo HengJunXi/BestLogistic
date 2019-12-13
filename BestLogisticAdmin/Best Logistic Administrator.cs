@@ -16,7 +16,7 @@ namespace BestLogisticAdmin
     {
         public String branchId;
         Staff staff = Authentication.CurrentStaff;
-        
+
         public Best_Logistic_Administrator()
         {
             InitializeComponent();
@@ -40,11 +40,6 @@ namespace BestLogisticAdmin
             statusPage.ShowDialog();
         }
 
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void DeleteParcel_Click(object sender, EventArgs e)
         {
             const string message = "Are you confirm to delete the parcel infomation? ";
@@ -57,11 +52,11 @@ namespace BestLogisticAdmin
             if (result == DialogResult.No)
             {
                 // will auto close
-                
+
             }
             else
             {
-                
+
             }
         }
 
@@ -78,7 +73,7 @@ namespace BestLogisticAdmin
             {
                 e.Cancel = true;
             }
-            
+
         }
 
         private void Best_Logistic_Administrator_FormClosed(object sender, FormClosedEventArgs e)
@@ -90,7 +85,18 @@ namespace BestLogisticAdmin
 
         private void Best_Logistic_Administrator_Load(object sender, EventArgs e)
         {
+            branchId = staff.BranchId;
             radioButton6.Checked = true;
+
+            List<string> list = new List<string>();
+            list = RouteController.GetRoutesForBranch(branchId);
+            
+            for(int i=0; i< list.Count + 2; i++)
+            {
+
+            }
+
+            
         }
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -98,7 +104,7 @@ namespace BestLogisticAdmin
             UpdateParcelDetails update = new UpdateParcelDetails();
             update.ShowDialog();
         }
-       
+
         private void Button2_Click(object sender, EventArgs e)
         {
             EndTrip endTripForm = new EndTrip();
@@ -116,10 +122,7 @@ namespace BestLogisticAdmin
             if (radioButton2.Checked)
             {
                 comboBox1.Enabled = true;
-                branchId = staff.BranchId;
 
-                
-                              
             }
             else
             {
@@ -151,10 +154,7 @@ namespace BestLogisticAdmin
             }
         }
 
-        private void GroupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -184,12 +184,14 @@ namespace BestLogisticAdmin
                 //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
 
                 dataGridView1.DataSource = dt;
-                
+
             }
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            branchId = staff.BranchId;
+
             if (comboBox1.SelectedIndex == 0)
             {
                 DataTable dt = ParcelController.GetAllInBranchParcels(branchId, branchId);
@@ -198,7 +200,8 @@ namespace BestLogisticAdmin
                 //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
 
                 dataGridView1.DataSource = dt;
-            }else if(comboBox1.SelectedIndex == 1)
+            }
+            else if (comboBox1.SelectedIndex == 1)
             {
                 DataTable dt = ParcelController.GetAllInBranchParcels(branchId, null);
                 DataTable dt1 = new DataTable();
@@ -206,7 +209,8 @@ namespace BestLogisticAdmin
                 //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
 
                 dataGridView1.DataSource = dt;
-            }else if (comboBox1.SelectedIndex == 2)
+            }
+            else if (comboBox1.SelectedIndex == 2)
             {
                 DataTable dt = ParcelController.GetAllInBranchParcels(branchId, branchId);
                 DataTable dt1 = new DataTable();
@@ -216,5 +220,52 @@ namespace BestLogisticAdmin
                 dataGridView1.DataSource = dt;
             }
         }
+
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            branchId = staff.BranchId;
+
+            if (comboBox3.SelectedIndex == 0)
+            {
+                DataTable dt = ParcelController.GetAllOutgoingParcels(branchId, null);
+                DataTable dt1 = new DataTable();
+
+                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            branchId = staff.BranchId;
+
+            if (comboBox2.SelectedIndex == 0)
+            {
+                DataTable dt = ParcelController.GetAllIncomingParcels(branchId, branchId);
+                DataTable dt1 = new DataTable();
+
+                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+
+        private void RadioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton5.Checked)
+            {
+                branchId = staff.BranchId;
+
+                DataTable dt = ParcelController.GetAllDeliveredParcels(branchId);
+                DataTable dt1 = new DataTable();
+
+                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+
+                dataGridView1.DataSource = dt;
+
+            }
+        }
+
     }
 }
