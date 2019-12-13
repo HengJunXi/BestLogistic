@@ -44,7 +44,9 @@ namespace BestLogisticAdmin.Controllers
 
         public string[] SignInStaff(int staffId, string password)
         {
-            string query = "SELECT uid, branch_id, name FROM [staff] WHERE staff_id=@ID AND password_hash=@PASSWORD;";
+            string query = "SELECT uid, branch_id, staff.name, point.name AS branch " +
+                "FROM [staff] INNER JOIN point ON staff.branch_id=point.place_id " +
+                "WHERE staff_id=@ID AND password_hash=@PASSWORD;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -62,7 +64,8 @@ namespace BestLogisticAdmin.Controllers
                             ds.Tables[0].Rows[0].Field<Guid>("uid").ToString(),
                             ds.Tables[0].Rows[0].Field<string>("branch_id"),
                             staffId.ToString(),
-                            ds.Tables[0].Rows[0].Field<string>("name")
+                            ds.Tables[0].Rows[0].Field<string>("name"),
+                            ds.Tables[0].Rows[0].Field<string>("branch"),
                         };
                 }
             }

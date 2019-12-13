@@ -12,13 +12,15 @@ namespace BestLogisticAdmin.Models
         public readonly string BranchId;
         public readonly int StaffId;
         public readonly string Name;
+        public readonly string Branch;
 
-        public Staff(string uid, string branchId, int staffId, string name)
+        public Staff(string uid, string branchId, int staffId, string name, string branch)
         {
             Uid = uid;
             BranchId = branchId;
             StaffId = staffId;
             Name = name;
+            Branch = branch;
         }
     }
 }
