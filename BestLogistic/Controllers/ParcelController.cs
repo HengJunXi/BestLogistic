@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -10,7 +11,7 @@ namespace BestLogistic.Controllers
     public class ParcelController
     {
         //add new parcel
-        public static void Create(bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
+        public static void Create(bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, PickUpInfo pickUp)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -53,16 +54,17 @@ namespace BestLogistic.Controllers
                             cmd.Parameters.AddWithValue("@RADDRESS", receiver.Address);
                             cmd.Parameters.AddWithValue("@RLOCATION", receiver.Location);
                             cmd.Parameters.AddWithValue("@RPOSTCODE", receiver.PostCode);
-                            cmd.Parameters.AddWithValue("@STATUS", status);          // either lodge in or pick up 0 / 1
-                            cmd.Parameters.AddWithValue("@RAT", branchId);
+                            cmd.Parameters.AddWithValue("@STATUS", (pickUp != null));          // either lodge in or pick up 0 / 1
 
                             trackingNumber = (int)cmd.ExecuteScalar();
                         }
-                        query = "insert into branch_parcel (branch_id, tracking_number) VALUES (@BID, @TN);";
+                        query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
-                            cmd.Parameters.AddWithValue("@BID", branchId);
                             cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                            cmd.Parameters.AddWithValue("@PUD", pickUp.PickUpDate);
+                            cmd.Parameters.AddWithValue("@PUT", pickUp.PickUpTime);
+                            cmd.Parameters.AddWithValue("@REMARK", pickUp.Remark);
                             cmd.ExecuteNonQuery();
                         }
                         tx.Commit();

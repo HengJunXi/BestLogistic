@@ -7,9 +7,8 @@ namespace BestLogistic.Models
 {
     public class ParcelInfo
     {
-        public ParcelInfo(string trackingNumber, bool service, bool type, byte pieces, string content, decimal value, float weight, decimal deliveryFee, decimal pickUpFee)
+        public ParcelInfo(bool service, bool type, byte pieces, string content, decimal value, float weight, decimal deliveryFee, decimal pickUpFee)
         {
-            TrackingNumber = trackingNumber;
             Service = service;
             Type = type;
             Pieces = pieces;
@@ -20,7 +19,6 @@ namespace BestLogistic.Models
             PickUpFee = pickUpFee;
         }
 
-        public string TrackingNumber { get; private set; }
         public bool Service { get; private set; }
         public bool Type { get; private set; }
         public byte Pieces { get; private set; }
