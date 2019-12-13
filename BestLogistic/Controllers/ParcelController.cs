@@ -9,7 +9,7 @@ using System.Web;
 
 namespace BestLogistic.Controllers
 {
-    public class ParcelController
+    public static class ParcelController
     {
         //add new parcel
         public static int Create(string userUid, byte senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, PickUpInfo pickUp)
@@ -209,6 +209,7 @@ namespace BestLogistic.Controllers
                                 status = ds.Tables[0].Rows[0].Field<byte>("status");
                             }
                         }
+                        string result = string.Empty;
                         switch (status)
                         {
                             case 0:
@@ -216,17 +217,17 @@ namespace BestLogistic.Controllers
                             case 1:
                                 break;
                             case 2:
-                                query = "select * from branch_parcel where tracking_number=@TN;";
-                                using (SqlCommand cmd = new SqlCommand(query, conn, tx))
-                                {
-                                    cmd.Parameters.AddWithValue("@TN", trackingNumber);
-                                    using (DataSet ds = new DataSet())
-                                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                                    {
-                                        adapter.Fill(ds);
-                                        status = ds.Tables[0].Rows[0].Field<byte>("branch");
-                                    }
-                                }
+                                //query = "select branch from branch_parcel where tracking_number=@TN;";
+                                //using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                                //{
+                                //    cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                                //    using (DataSet ds = new DataSet())
+                                //    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                                //    {
+                                //        adapter.Fill(ds);
+                                //        result = ds.Tables[0].Rows[0].Field<byte>("branch");
+                                //    }
+                                //}
                                 break;
                             case 3:
                                 break;

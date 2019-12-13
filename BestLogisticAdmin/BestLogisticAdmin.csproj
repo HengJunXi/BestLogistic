@@ -66,6 +66,7 @@
     <Compile Include="EndTrip.Designer.cs">
       <DependentUpon>EndTrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Branch.cs" />
     <Compile Include="OnlineLodge.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,7 +96,6 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Parcel.cs" />
     <Compile Include="Models\ParcelInfo.cs" />
     <Compile Include="Models\PersonInfo.cs" />
     <Compile Include="Models\PickUpInfo.cs" />
