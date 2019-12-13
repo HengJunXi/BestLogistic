@@ -13,7 +13,7 @@ namespace BestLogisticAdmin.Controllers
     public static class ParcelController
     {
         //add new parcel
-        public static void Create(bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
+        public static void Create(byte senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -61,7 +61,7 @@ namespace BestLogisticAdmin.Controllers
 
                             trackingNumber = (int) cmd.ExecuteScalar();
                         }
-                        query = "insert into branch_parcel (branch_id, tracking_number) VALUES (@BID, @TN);";
+                        query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@BID", branchId);
@@ -97,7 +97,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.Parameters.AddWithValue("@TN", trackingNumber);
                             cmd.ExecuteNonQuery();
                         }
-                        query = "insert into branch_parcel (branch_id, tracking_number) VALUES (@BID, @TN);";
+                        query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@BID", branchId);
@@ -132,7 +132,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.Parameters.AddWithValue("@TN", trackingNumber);
                             cmd.ExecuteNonQuery();
                         }
-                        query = "insert into branch_parcel (branch_id, tracking_number) VALUES (@BID, @TN);";
+                        query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@BID", branchId);
@@ -403,6 +403,24 @@ namespace BestLogisticAdmin.Controllers
                 cmd.Parameters.AddWithValue("@NBID", nextBranchId);
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public static decimal Quote(string senderLocation, string senderPostCode, string receiverLocation, string receiverPostCode, ParcelInfo parcel, PickUpInfo pickUp)
+        {
+            decimal fee = new decimal(10 + (pickUp == null ? 0 : 5));
+            if (parcel.Weight > 5)
+                fee += 5;
+            else if (parcel.Weight > 10)
+                fee += 10;
+            else if (parcel.Weight > 15)
+                fee += 15;
+            else if (parcel.Weight > 20)
+                fee += 20;
+            else if (parcel.Weight > 25)
+                fee += 25;
+            else if (parcel.Weight > 30)
+                fee += 30;
+            return fee;
         }
     }
 }

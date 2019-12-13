@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestLogisticAdmin.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,9 +11,9 @@ namespace BestLogisticAdmin.Controllers
 {
     public static class RouteController
     {
-        public static List<string> GetRoutesForBranch(string branchId)
+        public static List<Branch> GetRoutesForBranch(string branchId)
         {
-            string query = "select arrival_point from route where departure_point=@BID;";
+            string query = "select R.arrival_point, P.name, from route R inner join point P on R.arrival_point=P.place_id where R.departure_point=@BID;";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -22,9 +23,9 @@ namespace BestLogisticAdmin.Controllers
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(ds);
-                    List<string> list = new List<string>();
+                    List<Branch> list = new List<Branch>();
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        list.Add(ds.Tables[0].Rows[i].Field<string>("arrival_point"));
+                        list.Add(new Branch(ds.Tables[0].Rows[i].Field<string>("arrival_point"), ds.Tables[0].Rows[i].Field<string>("name"));
                     return list;
                 }
             }
