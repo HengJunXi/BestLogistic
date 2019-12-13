@@ -13,7 +13,7 @@ namespace BestLogisticAdmin.Controllers
     public static class ParcelController
     {
         //add new parcel
-        public static void Create(bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
+        public static void Create(byte senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel, string branchId)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
