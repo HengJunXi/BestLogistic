@@ -71,12 +71,6 @@
     <Compile Include="OnlineLodge.Designer.cs">
       <DependentUpon>OnlineLodge.cs</DependentUpon>
     </Compile>
-    <Compile Include="OnlinePickUpRequest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OnlinePickUpRequest.Designer.cs">
-      <DependentUpon>OnlinePickUpRequest.cs</DependentUpon>
-    </Compile>
     <Compile Include="StartTrip.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,9 +119,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OnlineLodge.resx">
       <DependentUpon>OnlineLodge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OnlinePickUpRequest.resx">
-      <DependentUpon>OnlinePickUpRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartTrip.resx">
       <DependentUpon>StartTrip.cs</DependentUpon>
