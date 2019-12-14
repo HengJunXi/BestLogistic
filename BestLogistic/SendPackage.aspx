@@ -62,14 +62,14 @@
                     </div>
                     <div class="form-group form-group-default required">
                             <label>CITY</label>
-                            <asp:TextBox runat="server" ID="SCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="SCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="SCity" 
+                            <asp:TextBox runat="server" ID="SenderCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="SenderCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="SenderCity" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
                             <label>STATE</label>
-                            <asp:TextBox runat="server" ID="SState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="SStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="SState" 
+                            <asp:TextBox runat="server" ID="SenderState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="SenderStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="SenderState" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
 
@@ -121,14 +121,14 @@
                     </div>
                     <div class="form-group form-group-default required">
                             <label>CITY</label>
-                            <asp:TextBox runat="server" ID="RCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="RCity" 
+                            <asp:TextBox runat="server" ID="ReceiverCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="ReceiverCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="ReceiverCity" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group form-group-default required">
                             <label>STATE</label>
-                            <asp:TextBox runat="server" ID="RState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="RState" 
+                            <asp:TextBox runat="server" ID="ReceiverState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="ReceiverStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="ReceiverState" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                  </div>
@@ -143,30 +143,31 @@
             </div>
             <div class="row px-3 pt-3 text-center">
                 <div class="col-6">
-                    <asp:RadioButton ID="LodgeUpBtn" runat="server"  Text="Lodge In" GroupName="ServiceGroup" Checked="true"/>
+                    <asp:RadioButton ID="LodgeUpBtn" runat="server"  Text="Lodge In" GroupName="ServiceGroup" />
                 </div>
                 <div class="col-6 ">
-                     <asp:RadioButton ID="PickUpBtn" runat="server"  Text="Pick Up (RM5)" GroupName="ServiceGroup" />
+                     <asp:RadioButton ID="PickUpBtn" runat="server"  Text="Pick Up (RM5)" GroupName="ServiceGroup" Checked="true" />
                 </div>
 
             </div>
         
-            <div class="p-3">
-                <h4 class="font-weight-bold">Pick Up Details</h4>
+            <div class="p-3" id="pickUpTitle">
+                <asp:Label ID="PickUpDetails" runat="server" Text="Pick Up Details" Font-Size="Medium" Font-Bold="True"></asp:Label>
             </div>
-            <div class="row px-3">
+            <div class="row px-3" id="parcelPickUpdetails">
                 <div class="col-sm-6">
-                     <div class="form-group form-group-default required">
-                        <asp:Label AssociatedControlID="PickupDate" runat="server" Text="PICK-UP DATE"></asp:Label>
-                        <asp:TextBox ID="PickupDate" runat="server" TextMode="Date" CssClass="form-control" Height="25px"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="PickUpDateValid" runat="server" ErrorMessage="Pick up date cannot be empty" ControlToValidate="PickupDate" 
+                    <div class="form-group form-group-default required">
+                        <asp:Label AssociatedControlID="dbPickUpDate" runat="server" Text="PICK-UP DATE"></asp:Label>
+                        <asp:DropDownList ID="dbPickUpDate" runat="server" CssClass="form-control" Height="25px" OnInit="dbPickUpDate_Init"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="PickUpDateValid" runat="server" ErrorMessage="Pick up date cannot be empty" ControlToValidate="dbPickUpDate"
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group form-group-default required">
                         <asp:Label AssociatedControlID="ParcelRTime" runat="server" Text="PARCEL READY TIME"></asp:Label>
-                        <asp:TextBox ID="ParcelRTime" runat="server" TextMode="Time" CssClass="form-control" Height="25px"></asp:TextBox>
+                        
+                        <asp:TextBox ID="ParcelRTime" runat="server" TextMode="DateTime" CssClass="form-control" Height="25px" OnLoad="ParcelRTime_Load"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Parcel ready time cannot be empty" ControlToValidate="ParcelRTime" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                     </div>
@@ -213,7 +214,12 @@
                         <asp:TextBox ID="Pieces" runat="server" TextMode="Number" CssClass="form-control" Height="25px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="PiecesValid" runat="server" ErrorMessage="Pieces of parcel cannot be empty" ControlToValidate="Pieces" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                    </div>
+                         <asp:CompareValidator ID="MinPieces" runat="server" ErrorMessage="Min pieces should be more than 0." ControlToValidate="Pieces" 
+                             ValueToCompare="1" Operator="GreaterThanEqual" Display="Dynamic" ForeColor="Red" Type="Integer"></asp:CompareValidator>
+                         <asp:CompareValidator ID="MaxPieces" runat="server" ErrorMessage="Max pieces should be less than 6." ControlToValidate="Pieces" 
+                             ForeColor="Red" Operator="LessThanEqual" ValueToCompare="5" Display="Dynamic" Type="Integer" ></asp:CompareValidator>
+                         
+                    </div> 
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group form-group-default required">
@@ -226,24 +232,29 @@
                 <div class="col-sm-6">
                     <div class="form-group form-group-default required">
                         <asp:Label AssociatedControlID="ValueofContent" runat="server" Text="VALUE OF CONTENT (RM)"></asp:Label>
-                        <asp:TextBox ID="ValueofContent" runat="server" TextMode="Number" CssClass="form-control" Height="25px"></asp:TextBox>
+                        <asp:TextBox ID="ValueofContent" runat="server" CssClass="form-control" Height="25px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="ValueofContentValid" runat="server" ErrorMessage="Value of content cannot be empty" ControlToValidate="ValueofContent" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                        
+                        <asp:RegularExpressionValidator ID="ValueContentRegex" runat="server" ControlToValidate="ValueofContent" ErrorMessage="Enter a valid number" 
+                            ValidationExpression="^[1-9]\d*(\.\d+)?$" Display="Dynamic" ForeColor="Red"/>
                     </div>
                 </div>
                  <div class="col-sm-6">
                     <div class="form-group form-group-default required">
                         <asp:Label AssociatedControlID="Weight" runat="server" Text="WEIGHT(KG)"></asp:Label>
-                        <asp:TextBox ID="Weight" runat="server" TextMode="Number" CssClass="form-control" Height="25px"></asp:TextBox>
+                        <asp:TextBox ID="Weight" runat="server" CssClass="form-control" Height="25px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="WeightValid" runat="server" ErrorMessage="Weight cannot be empty" ControlToValidate="Weight" 
                             Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="WeightRegex" runat="server" ControlToValidate="Weight" ErrorMessage="Enter a valid number" 
+                            ValidationExpression="^[1-9]\d*(\.\d+)?$" Display="Dynamic" ForeColor="Red"/>
                     </div>
                 </div>
             </div>
         </div>
         <br />
         <div class="col-12 d-flex justify-content-end">
-                    <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" />
+                    <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" OnClick="QuoteBtn_Click" PostBackUrl="~/Checkout.aspx" />
         </div>
     </div>
     <script>
@@ -260,6 +271,19 @@
                     text: 'Postal code is required'
                 }
             });
+            $('#MainContent_LodgeUpBtn').click(function (){
+                if ($("#MainContent_LodgeUpBtn").is(":checked")) {
+                    $("#parcelPickUpdetails").hide();
+                    $("#pickUpTitle").hide();
+                }
+            });
+            $('#MainContent_PickUpBtn').click(function () {
+                if ($("#MainContent_PickUpBtn").is(":checked")) {
+                    $("#parcelPickUpdetails").show();
+                    $("#pickUpTitle").show();
+                }
+            });
+            
         });
     </script>
 </asp:Content>
