@@ -1,4 +1,5 @@
 ﻿using BestLogistic.Controllers;
+using BestLogistic.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,13 +14,13 @@ namespace BestLogistic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void SenderPostal_TextChanged(object sender, EventArgs e)
         {
-            SCity.Text = "";
-            SState.Text = "";
+            SenderCity.Text = "";
+            SenderState.Text = "";
             TextBox textbox = sender as TextBox;
             if (textbox != null)
             {
@@ -41,15 +42,15 @@ namespace BestLogistic
                     list.Items.Remove("");
                 Repository repository = new Repository();
                 string[] arr = repository.GetCityAndStateFromPostCodeAndLocation(SenderPostal.Text, list.Text);
-                SCity.Text = arr[0];
-                SState.Text = arr[1];
+                SenderCity.Text = arr[0];
+                SenderState.Text = arr[1];
             }
         }
 
         protected void ReceiverPostal_TextChanged(object sender, EventArgs e)
         {
-            RCity.Text = "";
-            RState.Text = "";
+            ReceiverCity.Text = "";
+            ReceiverState.Text = "";
             TextBox textbox = sender as TextBox;
             if (textbox != null)
             {
@@ -71,9 +72,78 @@ namespace BestLogistic
                     list.Items.Remove("");
                 Repository repository = new Repository();
                 string[] arr = repository.GetCityAndStateFromPostCodeAndLocation(ReceiverPostal.Text, list.Text);
-                RCity.Text = arr[0];
-                RState.Text = arr[1];
+                ReceiverCity.Text = arr[0];
+                ReceiverState.Text = arr[1];
             }
         }
+
+
+        protected void dbPickUpDate_Init(object sender, EventArgs e)
+        {
+            List<DateTime> arrList = new List<DateTime>();
+            for (int i = 0, j = 1; j < 5; i++, j++)
+            {
+                arrList.Add(DateTime.Today.AddDays(j));
+                ListItem newitem = new ListItem(arrList[i].Date.ToString("yyyy-MM-dd"));
+                dbPickUpDate.Items.Add(newitem);
+            };
+        }
+
+
+        protected void ParcelRTime_Load(object sender, EventArgs e)
+        {
+            
+            ParcelRTime.Text = DateTime.Now.ToString("HH:mm");
+        }
+
+        
+        protected void QuoteBtn_Click(object sender, EventArgs e)
+        {
+            
+           
+
+            decimal PickupPrice,deliveryfee;
+            bool serviceType = true;
+            if (LodgeUpBtn.Checked)
+            {
+                serviceType = true;
+                PickupPrice = 0;
+            }
+            else
+            {
+                serviceType = false;
+                PickupPrice = 5;
+            }
+                
+
+            bool parcelType = true;
+            if (TypeofParcel.SelectedItem.ToString() == "Parcel")
+                parcelType = true;
+            else
+                parcelType = false;
+
+            ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
+                Convert.ToSingle(Weight.Text), 0, PickupPrice);
+            PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarks.ToString(), true);
+            if (LodgeUpBtn.Checked)
+            {
+                deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, null);
+            }
+            else
+            {
+                
+                deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
+            }
+
+           // PersonInfo senderInfo = new PersonInfo(SenderName.Text, SenderEmail.Text, SenderContactNo.Text, SenderAdd.Text, SenderPostal.Text, SenderLocation.Text,
+           //    SenderCity.Text, SenderState.Text);
+            //PersonInfo receiverInfo = new PersonInfo(ReceiverName.Text, ReceiverEmail.Text, ReceiverContactNo.Text, ReceiverAdd.Text, ReceiverPostal.Text,
+            //    ReceiverLocation.Text, ReceiverCity.Text, ReceiverState.Text);
+            // ParcelController.Create(Authentication.GetUid,User.IdType,User.IdNumber,senderInfo,receiverInfo,);
+            Response.Redirect("Checkout.aspx");
+           
+        }
+
+       
     }
 }
