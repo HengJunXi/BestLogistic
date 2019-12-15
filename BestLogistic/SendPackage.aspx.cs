@@ -100,16 +100,14 @@ namespace BestLogistic
         protected void QuoteBtn_Click(object sender, EventArgs e)
         {
             
-           
-
-            decimal PickupPrice,deliveryfee;
+            decimal PickupPrice=0,deliveryfee;
             bool serviceType = true;
             if (LodgeUpBtn.Checked)
             {
                 serviceType = true;
                 PickupPrice = 0;
             }
-            else
+            else if(PickUpBtn.Checked)
             {
                 serviceType = false;
                 PickupPrice = 5;
@@ -124,7 +122,7 @@ namespace BestLogistic
 
             ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
                 Convert.ToSingle(Weight.Text), 0, PickupPrice);
-            PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarks.ToString(), true);
+            PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarksNote.Text, true);
             if (LodgeUpBtn.Checked)
             {
                 deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, null);
@@ -135,14 +133,44 @@ namespace BestLogistic
                 deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
             }
 
-           // PersonInfo senderInfo = new PersonInfo(SenderName.Text, SenderEmail.Text, SenderContactNo.Text, SenderAdd.Text, SenderPostal.Text, SenderLocation.Text,
-           //    SenderCity.Text, SenderState.Text);
-            //PersonInfo receiverInfo = new PersonInfo(ReceiverName.Text, ReceiverEmail.Text, ReceiverContactNo.Text, ReceiverAdd.Text, ReceiverPostal.Text,
-            //    ReceiverLocation.Text, ReceiverCity.Text, ReceiverState.Text);
-            // ParcelController.Create(Authentication.GetUid,User.IdType,User.IdNumber,senderInfo,receiverInfo,);
-            Response.Redirect("Checkout.aspx");
-           
+
+            //Response.Redirect("Checkout.aspx");
+            HttpContext.Current.Items.Add("DeliveryFee", deliveryfee);
+            HttpContext.Current.Items.Add("PickUpFee", PickupPrice);
+            HttpContext.Current.Items.Add("SenderName", SenderName.Text);
+            HttpContext.Current.Items.Add("SenderContactNo", SenderContactNo.Text);
+            HttpContext.Current.Items.Add("SenderAddress", SenderAdd.Text);
+            HttpContext.Current.Items.Add("SenderPostal", SenderPostal.Text);
+            HttpContext.Current.Items.Add("SenderLocation", SenderLocation.Text);
+            HttpContext.Current.Items.Add("SenderCity", SenderCity.Text);
+            HttpContext.Current.Items.Add("SenderState", SenderState.Text);
+
+            HttpContext.Current.Items.Add("ServiceType", serviceType);
+            if (serviceType == false)
+            {
+                HttpContext.Current.Items.Add("PickUpDate", dbPickUpDate.Text);
+                HttpContext.Current.Items.Add("PickUpTime", ParcelRTime.Text);
+                HttpContext.Current.Items.Add("Remarks", remarksNote.Text);
+            }
+
+            HttpContext.Current.Items.Add("ReceiverName", ReceiverName.Text);
+            HttpContext.Current.Items.Add("ReceiverContactNo", ReceiverContactNo.Text);
+            HttpContext.Current.Items.Add("ReceiverAddress", ReceiverAdd.Text);
+            HttpContext.Current.Items.Add("ReceiverPostal", ReceiverPostal.Text);
+            HttpContext.Current.Items.Add("ReceiverLocation", ReceiverLocation.Text);
+            HttpContext.Current.Items.Add("ReceiverCity", ReceiverCity.Text);
+            HttpContext.Current.Items.Add("ReceiverState", ReceiverState.Text);
+
+            HttpContext.Current.Items.Add("ParcelType", parcelType);
+            HttpContext.Current.Items.Add("Pieces", Pieces.Text);
+            HttpContext.Current.Items.Add("Content", Content.Text);
+            HttpContext.Current.Items.Add("ValueofContent", ValueofContent.Text);
+            HttpContext.Current.Items.Add("Weight", Weight.Text);
+
+            Server.Transfer("Checkout.aspx", true);
         }
+
+     
 
        
     }
