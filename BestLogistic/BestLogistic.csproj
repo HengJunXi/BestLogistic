@@ -272,6 +272,8 @@
     <Compile Include="Models\ParcelInfo.cs" />
     <Compile Include="Models\PersonInfo.cs" />
     <Compile Include="Models\PickUpInfo.cs" />
+    <Compile Include="Models\TrackRecord.cs" />
+    <Compile Include="Models\TrackResult.cs" />
     <Compile Include="OrderSummary.aspx.cs">
       <DependentUpon>OrderSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

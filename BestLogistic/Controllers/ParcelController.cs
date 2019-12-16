@@ -187,7 +187,20 @@ namespace BestLogistic.Controllers
         //    }
         //}
 
-        public static void Track(string trackingNumber)
+        private static void Track2(string trackingNumber)
+        {
+
+            // check parcel status
+            string query = "select status from parcel where tracking_number=@TN;";  // 0 pending lodge in, 1 pending pick up, not found 
+
+            // if parcel latest location is in branch
+            query = "select * from branch_parcel where tracking_number=@TN;";     // in branch, pending transit, pending delivery
+            // get pracel previous transit records
+            query = "select departure_point, arrival_point from transit_parcel where tracking_number=@TN order by departure_datetime desc;";   // in transit, transited
+            
+        }
+
+        public static TrackResult Track(string trackingNumber)
         {
             
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
@@ -197,8 +210,11 @@ namespace BestLogistic.Controllers
                 {
                     try
                     {
+                        // 0 pending lodge in, 1 pending pick up, not found 
                         string query = "select status from parcel where tracking_number=@TN;";
                         byte status;
+                        List<TrackRecord> list = new List<TrackRecord>();
+
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@TN", trackingNumber);
@@ -206,42 +222,80 @@ namespace BestLogistic.Controllers
                             using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                             {
                                 adapter.Fill(ds);
-                                status = ds.Tables[0].Rows[0].Field<byte>("status");
+                                if (ds.Tables[0].Rows.Count > 0)
+                                    status = ds.Tables[0].Rows[0].Field<byte>("status");
+                                else
+                                    return null;
                             }
                         }
-                        string result = string.Empty;
-                        switch (status)
-                        {
-                            case 0:
-                                break;
-                            case 1:
-                                break;
-                            case 2:
-                                //query = "select branch from branch_parcel where tracking_number=@TN;";
-                                //using (SqlCommand cmd = new SqlCommand(query, conn, tx))
-                                //{
-                                //    cmd.Parameters.AddWithValue("@TN", trackingNumber);
-                                //    using (DataSet ds = new DataSet())
-                                //    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                                //    {
-                                //        adapter.Fill(ds);
-                                //        result = ds.Tables[0].Rows[0].Field<byte>("branch");
-                                //    }
-                                //}
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                break;
-                            case 6:
-                                break;
-                            case 7:
-                                break;
-                        }
                         
+                        if (status == 2 || status == 3 || status == 5)
+                        {
+                            // if parcel latest location is in branch
+                            // in branch, pending transit, pending delivery
+                            query = "select BP.branch, P1.name as departure, BP.next_branch, P2.name as arrival " +
+                                "from branch_parcel BP " +
+                                "inner join point P1 on BP.branch=P1.place_id " +
+                                "inner join point P1 on BP.branch=P1.place_id " +
+                                "left join point P2 on BP.next_branch=P2.place_id " +
+                                "where tracking_number=@TN;";
+                            using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                                using (DataSet ds = new DataSet())
+                                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                                {
+                                    adapter.Fill(ds);
+                                    list.Add(
+                                        new TrackRecord(
+                                            ds.Tables[0].Rows[0].Field<string>("departure"),
+                                            ds.Tables[0].Rows[0].Field<string>("branch"),
+                                            ds.Tables[0].Rows[0].Field<string>("arrival"),
+                                            ds.Tables[0].Rows[0].Field<string>("next_branch"),
+                                            null,
+                                            null
+                                        )
+                                    );
+                                }
+                            }
+                        }
+
+                        if (status != 0 && status != 1)
+                        {
+                            // get pracel previous transit records
+                            // in transit, transited
+                            query = "select TP.departure_point, P1.name as departure, TP.arrival_point, P2.name as arrival, TP.departure_datetime, TP.arrival_datetime " +
+                                "from transit_parcel TP " +
+                                "inner join point P1 on TP.departure_point=P1.place_id " +
+                                "inner join point P2 on TP.arrival_point=P2.place_id " +
+                                "where tracking_number=@TN " +
+                                "order by TP.departure_datetime desc;";
+                            using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                                using (DataSet ds = new DataSet())
+                                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                                {
+                                    adapter.Fill(ds);
+                                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                    {
+                                        list.Add(
+                                            new TrackRecord(
+                                                ds.Tables[0].Rows[i].Field<string>("departure"),
+                                                ds.Tables[0].Rows[i].Field<string>("departure_point"),
+                                                ds.Tables[0].Rows[i].Field<string>("arrival"),
+                                                ds.Tables[0].Rows[i].Field<string>("arrival_point"),
+                                                ds.Tables[0].Rows[i].Field<DateTime>("departure_datetime"),
+                                                ds.Tables[0].Rows[i].Field<DateTime?>("arrival_datetime")
+                                            )
+                                        );
+                                    }
+                                    
+                                }
+                            }
+                        }
                         tx.Commit();
+                        return new TrackResult(status, list);
                     }
                     catch (SqlException e)
                     {
@@ -250,6 +304,7 @@ namespace BestLogistic.Controllers
                     }
                 }
             }
+            return null;
         }
 
         public static decimal Quote(string senderLocation, string senderPostCode, string receiverLocation, string receiverPostCode, ParcelInfo parcel, PickUpInfo pickUp)

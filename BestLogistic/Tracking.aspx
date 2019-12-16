@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Tracking Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tracking.aspx.cs" Inherits="BestLogistic.Tracking" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:TextBox runat="server" ID="Departure" Visible="false" Enabled="false" CssClass="form-control" />
+    <asp:TextBox runat="server" ID="Arrival" Visible="false" Enabled="false" CssClass="form-control" />
     <div class="container">
         <div class="row mt-3">
             <div class="col-12 col-lg-6">
