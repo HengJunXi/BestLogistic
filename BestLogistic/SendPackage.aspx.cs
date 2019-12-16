@@ -1,4 +1,5 @@
 ﻿using BestLogistic.Controllers;
+using BestLogistic.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,13 +14,13 @@ namespace BestLogistic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void SenderPostal_TextChanged(object sender, EventArgs e)
         {
-            SCity.Text = "";
-            SState.Text = "";
+            SenderCity.Text = "";
+            SenderState.Text = "";
             TextBox textbox = sender as TextBox;
             if (textbox != null)
             {
@@ -41,15 +42,15 @@ namespace BestLogistic
                     list.Items.Remove("");
                 Repository repository = new Repository();
                 string[] arr = repository.GetCityAndStateFromPostCodeAndLocation(SenderPostal.Text, list.Text);
-                SCity.Text = arr[0];
-                SState.Text = arr[1];
+                SenderCity.Text = arr[0];
+                SenderState.Text = arr[1];
             }
         }
 
         protected void ReceiverPostal_TextChanged(object sender, EventArgs e)
         {
-            RCity.Text = "";
-            RState.Text = "";
+            ReceiverCity.Text = "";
+            ReceiverState.Text = "";
             TextBox textbox = sender as TextBox;
             if (textbox != null)
             {
@@ -71,9 +72,106 @@ namespace BestLogistic
                     list.Items.Remove("");
                 Repository repository = new Repository();
                 string[] arr = repository.GetCityAndStateFromPostCodeAndLocation(ReceiverPostal.Text, list.Text);
-                RCity.Text = arr[0];
-                RState.Text = arr[1];
+                ReceiverCity.Text = arr[0];
+                ReceiverState.Text = arr[1];
             }
         }
+
+
+        protected void dbPickUpDate_Init(object sender, EventArgs e)
+        {
+            List<DateTime> arrList = new List<DateTime>();
+            for (int i = 0, j = 1; j < 5; i++, j++)
+            {
+                arrList.Add(DateTime.Today.AddDays(j));
+                ListItem newitem = new ListItem(arrList[i].Date.ToString("yyyy-MM-dd"));
+                dbPickUpDate.Items.Add(newitem);
+            };
+        }
+
+
+        protected void ParcelRTime_Load(object sender, EventArgs e)
+        {
+            
+            ParcelRTime.Text = DateTime.Now.ToString("HH:mm");
+        }
+
+        
+        protected void QuoteBtn_Click(object sender, EventArgs e)
+        {
+            
+            decimal PickupPrice=0,deliveryfee;
+            bool serviceType = true;
+            if (LodgeUpBtn.Checked)
+            {
+                serviceType = true;
+                PickupPrice = 0;
+            }
+            else if(PickUpBtn.Checked)
+            {
+                serviceType = false;
+                PickupPrice = 5;
+            }
+                
+
+            bool parcelType = true;
+            if (TypeofParcel.SelectedItem.ToString() == "Parcel")
+                parcelType = true;
+            else
+                parcelType = false;
+
+            ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
+                Convert.ToSingle(Weight.Text), 0, PickupPrice);
+            PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarksNote.Text, true);
+            if (LodgeUpBtn.Checked)
+            {
+                deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, null);
+            }
+            else
+            {
+                
+                deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
+            }
+
+
+            //Response.Redirect("Checkout.aspx");
+            HttpContext.Current.Items.Add("DeliveryFee", deliveryfee);
+            HttpContext.Current.Items.Add("PickUpFee", PickupPrice);
+            HttpContext.Current.Items.Add("SenderName", SenderName.Text);
+            HttpContext.Current.Items.Add("SenderContactNo", SenderContactNo.Text);
+            HttpContext.Current.Items.Add("SenderAddress", SenderAdd.Text);
+            HttpContext.Current.Items.Add("SenderPostal", SenderPostal.Text);
+            HttpContext.Current.Items.Add("SenderLocation", SenderLocation.Text);
+            HttpContext.Current.Items.Add("SenderCity", SenderCity.Text);
+            HttpContext.Current.Items.Add("SenderState", SenderState.Text);
+
+            HttpContext.Current.Items.Add("ServiceType", serviceType);
+            if (serviceType == false)
+            {
+                HttpContext.Current.Items.Add("PickUpDate", dbPickUpDate.Text);
+                HttpContext.Current.Items.Add("PickUpTime", ParcelRTime.Text);
+                HttpContext.Current.Items.Add("Remarks", remarksNote.Text);
+            }
+
+            HttpContext.Current.Items.Add("ReceiverName", ReceiverName.Text);
+            HttpContext.Current.Items.Add("ReceiverContactNo", ReceiverContactNo.Text);
+            HttpContext.Current.Items.Add("ReceiverAddress", ReceiverAdd.Text);
+            HttpContext.Current.Items.Add("ReceiverPostal", ReceiverPostal.Text);
+            HttpContext.Current.Items.Add("ReceiverLocation", ReceiverLocation.Text);
+            HttpContext.Current.Items.Add("ReceiverCity", ReceiverCity.Text);
+            HttpContext.Current.Items.Add("ReceiverState", ReceiverState.Text);
+
+            HttpContext.Current.Items.Add("ParcelType", parcelType);
+            HttpContext.Current.Items.Add("Pieces", Pieces.Text);
+            HttpContext.Current.Items.Add("Content", Content.Text);
+            HttpContext.Current.Items.Add("ValueofContent", ValueofContent.Text);
+            HttpContext.Current.Items.Add("Weight", Weight.Text);
+
+            Server.Transfer("Checkout.aspx", true);
+        }
+
+     
+
+       
     }
 }

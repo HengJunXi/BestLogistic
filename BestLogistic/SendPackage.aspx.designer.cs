@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BestLogistic
-{
-
-
-    public partial class SendPackage
-    {
-
+namespace BestLogistic {
+    
+    
+    public partial class SendPackage {
+        
         /// <summary>
         /// CheckBox1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
-
+        
         /// <summary>
         /// SenderName control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SenderName;
-
+        
         /// <summary>
         /// SNameValid control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator SNameValid;
-
+        
         /// <summary>
         /// SenderContactNo control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SenderContactNo;
-
+        
         /// <summary>
         /// SNoValid control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator SNoValid;
-
+        
         /// <summary>
         /// SenderEmail control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SenderEmail;
-
+        
         /// <summary>
         /// SEmailValid control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator SEmailValid;
-
+        
         /// <summary>
         /// SEmail control.
         /// </summary>
@@ -85,7 +83,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator SEmail;
-
+        
         /// <summary>
         /// SenderAdd control.
         /// </summary>
@@ -94,7 +92,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SenderAdd;
-
+        
         /// <summary>
         /// SAddValid control.
         /// </summary>
@@ -103,7 +101,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator SAddValid;
-
+        
         /// <summary>
         /// SenderPostal control.
         /// </summary>
@@ -112,7 +110,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SenderPostal;
-
+        
         /// <summary>
         /// SPosValid control.
         /// </summary>
@@ -121,7 +119,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator SPosValid;
-
+        
         /// <summary>
         /// SenderLocation control.
         /// </summary>
@@ -130,7 +128,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList SenderLocation;
-
+        
         /// <summary>
         /// SLocationValid control.
         /// </summary>
@@ -139,43 +137,43 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator SLocationValid;
-
+        
         /// <summary>
-        /// SCity control.
+        /// SenderCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SCity;
-
+        protected global::System.Web.UI.WebControls.TextBox SenderCity;
+        
         /// <summary>
-        /// SCityValid control.
+        /// SenderCityValid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator SCityValid;
-
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SenderCityValid;
+        
         /// <summary>
-        /// SState control.
+        /// SenderState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SState;
-
+        protected global::System.Web.UI.WebControls.TextBox SenderState;
+        
         /// <summary>
-        /// SStateValid control.
+        /// SenderStateValid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator SStateValid;
-
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SenderStateValid;
+        
         /// <summary>
         /// ReceiverName control.
         /// </summary>
@@ -184,7 +182,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReceiverName;
-
+        
         /// <summary>
         /// RNameValid control.
         /// </summary>
@@ -193,7 +191,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RNameValid;
-
+        
         /// <summary>
         /// ReceiverContactNo control.
         /// </summary>
@@ -202,7 +200,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReceiverContactNo;
-
+        
         /// <summary>
         /// RNoValid control.
         /// </summary>
@@ -211,7 +209,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RNoValid;
-
+        
         /// <summary>
         /// ReceiverEmail control.
         /// </summary>
@@ -220,7 +218,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReceiverEmail;
-
+        
         /// <summary>
         /// REmailValid control.
         /// </summary>
@@ -229,7 +227,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator REmailValid;
-
+        
         /// <summary>
         /// REmail control.
         /// </summary>
@@ -238,7 +236,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator REmail;
-
+        
         /// <summary>
         /// ReceiverAdd control.
         /// </summary>
@@ -247,7 +245,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReceiverAdd;
-
+        
         /// <summary>
         /// RAddValid control.
         /// </summary>
@@ -256,7 +254,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RAddValid;
-
+        
         /// <summary>
         /// ReceiverPostal control.
         /// </summary>
@@ -265,7 +263,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReceiverPostal;
-
+        
         /// <summary>
         /// RPosValid control.
         /// </summary>
@@ -274,7 +272,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RPosValid;
-
+        
         /// <summary>
         /// ReceiverLocation control.
         /// </summary>
@@ -283,7 +281,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ReceiverLocation;
-
+        
         /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
@@ -292,43 +290,43 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
+        
         /// <summary>
-        /// RCity control.
+        /// ReceiverCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RCity;
-
+        protected global::System.Web.UI.WebControls.TextBox ReceiverCity;
+        
         /// <summary>
-        /// RCityValid control.
+        /// ReceiverCityValid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RCityValid;
-
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReceiverCityValid;
+        
         /// <summary>
-        /// RState control.
+        /// ReceiverState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RState;
-
+        protected global::System.Web.UI.WebControls.TextBox ReceiverState;
+        
         /// <summary>
-        /// RStateValid control.
+        /// ReceiverStateValid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RStateValid;
-
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReceiverStateValid;
+        
         /// <summary>
         /// LodgeUpBtn control.
         /// </summary>
@@ -337,7 +335,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton LodgeUpBtn;
-
+        
         /// <summary>
         /// PickUpBtn control.
         /// </summary>
@@ -346,16 +344,25 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton PickUpBtn;
-
+        
         /// <summary>
-        /// PickupDate control.
+        /// PickUpDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PickupDate;
-
+        protected global::System.Web.UI.WebControls.Label PickUpDetails;
+        
+        /// <summary>
+        /// dbPickUpDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dbPickUpDate;
+        
         /// <summary>
         /// PickUpDateValid control.
         /// </summary>
@@ -364,7 +371,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PickUpDateValid;
-
+        
         /// <summary>
         /// ParcelRTime control.
         /// </summary>
@@ -373,7 +380,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ParcelRTime;
-
+        
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -382,16 +389,16 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
+        
         /// <summary>
-        /// remarks control.
+        /// remarksNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea remarks;
-
+        protected global::System.Web.UI.WebControls.TextBox remarksNote;
+        
         /// <summary>
         /// Parcel control.
         /// </summary>
@@ -400,7 +407,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Parcel;
-
+        
         /// <summary>
         /// TypeofParcel control.
         /// </summary>
@@ -409,7 +416,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList TypeofParcel;
-
+        
         /// <summary>
         /// ParcelTypeValid control.
         /// </summary>
@@ -418,7 +425,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ParcelTypeValid;
-
+        
         /// <summary>
         /// Pieces control.
         /// </summary>
@@ -427,7 +434,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Pieces;
-
+        
         /// <summary>
         /// PiecesValid control.
         /// </summary>
@@ -436,7 +443,25 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PiecesValid;
-
+        
+        /// <summary>
+        /// MinPieces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator MinPieces;
+        
+        /// <summary>
+        /// MaxPieces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator MaxPieces;
+        
         /// <summary>
         /// Content control.
         /// </summary>
@@ -445,7 +470,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Content;
-
+        
         /// <summary>
         /// ContentValid control.
         /// </summary>
@@ -454,7 +479,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ContentValid;
-
+        
         /// <summary>
         /// ValueofContent control.
         /// </summary>
@@ -463,7 +488,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ValueofContent;
-
+        
         /// <summary>
         /// ValueofContentValid control.
         /// </summary>
@@ -472,7 +497,16 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValueofContentValid;
-
+        
+        /// <summary>
+        /// ValueContentRegex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValueContentRegex;
+        
         /// <summary>
         /// Weight control.
         /// </summary>
@@ -481,7 +515,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Weight;
-
+        
         /// <summary>
         /// WeightValid control.
         /// </summary>
@@ -490,7 +524,16 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator WeightValid;
-
+        
+        /// <summary>
+        /// WeightRegex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator WeightRegex;
+        
         /// <summary>
         /// QuoteBtn control.
         /// </summary>
