@@ -20,6 +20,8 @@ namespace BestLogistic.Models
         private string PhoneNumber { get; set; }
         private string HomeNumber { get; set; }
 
+        public string PictureUrl { get; private set; }
+
         public User(DataRow data)
         {
             Uid = data.Field<Guid>("uid").ToString();
@@ -33,6 +35,7 @@ namespace BestLogistic.Models
             Postcode = data.Field<string>("postcode");
             PhoneNumber = data.Field<string>("phone_number");
             HomeNumber = data.Field<string>("home_number");
+            PictureUrl = data.Field<string>("picture_url");
         }
     }
 }

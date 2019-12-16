@@ -96,7 +96,7 @@ namespace BestLogistic.Controllers
         public User GetUser(string uid)
         {
             string query = "SELECT uid, email, phone_number, home_number, name, " +
-                "id_type, id_number, date_of_birth, address, location, postcode " +
+                "id_type, id_number, date_of_birth, address, location, postcode, picture_url " +
                 "FROM [user] WHERE uid=@UID;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -114,6 +114,95 @@ namespace BestLogistic.Controllers
                 }
             }
             return null;
+        }
+
+        public void UpdateUserAddress(string userId, string address, string postcode, string location)
+        {
+            string query = "update user set address=@ADDRESS, postcode=@POSTCODE, location=@LOCATION where uid=@UID;";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@ADDRESS", address);
+                cmd.Parameters.AddWithValue("@POSTCODE", postcode);
+                cmd.Parameters.AddWithValue("@LOCATION", location);
+                cmd.Parameters.AddWithValue("@UID", userId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateUserPassword(string userId, string userEmail, string oldPassword, string newPassword)
+        {
+            string hashSalt = this.GetHashSalt(userEmail);
+
+            if (!hashSalt.Equals(string.Empty))
+            {
+                byte[] salt = Convert.FromBase64String(hashSalt);
+                var pbkdf2 = new Rfc2898DeriveBytes(oldPassword, salt, 10000);
+                byte[] hash = pbkdf2.GetBytes(20);
+                string passwordHash = Convert.ToBase64String(hash);
+
+                try
+                {
+                    string[] result = this.SignInUser(userEmail, passwordHash);
+
+                    if (result == null)
+                        return;
+
+                    // create new salt
+                    new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+                    // hash new password with new salt
+                    pbkdf2 = new Rfc2898DeriveBytes(newPassword, salt, 10000);
+                    hash = pbkdf2.GetBytes(20);
+                    // encode to base64
+                    passwordHash = Convert.ToBase64String(hash);
+                    hashSalt = Convert.ToBase64String(salt);
+
+                    string query = "update user set password_hash=@PWDHASH, salt=@SALT where uid=@UID;";
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PWDHASH", passwordHash);
+                        cmd.Parameters.AddWithValue("@SALT", hashSalt);
+                        cmd.Parameters.AddWithValue("@UID", userId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+            }
+        }
+
+        public static void UpdateUserMobileNumber(string userId, string mobileNumber)
+        {
+            string query = "update user set phone_number=@PN where uid=@UID;";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@PN", mobileNumber);
+                cmd.Parameters.AddWithValue("@UID", userId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void UpdateUserHomeNumber(string userId, string homeNumber)
+        {
+            string query = "update user set home_number=@HN where uid=@UID;";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@HN", homeNumber);
+                cmd.Parameters.AddWithValue("@UID", userId);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public ArrayList GetAreaFromPostCode(string postcode)
