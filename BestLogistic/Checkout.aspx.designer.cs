@@ -13,22 +13,31 @@ namespace BestLogistic {
     public partial class Checkout {
         
         /// <summary>
-        /// Label1 control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Label2 control.
+        /// CheckOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label CheckOut;
+        
+        /// <summary>
+        /// DeliveryItemCharges control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DeliveryItemCharges;
         
         /// <summary>
         /// price control.
@@ -40,13 +49,13 @@ namespace BestLogistic {
         protected global::System.Web.UI.WebControls.Label price;
         
         /// <summary>
-        /// Label4 control.
+        /// PUFee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label PUFee;
         
         /// <summary>
         /// pickUpPrice control.
@@ -146,6 +155,24 @@ namespace BestLogistic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label SenderPhoneNo;
+        
+        /// <summary>
+        /// EmailTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EmailTitle;
+        
+        /// <summary>
+        /// SenderMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SenderMail;
         
         /// <summary>
         /// AddTitle control.
@@ -335,6 +362,24 @@ namespace BestLogistic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ReceiverPhoneNo;
+        
+        /// <summary>
+        /// RmailTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RmailTitle;
+        
+        /// <summary>
+        /// ReceiverMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ReceiverMail;
         
         /// <summary>
         /// ReceiverAddTitle control.
