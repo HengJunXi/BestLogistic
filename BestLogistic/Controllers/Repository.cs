@@ -116,6 +116,53 @@ namespace BestLogistic.Controllers
             return null;
         }
 
+        public static byte GetUserIDType(string uid)
+        {
+            string query = "SELECT id_type " +
+                "FROM [user] WHERE uid=@UID;";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@UID", uid);
+
+                using (DataSet ds = new DataSet())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(ds);
+                    if (ds.Tables[0].Rows.Count != 0)
+                        if ((ds.Tables[0].Rows[0].Field<byte>)("id_type") == 0)
+                            return 0; 
+                        else
+                            return 1; 
+                }
+            }
+            return 0;
+        }
+
+        public static string GetUserIDNumber(string uid)
+        {
+            string query = "SELECT id_number " +
+                "FROM [user] WHERE uid=@UID;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@UID", uid);
+
+                using (DataSet ds = new DataSet())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(ds);
+                    if (ds.Tables[0].Rows.Count != 0)
+                        return (ds.Tables[0].Rows[0].Field<string>)("id_number");
+                }
+            }
+            return null;
+        }
+
+
         public void UpdateUserAddress(string userId, string address, string postcode, string location)
         {
             string query = "update user set address=@ADDRESS, postcode=@POSTCODE, location=@LOCATION where uid=@UID;";

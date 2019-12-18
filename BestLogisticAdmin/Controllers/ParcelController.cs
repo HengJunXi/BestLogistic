@@ -328,15 +328,145 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //start an outgoing transit(from in branch)
-        public static void StartTransit(string branchId, string nextBranchId, string carNumber, int[] trackingNumberList)
+        // if branchId is null start delivery to home
+        public static void StartTransit(string branchId, string nextBranchId, string carNumber, List<int> trackingNumberList)
         {
-            
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction tx = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string query = "delete from branch_parcel where branch=@BID and tracking_number in (";
+
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                        {
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        }
+                        query += ");";
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@BID", branchId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        query = "insert into transit (departure_point, arrival_point, departure_datetime, plate_number) OUTPUT INSERTED.transit_id values (@BID, @NBID, @DEPDT, @PN);";
+                        string transitId = string.Empty;
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@BID", branchId);
+                            cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                            cmd.Parameters.AddWithValue("@DEPDT", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@PN", carNumber);
+                            transitId = ((Guid) cmd.ExecuteScalar()).ToString();
+                        }
+
+                        query = "insert into transit_parcel values ";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                        {
+                            query += "(@TID, " + trackingNumberList[i] + ")" + (i < trackingNumberList.Count - 1 ? "," : ";");
+                            //if (i < trackingNumberList.Count - 1)
+                            //    query += "(@TID, " + trackingNumberList[i] + "),";
+                            //else
+                            //    query += "(@TID, " + trackingNumberList[i] + ");";
+                        }
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@TID", transitId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        query = "update parcel set status=@STATUS where tracking_number in (";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                        {
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        }
+                        query += ");";
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@STATUS", (nextBranchId != null) ? 4 : 6);          // in transit or in delivery
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tx.Commit();
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine(e.Message);
+                        tx.Rollback();
+                    }
+                }
+            }
         }
 
         //end an incoming transit(to in branch)
-        public static void EndTransit(string branchId, string carNumber, int[] trackingNumberList)
+        // if branchId is null end delivery to home
+        public static void EndTransit(string branchId, string carNumber, List<int> trackingNumberList)
         {
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction tx = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string query = "update top 1 transit set arrival_datetime=@ARRDT where plate_number=@PN order by departure_datetime desc;";
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@ARRDT", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@PN", carNumber);
+                            cmd.ExecuteNonQuery();
+                        }
 
+                        if (branchId != null)
+                        {
+                            query = "insert into branch_parcel (branch, tracking_number) values ";
+                            for (int i = 0; i < trackingNumberList.Count; i++)
+                            {
+                                query += "(@BID, " + trackingNumberList[i] + ")" + (i < trackingNumberList.Count - 1 ? "," : ";");
+                                //if (i < trackingNumberList.Count - 1)
+                                //    query += "(@TID, " + trackingNumberList[i] + "),";
+                                //else
+                                //    query += "(@TID, " + trackingNumberList[i] + ");";
+                            }
+                            using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@BID", branchId);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        query = "update parcel set status=@STATUS where tracking_number in (";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                        {
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        }
+                        query += ");";
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@STATUS", (branchId != null) ? 2 : 7);          // in branch or delivered
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tx.Commit();
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine(e.Message);
+                        tx.Rollback();
+                    }
+                }
+            }
         }
 
         //edit parcel details(only before any transit)

@@ -65,8 +65,11 @@ namespace BestLogistic.Controllers
                             query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK);";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                             {
+                                
                                 cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                                Console.WriteLine(trackingNumber);
                                 cmd.Parameters.AddWithValue("@PUD", pickUp.PickUpDate);
+                                Console.WriteLine(pickUp.PickUpDate);
                                 cmd.Parameters.AddWithValue("@PUT", pickUp.PickUpTime);
                                 cmd.Parameters.AddWithValue("@REMARK", pickUp.Remark);
                                 cmd.ExecuteNonQuery();

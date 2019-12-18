@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -104,21 +105,21 @@ namespace BestLogistic
             bool serviceType = true;
             if (LodgeUpBtn.Checked)
             {
-                serviceType = true;
+                serviceType = false;
                 PickupPrice = 0;
             }
             else if(PickUpBtn.Checked)
             {
-                serviceType = false;
+                serviceType = true;
                 PickupPrice = 5;
             }
                 
 
             bool parcelType = true;
             if (TypeofParcel.SelectedItem.ToString() == "Parcel")
-                parcelType = true;
-            else
                 parcelType = false;
+            else
+                parcelType = true;
 
             ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
                 Convert.ToSingle(Weight.Text), 0, PickupPrice);
@@ -144,9 +145,10 @@ namespace BestLogistic
             HttpContext.Current.Items.Add("SenderLocation", SenderLocation.Text);
             HttpContext.Current.Items.Add("SenderCity", SenderCity.Text);
             HttpContext.Current.Items.Add("SenderState", SenderState.Text);
+            HttpContext.Current.Items.Add("SenderEmail", SenderEmail.Text);
 
             HttpContext.Current.Items.Add("ServiceType", serviceType);
-            if (serviceType == false)
+            if (serviceType == true)
             {
                 HttpContext.Current.Items.Add("PickUpDate", dbPickUpDate.Text);
                 HttpContext.Current.Items.Add("PickUpTime", ParcelRTime.Text);
@@ -160,6 +162,7 @@ namespace BestLogistic
             HttpContext.Current.Items.Add("ReceiverLocation", ReceiverLocation.Text);
             HttpContext.Current.Items.Add("ReceiverCity", ReceiverCity.Text);
             HttpContext.Current.Items.Add("ReceiverState", ReceiverState.Text);
+            HttpContext.Current.Items.Add("ReceiverEmail", ReceiverEmail.Text);
 
             HttpContext.Current.Items.Add("ParcelType", parcelType);
             HttpContext.Current.Items.Add("Pieces", Pieces.Text);
@@ -167,7 +170,14 @@ namespace BestLogistic
             HttpContext.Current.Items.Add("ValueofContent", ValueofContent.Text);
             HttpContext.Current.Items.Add("Weight", Weight.Text);
 
-            Server.Transfer("Checkout.aspx", true);
+            try
+            {
+                Server.Transfer("Checkout.aspx", true);
+            }
+            catch (ThreadAbortException)
+            {
+                // Exception ignored: Thread Abort = discontinue processing on the current page
+            }
         }
 
      
