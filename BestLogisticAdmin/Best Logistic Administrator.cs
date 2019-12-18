@@ -57,7 +57,19 @@ namespace BestLogisticAdmin
             }
             else
             {
+                List<int> list = new List<int>();
+                for(int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                    {
+                        list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                    }
+                }
+                ParcelController.Delete(list);
 
+                MessageBox.Show("Deleted Successful");
+
+                registerHereLoad();
             }
         }
 
@@ -82,6 +94,20 @@ namespace BestLogisticAdmin
             Authentication.SignOutStaff();
             Login login = new Login();
             login.Show();
+        }
+
+        public void registerHereLoad()
+        {
+            branchId = staff.BranchId;
+            DataTable dt = ParcelController.GetAllRegisteredParcels(branchId);
+            DataTable dt1 = new DataTable();
+
+            dt1 = dt.DefaultView.ToTable(
+                true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                "receiver_location", "receiver_postcode");
+
+            dataGridView1.DataSource = dt1;
         }
 
         private void Best_Logistic_Administrator_Load(object sender, EventArgs e)
@@ -128,12 +154,7 @@ namespace BestLogisticAdmin
             comboBox3.SelectedItem = null;
 
 
-            DataTable dt = ParcelController.GetAllRegisteredParcels(branchId);
-            DataTable dt1 = new DataTable();
-
-            //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
-
-            dataGridView1.DataSource = dt;
+            registerHereLoad();
         }
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -159,11 +180,14 @@ namespace BestLogisticAdmin
             if (radioButton2.Checked)
             {
                 comboBox1.Enabled = true;
+                changeRoute.Enabled = true;
 
             }
             else
             {
                 comboBox1.Enabled = false;
+                changeRoute.Enabled = false;
+                changeStatus.Enabled = false;
             }
         }
 
@@ -172,10 +196,12 @@ namespace BestLogisticAdmin
             if (radioButton3.Checked)
             {
                 comboBox2.Enabled = true;
+                button2.Enabled = true;
             }
             else
             {
                 comboBox2.Enabled = false;
+                button2.Enabled = false;
             }
         }
 
@@ -198,31 +224,38 @@ namespace BestLogisticAdmin
             if (radioButton1.Checked)
             {
                 branchId = staff.BranchId;
+                button1.Enabled = true;
 
                 DataTable dt = ParcelController.GetAllParcelsToPickUp();
                 DataTable dt1 = new DataTable();
 
-                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                dt1 = dt.DefaultView.ToTable(
+                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                    "receiver_location", "receiver_postcode");
 
-                dataGridView1.DataSource = dt;
+                dataGridView1.DataSource = dt1;
                 //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
             }
+            else
+            {
+                button1.Enabled = false;
+            }
+            
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton6.Checked)
             {
-                branchId = staff.BranchId;
-
-                DataTable dt = ParcelController.GetAllRegisteredParcels(branchId);
-                DataTable dt1 = new DataTable();
-
-                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
-
-                dataGridView1.DataSource = dt;
-
+                registerHereLoad();
+                deleteParcel.Enabled = true;
             }
+            else
+            {
+                deleteParcel.Enabled = false;
+            }
+            
         }
 
         //view all parcels in branch(not assigned, each route, pending delivery)
@@ -237,18 +270,30 @@ namespace BestLogisticAdmin
                 DataTable dt = ParcelController.GetAllInBranchParcels(branchId, branchId);
                 DataTable dt1 = new DataTable();
 
-                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                dt1 = dt.DefaultView.ToTable(
+                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                    "receiver_location", "receiver_postcode");
 
-                dataGridView1.DataSource = dt;
+                dataGridView1.DataSource = dt1;
+                changeStatus.Enabled = false;
             }
             else if (comboBox1.SelectedIndex == 1)
             {
                 DataTable dt = ParcelController.GetAllInBranchParcels(branchId, null);
                 DataTable dt1 = new DataTable();
 
-                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                dt1 = dt.DefaultView.ToTable(
+                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                    "receiver_location", "receiver_postcode");
 
-                dataGridView1.DataSource = dt;
+                dataGridView1.DataSource = dt1;
+                changeStatus.Enabled = true;
+            }
+            else
+            {
+                changeStatus.Enabled = false;
             }
 
             for(int i = 0; i < list.Count; i++)
@@ -256,13 +301,18 @@ namespace BestLogisticAdmin
                 int j = 2;
                 if (comboBox1.SelectedIndex == j)
                 {
+                    changeStatus.Enabled = true;
                     DataTable dt = ParcelController.GetAllInBranchParcels(branchId, list[i].Id);
                     DataTable dt1 = new DataTable();
 
-                    //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                    dt1 = dt.DefaultView.ToTable(
+                        true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                        "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                        "receiver_location", "receiver_postcode");
 
-                    dataGridView1.DataSource = dt;
+                    dataGridView1.DataSource = dt1;
                 }
+ 
                 j++;
             }
             
@@ -279,9 +329,11 @@ namespace BestLogisticAdmin
                 DataTable dt = ParcelController.GetAllOutgoingParcels(branchId, null);
                 DataTable dt1 = new DataTable();
 
-                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
-
-                dataGridView1.DataSource = dt;
+                dt1 = dt.DefaultView.ToTable(
+                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                    "receiver_location", "receiver_postcode");
+                dataGridView1.DataSource = dt1;
             }
 
             for (int i = 0; i < list.Count; i++)
@@ -292,11 +344,15 @@ namespace BestLogisticAdmin
                     DataTable dt = ParcelController.GetAllOutgoingParcels(branchId, list[i].Id);
                     DataTable dt1 = new DataTable();
 
-                    //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                    dt1 = dt.DefaultView.ToTable(
+                        true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                        "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                        "receiver_location", "receiver_postcode");
 
-                    dataGridView1.DataSource = dt;
-                    j++;
+                    dataGridView1.DataSource = dt1;
+                   
                 }
+                j++;
             }
         }
 
@@ -312,9 +368,12 @@ namespace BestLogisticAdmin
                     DataTable dt = ParcelController.GetAllIncomingParcels(branchId, list[i].Id);
                     DataTable dt1 = new DataTable();
 
-                    //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                    dt1 = dt.DefaultView.ToTable(
+                        true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                        "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                        "receiver_location", "receiver_postcode");
 
-                    dataGridView1.DataSource = dt;
+                    dataGridView1.DataSource = dt1;
                 }
                 
             }
@@ -329,9 +388,12 @@ namespace BestLogisticAdmin
                 DataTable dt = ParcelController.GetAllDeliveredParcels(branchId);
                 DataTable dt1 = new DataTable();
 
-                //dt1 = dt.DefaultView.ToTable(true, "tracking_number", "receiver_address");
+                dt1 = dt.DefaultView.ToTable(
+                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                    "receiver_location", "receiver_postcode");
 
-                dataGridView1.DataSource = dt;
+                dataGridView1.DataSource = dt1;
 
             }
         }
