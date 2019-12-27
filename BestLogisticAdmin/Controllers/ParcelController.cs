@@ -541,17 +541,29 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //change parcels routes(only during in branch)
-        public static void ChangeRoute(int[] trackingNumberList, string nextBranchId)
+        public static void ChangeRoute(List<int> trackingNumberList, string nextBranchId)
         {
-            string query = "update branch_parcel set next_branch=@NBID where tracking_number in (";
-            for (int i = 0; i < trackingNumberList.Length; i++)
-                query += trackingNumberList[i] + ",";
+            string query = "update branch_parcel set next_branch=@NBID, to_home=@HOME where tracking_number in (";
+            for (int i = 0; i < trackingNumberList.Count; i++)
+                if (i < trackingNumberList.Count - 1)
+                    query += trackingNumberList[i] + ",";
+                else
+                    query += trackingNumberList[i];
             query += ");";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 conn.Open();
-                cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                if (nextBranchId == null)
+                {
+                    cmd.Parameters.AddWithValue("@NBID", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@HOME", 1);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                    cmd.Parameters.AddWithValue("@HOME", 0);
+                }
                 cmd.ExecuteNonQuery();
             }
         }

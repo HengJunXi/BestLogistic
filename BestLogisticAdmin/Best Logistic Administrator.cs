@@ -22,11 +22,21 @@ namespace BestLogisticAdmin
         public Best_Logistic_Administrator()
         {
             InitializeComponent();
+            this.branchId = staff.BranchId;
         }
 
         private void changeRoute_Click(object sender, EventArgs e)
         {
-            AssignRoute routePage = new AssignRoute();
+            list = RouteController.GetRoutesForBranch(branchId);
+            List<int> trackingNum = new List<int>();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                {
+                    trackingNum.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                }
+            }
+            AssignRoute routePage = new AssignRoute(this, list, trackingNum);
             routePage.ShowDialog();
         }
 
@@ -200,6 +210,7 @@ namespace BestLogisticAdmin
             {
                 comboBox1.Enabled = true;
                 changeRoute.Enabled = true;
+                DataBindAfterAssignRoute();
 
             }
             else
@@ -278,7 +289,8 @@ namespace BestLogisticAdmin
         }
 
         //view all parcels in branch(not assigned, each route, pending delivery)
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void DataBindAfterAssignRoute()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
@@ -315,12 +327,12 @@ namespace BestLogisticAdmin
                 changeStatus.Enabled = false;
             }
 
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 int j = 2;
                 if (comboBox1.SelectedIndex == j)
                 {
-                    
+
                     changeStatus.Enabled = true;
                     DataTable dt = ParcelController.GetAllInBranchParcels(branchId, list[i].Id);
                     DataTable dt1 = new DataTable();
@@ -331,12 +343,15 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
-                    
+
                 }
-                
+
                 j++;
             }
-            
+        }
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataBindAfterAssignRoute();
         }
 
         //view all outgoing parcels(each route, delivery)
