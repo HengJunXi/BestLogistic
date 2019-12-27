@@ -489,20 +489,39 @@ namespace BestLogisticAdmin.Controllers
 
         public static void Update(int trackingNumber, bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel)
         {
-            //string query = "update parcel (service, type, pieces, content, value, weight, delivery_fee, " +
-            //    "pick_up_fee, sender_name, sender_id_type, sender_id_number, sender_phone, " +
-            //    "sender_email, sender_address, sender_location, sender_postcode, receiver_name, " +
-            //    "receiver_phone, receiver_email, receiver_address, receiver_location, " +
-            //    "receiver_postcode, status, register_at) OUTPUT INSERTED.tracking_number VALUES " +
-            //    "(@SERVICE, @TYPE, @PIECES, @CONTENT, @VALUE, @WEIGHT, @DFEE, @PFEE, @SNAME, @SIDTYPE, " +
-            //    "@SIDNUM, @SPHONE, @SEMAIL, @SADDRESS, " +
-            //    "@SLOCATION, @SPOSTCODE, @RNAME, @RPHONE, @REMAIL, " +
-            //    "@RADDRESS, @RLOCATION, @RPOSTCODE, @STATUS, @RAT);";
-            //using (SqlConnection conn = new SqlConnection(Repository.connectionString))
-            //using (SqlCommand cmd = new SqlCommand(query, conn))
-            //{
+            string query = "update parcel set sender_name=@SNAME, sender_phone=@SPHONE, sender_id_type=@SIDTYPE, " +
+                "sender_id_number=@SIDNUM, sender_email=@SEMAIL, sender_address=@SADDRESS, sender_postcode=@SPOSTCODE, " +
+                "sender_location=@SLOCATION, receiver_name=@RNAME, receiver_phone=@RPHONE, receiver_email=@REMAIL, " +
+                "receiver_address=@RADDRESS, receiver_postcode=@RPOSTCODE, receiver_location=@RLOCATION, type=@TYPE, " +
+                "pieces=@PIECES, content=@CONTENT, value=@VALUE, weight=@WEIGHT where tracking_number=@TN;";
 
-            //}
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@SNAME", sender.Name);
+                cmd.Parameters.AddWithValue("@SPHONE", sender.Phone);
+                cmd.Parameters.AddWithValue("@SIDTYPE", senderIdType);
+                cmd.Parameters.AddWithValue("@SIDNUM", senderIdNumber);
+                cmd.Parameters.AddWithValue("@SEMAIL", sender.Email);
+                cmd.Parameters.AddWithValue("@SADDRESS", sender.Address);
+                cmd.Parameters.AddWithValue("@SPOSTCODE", sender.PostCode);
+                cmd.Parameters.AddWithValue("@SLOCATION", sender.Location);
+                cmd.Parameters.AddWithValue("@RNAME", receiver.Name);
+                cmd.Parameters.AddWithValue("@RPHONE", receiver.Phone);
+                cmd.Parameters.AddWithValue("@REMAIL", receiver.Email);
+                cmd.Parameters.AddWithValue("@RADDRESS", receiver.Address);
+                cmd.Parameters.AddWithValue("@RPOSTCODE", receiver.PostCode);
+                cmd.Parameters.AddWithValue("@RLOCATION", receiver.Location);
+                cmd.Parameters.AddWithValue("@TYPE", parcel.Type);
+                cmd.Parameters.AddWithValue("@PIECES", parcel.Pieces);
+                cmd.Parameters.AddWithValue("@CONTENT", parcel.Content);
+                cmd.Parameters.AddWithValue("@VALUE", parcel.Value);
+                cmd.Parameters.AddWithValue("@WEIGHT", parcel.Weight);
+                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void Delete(int[] trackingNumberList)
