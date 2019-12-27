@@ -62,7 +62,7 @@ namespace BestLogistic.Controllers
                         }
                         if (pickUp != null)
                         {
-                            query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK,@STATUS);";
+                            query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK, @STATUS);";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                             {
                                 
@@ -257,7 +257,6 @@ namespace BestLogistic.Controllers
                             query = "select BP.branch, P1.name as departure, BP.next_branch, P2.name as arrival " +
                                 "from branch_parcel BP " +
                                 "inner join point P1 on BP.branch=P1.place_id " +
-                                "inner join point P1 on BP.branch=P1.place_id " +
                                 "left join point P2 on BP.next_branch=P2.place_id " +
                                 "where tracking_number=@TN;";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))
@@ -285,12 +284,13 @@ namespace BestLogistic.Controllers
                         {
                             // get pracel previous transit records
                             // in transit, transited
-                            query = "select TP.departure_point, P1.name as departure, TP.arrival_point, P2.name as arrival, TP.departure_datetime, TP.arrival_datetime " +
-                                "from transit_parcel TP " +
-                                "inner join point P1 on TP.departure_point=P1.place_id " +
-                                "inner join point P2 on TP.arrival_point=P2.place_id " +
-                                "where tracking_number=@TN " +
-                                "order by TP.departure_datetime desc;";
+                            query = "select T.departure_point, P1.name as departure, T.arrival_point, P2.name as arrival, T.departure_datetime, T.arrival_datetime " +
+                                "from transit T " +
+                                "inner join transit_parcel TP on T.transit_id=TP.transit_id " +
+                                "inner join point P1 on T.departure_point=P1.place_id " +
+                                "inner join point P2 on T.arrival_point=P2.place_id " +
+                                "where TP.tracking_number=@TN " +
+                                "order by T.departure_datetime desc;";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                             {
                                 cmd.Parameters.AddWithValue("@TN", trackingNumber);

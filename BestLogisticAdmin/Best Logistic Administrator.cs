@@ -22,11 +22,21 @@ namespace BestLogisticAdmin
         public Best_Logistic_Administrator()
         {
             InitializeComponent();
+            this.branchId = staff.BranchId;
         }
 
         private void changeRoute_Click(object sender, EventArgs e)
         {
-            AssignRoute routePage = new AssignRoute();
+            list = RouteController.GetRoutesForBranch(branchId);
+            List<int> trackingNum = new List<int>();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                {
+                    trackingNum.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                }
+            }
+            AssignRoute routePage = new AssignRoute(this, list, trackingNum);
             routePage.ShowDialog();
         }
 
@@ -47,7 +57,7 @@ namespace BestLogisticAdmin
                 }
             }
             
-            StartTrip statusPage = new StartTrip(comboBox1.Text, comboBox1.SelectedValue.ToString(), list);
+            StartTrip statusPage = new StartTrip(this, comboBox1.Text, comboBox1.SelectedValue.ToString(), list);
             statusPage.ShowDialog();
         }
 
@@ -169,18 +179,14 @@ namespace BestLogisticAdmin
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //List<int> list = new List<int>();
-            
-              if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].Value) == true)
-              {
-                
-                UpdateParcelDetails update = new UpdateParcelDetails(this, Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value));
-                update.ShowDialog();
-                
-            }
-            
-            
-            
+            if(radioButton6.Checked == true)
+            {
+                if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].Value) == true)
+                {
+                    UpdateParcelDetails update = new UpdateParcelDetails(this, Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value));
+                    update.ShowDialog();
+                }
+            }            
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -194,7 +200,7 @@ namespace BestLogisticAdmin
                 }
             }
 
-            EndTrip endTripForm = new EndTrip(comboBox2.Text,comboBox2.SelectedValue.ToString(), list);
+            EndTrip endTripForm = new EndTrip(this, comboBox2.Text,comboBox2.SelectedValue.ToString(), list);
             endTripForm.ShowDialog();
         }
 
@@ -210,6 +216,7 @@ namespace BestLogisticAdmin
             {
                 comboBox1.Enabled = true;
                 changeRoute.Enabled = true;
+                ViewParcelInBranch();
 
             }
             else
@@ -226,6 +233,7 @@ namespace BestLogisticAdmin
             {
                 comboBox2.Enabled = true;
                 button2.Enabled = true;
+                ViewIncomingParcel();
             }
             else
             {
@@ -239,6 +247,7 @@ namespace BestLogisticAdmin
             if (radioButton4.Checked)
             {
                 comboBox3.Enabled = true;
+                ViewOutGoingParcel();
             }
             else
             {
@@ -247,8 +256,7 @@ namespace BestLogisticAdmin
         }
 
         
-
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        public void ViewOnlinePickUpRequest()
         {
             if (radioButton1.Checked)
             {
@@ -270,7 +278,10 @@ namespace BestLogisticAdmin
             {
                 button1.Enabled = false;
             }
-            
+        }
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            ViewOnlinePickUpRequest();
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
@@ -288,7 +299,8 @@ namespace BestLogisticAdmin
         }
 
         //view all parcels in branch(not assigned, each route, pending delivery)
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void ViewParcelInBranch()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
@@ -325,12 +337,12 @@ namespace BestLogisticAdmin
                 changeStatus.Enabled = false;
             }
 
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 int j = 2;
                 if (comboBox1.SelectedIndex == j)
                 {
-                    
+
                     changeStatus.Enabled = true;
                     DataTable dt = ParcelController.GetAllInBranchParcels(branchId, list[i].Id);
                     DataTable dt1 = new DataTable();
@@ -341,21 +353,25 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
-                    
+
                 }
-                
+
                 j++;
             }
-            
+        }
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewParcelInBranch();
         }
 
         //view all outgoing parcels(each route, delivery)
-        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void ViewOutGoingParcel()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
 
-            if(comboBox3.SelectedIndex == 0)
+            if (comboBox3.SelectedIndex == 0)
             {
                 DataTable dt = ParcelController.GetAllOutgoingParcels(branchId, null);
                 DataTable dt1 = new DataTable();
@@ -381,13 +397,17 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
-                   
+
                 }
                 j++;
             }
         }
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewOutGoingParcel();
+        }
 
-        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public void ViewIncomingParcel()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
@@ -406,8 +426,12 @@ namespace BestLogisticAdmin
 
                     dataGridView1.DataSource = dt1;
                 }
-                
+
             }
+        }
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewIncomingParcel();
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
@@ -431,7 +455,34 @@ namespace BestLogisticAdmin
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            const string message = "Are you confirm to register the parcel? ";
+            const string caption = "Register Online Pick up parcel";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
 
+            // If the no button was pressed ...
+            if (result == DialogResult.No)
+            {
+                // will auto close
+
+            }
+            else
+            {
+                List<int> list = new List<int>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                    {
+                        list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                    }
+                }
+                ParcelController.RegisterOnlinePickUp(list, branchId);
+
+                MessageBox.Show("Added Successful");
+
+                ViewOnlinePickUpRequest();
+            }
         }
     }
 }

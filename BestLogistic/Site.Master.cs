@@ -21,8 +21,8 @@ namespace BestLogistic
             Debug.WriteLine(path);
             if (!Authentication.IsSignedIn() 
                 && !path.Equals("/default.aspx")
-                && !path.Equals("/SendPackage")
-                && !path.Equals("/Tracking"))
+                && !path.Equals("/SendPackage.aspx")
+                && !path.Equals("/Tracking.aspx"))
             {
                 Response.Redirect("~/", true);
             }
