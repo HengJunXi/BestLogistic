@@ -179,8 +179,18 @@ namespace BestLogisticAdmin
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            UpdateParcelDetails update = new UpdateParcelDetails();
-            update.ShowDialog();
+            //List<int> list = new List<int>();
+            
+              if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].Value) == true)
+              {
+                
+                UpdateParcelDetails update = new UpdateParcelDetails(this, Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value));
+                update.ShowDialog();
+                
+            }
+            
+            
+            
         }
 
         private void Button2_Click(object sender, EventArgs e)

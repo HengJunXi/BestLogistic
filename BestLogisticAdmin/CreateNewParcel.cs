@@ -59,11 +59,12 @@ namespace BestLogisticAdmin
                 bool parcelTypeResult;
                 if (rbParcel.Checked)
                 {
-                    parcelTypeResult = true;
+                    parcelTypeResult = false;
                 }
                 else
-                    parcelTypeResult = false;
-
+                {
+                    parcelTypeResult = true;
+                }
                 PersonInfo sender1 = new PersonInfo(tbSenderName.Text, tbSenderEmail.Text, tbSenderContactNo.Text, tbSenderAddress.Text,
                     tbSenderPosCode.Text,cbSenderLocation.Text,tbSenderCity.Text,tbSenderState.Text);
                 PersonInfo receiver1 = new PersonInfo(tbReceiverName.Text, tbReceiverEmail.Text, tbReceiverContactNo.Text, tbReceiverAddress.Text,
@@ -114,7 +115,25 @@ namespace BestLogisticAdmin
                     }
                 }
                 else
+                {
+                    bool parcelTypeResult;
+                    if (rbParcel.Checked)
+                    {
+                        parcelTypeResult = false;
+                    }
+                    else
+                    {
+                        parcelTypeResult = true;
+                    }
+                        
+                    ParcelInfo parcelInfo = new ParcelInfo(false, parcelTypeResult, Convert.ToByte(tbPieces.Text), tbContent.Text, Convert.ToDecimal(tbValueofContent.Text),
+                        Convert.ToSingle(tbWeight.Text), 0, 0);
+                    decimal quoteFee= ParcelController.Quote(cbSenderLocation.Text, tbSenderPosCode.Text, cbReceiverLocation.Text, tbReceiverPosCode.Text, parcelInfo, null);
+                    price.Text = Convert.ToString(quoteFee);
                     ConfirmBtn.Enabled = true;
+                }
+
+                   
             }
         }
 

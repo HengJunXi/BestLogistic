@@ -484,13 +484,14 @@ namespace BestLogisticAdmin.Controllers
             }
         }
 
-        public static void Update(int trackingNumber, bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel)
+        public static void Update(int trackingNumber, byte senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver)
         {
             string query = "update parcel set sender_name=@SNAME, sender_phone=@SPHONE, sender_id_type=@SIDTYPE, " +
                 "sender_id_number=@SIDNUM, sender_email=@SEMAIL, sender_address=@SADDRESS, sender_postcode=@SPOSTCODE, " +
                 "sender_location=@SLOCATION, receiver_name=@RNAME, receiver_phone=@RPHONE, receiver_email=@REMAIL, " +
-                "receiver_address=@RADDRESS, receiver_postcode=@RPOSTCODE, receiver_location=@RLOCATION, type=@TYPE, " +
-                "pieces=@PIECES, content=@CONTENT, value=@VALUE, weight=@WEIGHT where tracking_number=@TN;";
+                "receiver_address=@RADDRESS, receiver_postcode=@RPOSTCODE, receiver_location=@RLOCATION where tracking_number=@TN;";
+            //, type = @TYPE, " +
+            //    "pieces=@PIECES, content=@CONTENT, value=@VALUE, weight=@WEIGHT
 
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -510,11 +511,11 @@ namespace BestLogisticAdmin.Controllers
                 cmd.Parameters.AddWithValue("@RADDRESS", receiver.Address);
                 cmd.Parameters.AddWithValue("@RPOSTCODE", receiver.PostCode);
                 cmd.Parameters.AddWithValue("@RLOCATION", receiver.Location);
-                cmd.Parameters.AddWithValue("@TYPE", parcel.Type);
-                cmd.Parameters.AddWithValue("@PIECES", parcel.Pieces);
-                cmd.Parameters.AddWithValue("@CONTENT", parcel.Content);
-                cmd.Parameters.AddWithValue("@VALUE", parcel.Value);
-                cmd.Parameters.AddWithValue("@WEIGHT", parcel.Weight);
+                //cmd.Parameters.AddWithValue("@TYPE", parcel.Type);
+                //cmd.Parameters.AddWithValue("@PIECES", parcel.Pieces);
+                //cmd.Parameters.AddWithValue("@CONTENT", parcel.Content);
+                //cmd.Parameters.AddWithValue("@VALUE", parcel.Value);
+                //cmd.Parameters.AddWithValue("@WEIGHT", parcel.Weight);
                 cmd.Parameters.AddWithValue("@TN", trackingNumber);
 
                 cmd.ExecuteNonQuery();
