@@ -40,7 +40,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfirmBtn.Location = new System.Drawing.Point(361, 273);
-            this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConfirmBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ConfirmBtn.Name = "ConfirmBtn";
             this.ConfirmBtn.Size = new System.Drawing.Size(70, 30);
             this.ConfirmBtn.TabIndex = 17;
@@ -53,11 +53,12 @@
             this.dbroute.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dbroute.Enabled = false;
             this.dbroute.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbroute.FormattingEnabled = true;
             this.dbroute.ItemHeight = 25;
             this.dbroute.Location = new System.Drawing.Point(138, 163);
-            this.dbroute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dbroute.Margin = new System.Windows.Forms.Padding(2);
             this.dbroute.Name = "dbroute";
             this.dbroute.Size = new System.Drawing.Size(221, 33);
             this.dbroute.TabIndex = 16;
@@ -72,11 +73,11 @@
             this.route.Location = new System.Drawing.Point(133, 98);
             this.route.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.route.Name = "route";
-            this.route.Size = new System.Drawing.Size(236, 31);
+            this.route.Size = new System.Drawing.Size(223, 31);
             this.route.TabIndex = 15;
-            this.route.Text = "Change Route To:";
+            this.route.Text = "Assign Route To:";
             // 
-            // changeRoute
+            // AssignRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -85,9 +86,9 @@
             this.Controls.Add(this.ConfirmBtn);
             this.Controls.Add(this.dbroute);
             this.Controls.Add(this.route);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(520, 400);
-            this.Name = "changeRoute";
+            this.Name = "AssignRoute";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "changeRoute";
             this.ResumeLayout(false);

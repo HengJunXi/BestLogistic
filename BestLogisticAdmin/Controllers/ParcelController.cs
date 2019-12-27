@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestLogisticAdmin.Controllers
 {
@@ -59,7 +56,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.Parameters.AddWithValue("@STATUS", 2);          // in branch (not assigned)
                             cmd.Parameters.AddWithValue("@RAT", branchId);
 
-                            trackingNumber = (int) cmd.ExecuteScalar();
+                            trackingNumber = (int)cmd.ExecuteScalar();
                         }
                         query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
@@ -69,7 +66,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.ExecuteNonQuery();
                         }
                         tx.Commit();
-                    } 
+                    }
                     catch (SqlException e)
                     {
                         Debug.WriteLine(e.Message);
@@ -417,7 +414,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.Parameters.AddWithValue("@NBID", nextBranchId);
                             cmd.Parameters.AddWithValue("@DEPDT", DateTime.Now);
                             cmd.Parameters.AddWithValue("@PN", carNumber);
-                            transitId = ((Guid) cmd.ExecuteScalar()).ToString();
+                            transitId = ((Guid)cmd.ExecuteScalar()).ToString();
                         }
 
                         query = "insert into transit_parcel values ";
@@ -462,8 +459,8 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //end an incoming transit(to in branch)
-        // if branchId is null end delivery to home
-        public static void EndTransit(string branchId, string carNumber, List<int> trackingNumberList)
+        // if incomingBranchId is null end delivery to home
+        public static void EndTransit(string branchId, string incomingBranchId, string carNumber, List<int> trackingNumberList)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -472,7 +469,7 @@ namespace BestLogisticAdmin.Controllers
                 {
                     try
                     {
-                        string query = "update top 1 transit set arrival_datetime=@ARRDT where plate_number=@PN order by departure_datetime desc;";
+                        string query = "update transit set arrival_datetime=@ARRDT where transit_id = (select top 1 transit_id from transit where plate_number=@PN order by departure_datetime desc);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@ARRDT", DateTime.Now);
@@ -480,7 +477,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.ExecuteNonQuery();
                         }
 
-                        if (branchId != null)
+                        if (incomingBranchId != null)
                         {
                             query = "insert into branch_parcel (branch, tracking_number) values ";
                             for (int i = 0; i < trackingNumberList.Count; i++)
@@ -509,7 +506,7 @@ namespace BestLogisticAdmin.Controllers
                         query += ");";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
-                            cmd.Parameters.AddWithValue("@STATUS", (branchId != null) ? 2 : 7);          // in branch or delivered
+                            cmd.Parameters.AddWithValue("@STATUS", (incomingBranchId != null) ? 2 : 7);          // in branch or delivered
                             cmd.ExecuteNonQuery();
                         }
 
@@ -542,13 +539,14 @@ namespace BestLogisticAdmin.Controllers
             }
         }
 
-        public static void Update(int trackingNumber, bool senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver, ParcelInfo parcel)
+        public static void Update(int trackingNumber, byte senderIdType, string senderIdNumber, PersonInfo sender, PersonInfo receiver)
         {
             string query = "update parcel set sender_name=@SNAME, sender_phone=@SPHONE, sender_id_type=@SIDTYPE, " +
                 "sender_id_number=@SIDNUM, sender_email=@SEMAIL, sender_address=@SADDRESS, sender_postcode=@SPOSTCODE, " +
                 "sender_location=@SLOCATION, receiver_name=@RNAME, receiver_phone=@RPHONE, receiver_email=@REMAIL, " +
-                "receiver_address=@RADDRESS, receiver_postcode=@RPOSTCODE, receiver_location=@RLOCATION, type=@TYPE, " +
-                "pieces=@PIECES, content=@CONTENT, value=@VALUE, weight=@WEIGHT where tracking_number=@TN;";
+                "receiver_address=@RADDRESS, receiver_postcode=@RPOSTCODE, receiver_location=@RLOCATION where tracking_number=@TN;";
+            //, type = @TYPE, " +
+            //    "pieces=@PIECES, content=@CONTENT, value=@VALUE, weight=@WEIGHT
 
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -568,11 +566,11 @@ namespace BestLogisticAdmin.Controllers
                 cmd.Parameters.AddWithValue("@RADDRESS", receiver.Address);
                 cmd.Parameters.AddWithValue("@RPOSTCODE", receiver.PostCode);
                 cmd.Parameters.AddWithValue("@RLOCATION", receiver.Location);
-                cmd.Parameters.AddWithValue("@TYPE", parcel.Type);
-                cmd.Parameters.AddWithValue("@PIECES", parcel.Pieces);
-                cmd.Parameters.AddWithValue("@CONTENT", parcel.Content);
-                cmd.Parameters.AddWithValue("@VALUE", parcel.Value);
-                cmd.Parameters.AddWithValue("@WEIGHT", parcel.Weight);
+                //cmd.Parameters.AddWithValue("@TYPE", parcel.Type);
+                //cmd.Parameters.AddWithValue("@PIECES", parcel.Pieces);
+                //cmd.Parameters.AddWithValue("@CONTENT", parcel.Content);
+                //cmd.Parameters.AddWithValue("@VALUE", parcel.Value);
+                //cmd.Parameters.AddWithValue("@WEIGHT", parcel.Weight);
                 cmd.Parameters.AddWithValue("@TN", trackingNumber);
 
                 cmd.ExecuteNonQuery();
@@ -599,17 +597,29 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //change parcels routes(only during in branch)
-        public static void ChangeRoute(int[] trackingNumberList, string nextBranchId)
+        public static void ChangeRoute(List<int> trackingNumberList, string nextBranchId)
         {
-            string query = "update branch_parcel set next_branch=@NBID where tracking_number in (";
-            for (int i = 0; i < trackingNumberList.Length; i++)
-                query += trackingNumberList[i] + ",";
+            string query = "update branch_parcel set next_branch=@NBID, to_home=@HOME where tracking_number in (";
+            for (int i = 0; i < trackingNumberList.Count; i++)
+                if (i < trackingNumberList.Count - 1)
+                    query += trackingNumberList[i] + ",";
+                else
+                    query += trackingNumberList[i];
             query += ");";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 conn.Open();
-                cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                if (nextBranchId == null)
+                {
+                    cmd.Parameters.AddWithValue("@NBID", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@HOME", 1);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                    cmd.Parameters.AddWithValue("@HOME", 0);
+                }
                 cmd.ExecuteNonQuery();
             }
         }

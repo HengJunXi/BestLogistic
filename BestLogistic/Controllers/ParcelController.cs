@@ -62,7 +62,7 @@ namespace BestLogistic.Controllers
                         }
                         if (pickUp != null)
                         {
-                            query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK);";
+                            query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK,@STATUS);";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                             {
                                 
@@ -72,6 +72,7 @@ namespace BestLogistic.Controllers
                                 Console.WriteLine(pickUp.PickUpDate);
                                 cmd.Parameters.AddWithValue("@PUT", pickUp.PickUpTime);
                                 cmd.Parameters.AddWithValue("@REMARK", pickUp.Remark);
+                                cmd.Parameters.AddWithValue("@STATUS", pickUp.Status);
                                 cmd.ExecuteNonQuery();
                             }
                         }

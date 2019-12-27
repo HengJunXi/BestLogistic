@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.status = new System.Windows.Forms.Label();
-            this.dbstatus = new System.Windows.Forms.ComboBox();
+            this.carNo = new System.Windows.Forms.ComboBox();
             this.ConfirmBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,20 +50,20 @@
             this.status.Text = "Start Trip to";
             this.status.Click += new System.EventHandler(this.Status_Click);
             // 
-            // dbstatus
+            // carNo
             // 
-            this.dbstatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.carNo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dbstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dbstatus.FormattingEnabled = true;
-            this.dbstatus.ItemHeight = 25;
-            this.dbstatus.Location = new System.Drawing.Point(246, 126);
-            this.dbstatus.Margin = new System.Windows.Forms.Padding(2);
-            this.dbstatus.Name = "dbstatus";
-            this.dbstatus.Size = new System.Drawing.Size(132, 33);
-            this.dbstatus.TabIndex = 1;
-            this.dbstatus.SelectedIndexChanged += new System.EventHandler(this.Dbstatus_SelectedIndexChanged);
+            this.carNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carNo.FormattingEnabled = true;
+            this.carNo.ItemHeight = 25;
+            this.carNo.Location = new System.Drawing.Point(246, 126);
+            this.carNo.Margin = new System.Windows.Forms.Padding(2);
+            this.carNo.Name = "carNo";
+            this.carNo.Size = new System.Drawing.Size(132, 33);
+            this.carNo.TabIndex = 1;
+            this.carNo.SelectedIndexChanged += new System.EventHandler(this.Dbstatus_SelectedIndexChanged);
             // 
             // ConfirmBtn
             // 
@@ -108,7 +108,7 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Vehicle plate:";
             // 
-            // ChangeStatus
+            // StartTrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -117,11 +117,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ConfirmBtn);
-            this.Controls.Add(this.dbstatus);
+            this.Controls.Add(this.carNo);
             this.Controls.Add(this.status);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(520, 400);
-            this.Name = "ChangeStatus";
+            this.Name = "StartTrip";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ChangeStatus";
             this.ResumeLayout(false);
@@ -132,7 +132,7 @@
         #endregion
 
         private System.Windows.Forms.Label status;
-        private System.Windows.Forms.ComboBox dbstatus;
+        private System.Windows.Forms.ComboBox carNo;
         private System.Windows.Forms.Button ConfirmBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

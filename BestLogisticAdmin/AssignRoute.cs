@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BestLogisticAdmin.Controllers;
+using BestLogisticAdmin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +14,29 @@ namespace BestLogisticAdmin
 {
     public partial class AssignRoute : Form
     {
-        public AssignRoute()
+        List<int> trackingNum;
+        Best_Logistic_Administrator admin;
+        public AssignRoute(Best_Logistic_Administrator admin, List<Branch> list, List<int> trackingNum)
         {
             InitializeComponent();
+            Dictionary<string, string> comboSource = new Dictionary<string, string>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                comboSource.Add(list[i].Id, list[i].Name);
+            }
+            comboSource.Add("NULL", "Home");
+            dbroute.DataSource = new BindingSource(comboSource, null);
+            dbroute.DisplayMember = "Value";
+            dbroute.ValueMember = "Key";
+            dbroute.Enabled = true;
+            this.trackingNum = trackingNum;
+            this.admin = admin;
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-            const string message = "Confirm change route? ";
-            const string caption = "Change Route";
+            const string message = "Confirm assign route? ";
+            const string caption = "Assign Route";
             var result = MessageBox.Show(message, caption,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
@@ -33,7 +49,14 @@ namespace BestLogisticAdmin
             }
             else
             {
+                string nextBranchId = dbroute.SelectedValue.ToString();
+                if (dbroute.SelectedValue.ToString() == "NULL")
+                {
+                    nextBranchId = null;
+                }
+                ParcelController.ChangeRoute(trackingNum, nextBranchId); 
                 this.Close();
+                admin.DataBindAfterAssignRoute();
             }
         }
     }

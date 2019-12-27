@@ -17,15 +17,26 @@ namespace BestLogisticAdmin
         public String branchId;
         Staff staff = Authentication.CurrentStaff;
         List<Branch> list = new List<Branch>();
+        
 
         public Best_Logistic_Administrator()
         {
             InitializeComponent();
+            this.branchId = staff.BranchId;
         }
 
         private void changeRoute_Click(object sender, EventArgs e)
         {
-            AssignRoute routePage = new AssignRoute();
+            list = RouteController.GetRoutesForBranch(branchId);
+            List<int> trackingNum = new List<int>();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                {
+                    trackingNum.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                }
+            }
+            AssignRoute routePage = new AssignRoute(this, list, trackingNum);
             routePage.ShowDialog();
         }
 
@@ -37,7 +48,16 @@ namespace BestLogisticAdmin
 
         private void ChangeStatus_Click(object sender, EventArgs e)
         {
-            StartTrip statusPage = new StartTrip();
+            List<int> list = new List<int>();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                {
+                    list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                }
+            }
+            
+            StartTrip statusPage = new StartTrip(comboBox1.Text, comboBox1.SelectedValue.ToString(), list);
             statusPage.ShowDialog();
         }
 
@@ -159,13 +179,32 @@ namespace BestLogisticAdmin
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            UpdateParcelDetails update = new UpdateParcelDetails();
-            update.ShowDialog();
+            //List<int> list = new List<int>();
+            
+              if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].Value) == true)
+              {
+                
+                UpdateParcelDetails update = new UpdateParcelDetails(this, Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value));
+                update.ShowDialog();
+                
+            }
+            
+            
+            
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            EndTrip endTripForm = new EndTrip();
+            List<int> list = new List<int>();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                {
+                    list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                }
+            }
+
+            EndTrip endTripForm = new EndTrip(comboBox2.Text,comboBox2.SelectedValue.ToString(), list);
             endTripForm.ShowDialog();
         }
 
@@ -181,6 +220,7 @@ namespace BestLogisticAdmin
             {
                 comboBox1.Enabled = true;
                 changeRoute.Enabled = true;
+                DataBindAfterAssignRoute();
 
             }
             else
@@ -259,7 +299,8 @@ namespace BestLogisticAdmin
         }
 
         //view all parcels in branch(not assigned, each route, pending delivery)
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void DataBindAfterAssignRoute()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
@@ -296,11 +337,12 @@ namespace BestLogisticAdmin
                 changeStatus.Enabled = false;
             }
 
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 int j = 2;
                 if (comboBox1.SelectedIndex == j)
                 {
+
                     changeStatus.Enabled = true;
                     DataTable dt = ParcelController.GetAllInBranchParcels(branchId, list[i].Id);
                     DataTable dt1 = new DataTable();
@@ -311,11 +353,15 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
+
                 }
- 
+
                 j++;
             }
-            
+        }
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataBindAfterAssignRoute();
         }
 
         //view all outgoing parcels(each route, delivery)
@@ -332,7 +378,7 @@ namespace BestLogisticAdmin
                 dt1 = dt.DefaultView.ToTable(
                     true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
-                    "receiver_location", "receiver_postcode");
+                    "receiver_location", "receiver_postcode", "plate_number");
                 dataGridView1.DataSource = dt1;
             }
 
@@ -398,5 +444,9 @@ namespace BestLogisticAdmin
             }
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

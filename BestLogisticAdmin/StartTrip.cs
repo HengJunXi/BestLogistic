@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BestLogisticAdmin.Controllers;
+using BestLogisticAdmin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +14,33 @@ namespace BestLogisticAdmin
 {
     public partial class StartTrip : Form
     {
-        public StartTrip()
+        String branchId;
+        Staff staff = Authentication.CurrentStaff;
+        string nextBranch;
+        List<int> trackingNumList;
+
+        public StartTrip(string route, string nextBranch, List<int> trackingNumList)
         {
             InitializeComponent();
+            branchId = staff.BranchId;
+            if (route == "Pending Delivery")
+            {
+                route = "Home";
+            }
+            if (nextBranch == "2")
+            {
+                nextBranch = null;
+            }
+            label1.Text = route;
+            this.nextBranch = nextBranch;
+            this.trackingNumList = trackingNumList;
+
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-            const string message = "Confirm change status? ";
-            const string caption = "Change Status";
+            const string message = "Confirm start trip? ";
+            const string caption = "Start Trip";
             var result = MessageBox.Show(message, caption,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
@@ -33,7 +53,9 @@ namespace BestLogisticAdmin
             }
             else
             {
-                
+                string carNumber = carNo.Text;
+                ParcelController.StartTransit(branchId, nextBranch, carNumber, trackingNumList);
+                this.Close();
             }
         }
 
