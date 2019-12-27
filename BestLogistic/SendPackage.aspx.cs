@@ -94,7 +94,7 @@ namespace BestLogistic
         protected void ParcelRTime_Load(object sender, EventArgs e)
         {
             
-            ParcelRTime.Text = DateTime.Now.ToString("HH:mm");
+           // ParcelRTime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
         
@@ -123,15 +123,15 @@ namespace BestLogistic
 
             ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
                 Convert.ToSingle(Weight.Text), 0, PickupPrice);
-            PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarksNote.Text, true);
+            
             if (LodgeUpBtn.Checked)
             {
                 deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, null);
             }
             else
             {
-                
-                deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
+                PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarksNote.Text, true);
+                deliveryfee = ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
             }
 
 
