@@ -179,18 +179,14 @@ namespace BestLogisticAdmin
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //List<int> list = new List<int>();
-            
-              if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].Value) == true)
-              {
-                
-                UpdateParcelDetails update = new UpdateParcelDetails(this, Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value));
-                update.ShowDialog();
-                
-            }
-            
-            
-            
+            if(radioButton6.Checked == true)
+            {
+                if (Convert.ToBoolean(dataGridView1.CurrentRow.Cells[1].Value) == true)
+                {
+                    UpdateParcelDetails update = new UpdateParcelDetails(this, Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value));
+                    update.ShowDialog();
+                }
+            }            
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -204,7 +200,7 @@ namespace BestLogisticAdmin
                 }
             }
 
-            EndTrip endTripForm = new EndTrip(comboBox2.Text,comboBox2.SelectedValue.ToString(), list);
+            EndTrip endTripForm = new EndTrip(this, comboBox2.Text,comboBox2.SelectedValue.ToString(), list);
             endTripForm.ShowDialog();
         }
 
@@ -220,7 +216,7 @@ namespace BestLogisticAdmin
             {
                 comboBox1.Enabled = true;
                 changeRoute.Enabled = true;
-                DataBindAfterAssignRoute();
+                ViewParcelInBranch();
 
             }
             else
@@ -237,6 +233,7 @@ namespace BestLogisticAdmin
             {
                 comboBox2.Enabled = true;
                 button2.Enabled = true;
+                ViewIncomingParcel();
             }
             else
             {
@@ -250,6 +247,7 @@ namespace BestLogisticAdmin
             if (radioButton4.Checked)
             {
                 comboBox3.Enabled = true;
+                ViewOutGoingParcel();
             }
             else
             {
@@ -258,8 +256,7 @@ namespace BestLogisticAdmin
         }
 
         
-
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        public void ViewOnlinePickUpRequest()
         {
             if (radioButton1.Checked)
             {
@@ -281,7 +278,10 @@ namespace BestLogisticAdmin
             {
                 button1.Enabled = false;
             }
-            
+        }
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            ViewOnlinePickUpRequest();
         }
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
@@ -455,7 +455,34 @@ namespace BestLogisticAdmin
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            const string message = "Are you confirm to register the parcel? ";
+            const string caption = "Register Online Pick up parcel";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
 
+            // If the no button was pressed ...
+            if (result == DialogResult.No)
+            {
+                // will auto close
+
+            }
+            else
+            {
+                List<int> list = new List<int>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+                    {
+                        list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+                    }
+                }
+                ParcelController.RegisterOnlinePickUp(list, branchId);
+
+                MessageBox.Show("Added Successful");
+
+                ViewOnlinePickUpRequest();
+            }
         }
     }
 }

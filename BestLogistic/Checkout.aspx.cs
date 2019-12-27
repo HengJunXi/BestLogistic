@@ -174,7 +174,7 @@ namespace BestLogistic
                         Response.Write("Problem with time");
                         return;
                     }
-                    PickUpInfo pickInfo = new PickUpInfo(pud, put, Remarks.Text, true);
+                    PickUpInfo pickInfo = new PickUpInfo(pud, put, Remarks.Text, false);
                     ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo, parcelInfo, pickInfo);
                     Response.Redirect("OrderSummary.aspx");
                 }

@@ -25,6 +25,7 @@ namespace BestLogisticAdmin
                 comboSource.Add(list[i].Id, list[i].Name);
             }
             comboSource.Add("NULL", "Home");
+            comboSource.Add("NA", "Not Assign");
             dbroute.DataSource = new BindingSource(comboSource, null);
             dbroute.DisplayMember = "Value";
             dbroute.ValueMember = "Key";
@@ -50,13 +51,19 @@ namespace BestLogisticAdmin
             else
             {
                 string nextBranchId = dbroute.SelectedValue.ToString();
+                bool notAssigned = false;
                 if (dbroute.SelectedValue.ToString() == "NULL")
                 {
                     nextBranchId = null;
                 }
-                ParcelController.ChangeRoute(trackingNum, nextBranchId); 
+                else if (dbroute.SelectedValue.ToString() == "NA")
+                {
+                    nextBranchId = null;
+                    notAssigned = true;
+                }
+                ParcelController.ChangeRoute(trackingNum, nextBranchId, notAssigned); 
                 this.Close();
-                admin.DataBindAfterAssignRoute();
+                admin.ViewParcelInBranch();
             }
         }
     }

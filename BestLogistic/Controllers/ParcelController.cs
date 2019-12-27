@@ -62,7 +62,7 @@ namespace BestLogistic.Controllers
                         }
                         if (pickUp != null)
                         {
-                            query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK,@STATUS);";
+                            query = "insert into pick_up_info values (@TN, @PUD, @PUT, @REMARK, @STATUS);";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                             {
                                 

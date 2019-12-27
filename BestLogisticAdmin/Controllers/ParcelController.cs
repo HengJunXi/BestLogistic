@@ -266,7 +266,7 @@ namespace BestLogisticAdmin.Controllers
             }
             else if (nextBranchId.Equals(branchId)) // not assigned
             {
-                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.branch=@BID AND BP.next_branch IS NULL AND P.deleted=0;";
+                string query = "select * from parcel P inner join branch_parcel BP on P.tracking_number=BP.tracking_number WHERE BP.branch=@BID AND BP.next_branch IS NULL AND P.status=2 AND P.deleted=0;";
                 using (SqlConnection conn = new SqlConnection(Repository.connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
