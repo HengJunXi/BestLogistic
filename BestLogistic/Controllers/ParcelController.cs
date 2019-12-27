@@ -174,22 +174,39 @@ namespace BestLogistic.Controllers
             }
         }
 
-        //public static DataTable Get(int trackingNumber)
-        //{
-        //    string query = "select * from parcel where tracking_number=@TN AND deleted=0;";
-        //    using (SqlConnection conn = new SqlConnection(Repository.connectionString))
-        //    using (SqlCommand cmd = new SqlCommand(query, conn))
-        //    {
-        //        conn.Open();
-        //        cmd.Parameters.AddWithValue("@TN", trackingNumber);
-        //        using (DataTable dt = new DataTable())
-        //        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-        //        {
-        //            adapter.Fill(dt);
-        //            return dt;
-        //        }
-        //    }
-        //}
+        public static DataTable Get(int trackingNumber)
+        {
+            string query = "select * from parcel where tracking_number=@TN AND deleted=0;";
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                using (DataTable dt = new DataTable())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static DataTable GetPickUpInfo(int trackingNumber)
+        {
+            string query = "select * from pick_up_info where tracking_number=@TN AND deleted=0;";
+            using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@TN", trackingNumber);
+                using (DataTable dt = new DataTable())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
 
         private static void Track2(string trackingNumber)
         {

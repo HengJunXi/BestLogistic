@@ -31,13 +31,13 @@ namespace BestLogistic {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Label8 control.
+        /// tNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label tNo;
         
         /// <summary>
         /// Label10 control.

@@ -153,8 +153,8 @@ namespace BestLogistic
 
                 if (serType == false)
                 {
-                    ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo,parcelInfo,null);
-                    Response.Redirect("OrderSummary.aspx");
+                    int trackingNo = ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo,parcelInfo,null);
+                    Response.Redirect("OrderSummary.aspx?trackNo="+trackingNo);
                 }
                 else if (serType == true)
                 {
@@ -175,8 +175,9 @@ namespace BestLogistic
                         return;
                     }
                     PickUpInfo pickInfo = new PickUpInfo(pud, put, Remarks.Text, true);
-                    ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo, parcelInfo, pickInfo);
-                    Response.Redirect("OrderSummary.aspx");
+                    int trackingNo= ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo, parcelInfo, pickInfo);
+                    
+                    Response.Redirect("OrderSummary.aspx?trackNo="+trackingNo);
                 }
   
             }

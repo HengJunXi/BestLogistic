@@ -16,7 +16,7 @@
                             <div class="row">
                                 <div class="col-lg-7 col-md-6 vertical-center">
                                     <asp:Label ID="Label1" runat="server" Text="Order Summary:" Font-Size="XX-Large" CssClass="profile-title-text"></asp:Label><br />
-                                    <asp:Label ID="Label8" runat="server" Text="Order #123" Font-Size="X-large" CssClass="profile-title-text"></asp:Label>
+                                    <asp:Label ID="tNo" runat="server" Text="" Font-Size="X-large" CssClass="profile-title-text"></asp:Label>
                                 </div>
                                 <div class="row col-lg-5 col-md-6 vertical-center">
                                     <div class="col-7">
@@ -35,7 +35,7 @@
                                         <asp:Label ID="Label2" runat="server" Text="TOTAL PAYMENT :" Font-Size="Larger" Font-Bold="true"></asp:Label>
                                     </div>
                                     <div class="col-5 border-bottom">
-                                        <asp:Label ID="totalPayment" runat="server" Text="RM 18.00" Font-Size="Larger" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="totalPayment" runat="server" Text="" Font-Size="Larger" Font-Bold="true"></asp:Label>
                                     </div>
                                 </div>
                             </div>
