@@ -597,30 +597,85 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //change parcels routes(only during in branch)
-        public static void ChangeRoute(List<int> trackingNumberList, string nextBranchId)
+        // if not assigned is true, set parcel back to "not assigned" status, disregard nextBranchId
+        // if not assigned is false, 
+        //      set parcel to pending delivery if nextBranchId is null
+        // else
+        //      set parcel to nextBranch if nextBranchId is not null
+        public static void ChangeRoute(List<int> trackingNumberList, string nextBranchId, bool notAssigned)
         {
-            string query = "update branch_parcel set next_branch=@NBID, to_home=@HOME where tracking_number in (";
-            for (int i = 0; i < trackingNumberList.Count; i++)
-                if (i < trackingNumberList.Count - 1)
-                    query += trackingNumberList[i] + ",";
-                else
-                    query += trackingNumberList[i];
-            query += ");";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 conn.Open();
-                if (nextBranchId == null)
+                using (SqlTransaction tx = conn.BeginTransaction())
                 {
-                    cmd.Parameters.AddWithValue("@NBID", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@HOME", 1);
+                    try
+                    {
+                        string query = "update branch_parcel set next_branch=@NBID, to_home=@HOME where tracking_number in (";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        query += ");";
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            if (notAssigned)
+                            {
+                                cmd.Parameters.AddWithValue("@NBID", DBNull.Value);
+                                cmd.Parameters.AddWithValue("@HOME", 0);
+                            } 
+                            else
+                            {
+                                if (nextBranchId == null)
+                                {
+                                    cmd.Parameters.AddWithValue("@NBID", DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@HOME", 1);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                                    cmd.Parameters.AddWithValue("@HOME", 0);
+                                }
+                            }
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        query = "update parcel set status=@STATUS where tracking_number in (";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        query += ");";
+                        using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+                        {
+                            if (notAssigned)
+                            {
+                                cmd.Parameters.AddWithValue("@STATUS", 2);
+                            }
+                            else
+                            {
+                                if (nextBranchId == null)
+                                {
+                                    cmd.Parameters.AddWithValue("@STATUS", 5);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("@STATUS", 3);
+                                }
+                            }
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tx.Commit();
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine(e.Message);
+                        tx.Rollback();
+                    }
                 }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@NBID", nextBranchId);
-                    cmd.Parameters.AddWithValue("@HOME", 0);
-                }
-                cmd.ExecuteNonQuery();
             }
         }
 
