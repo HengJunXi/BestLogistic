@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestLogisticAdmin.Controllers
 {
@@ -59,7 +56,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.Parameters.AddWithValue("@STATUS", 2);          // in branch (not assigned)
                             cmd.Parameters.AddWithValue("@RAT", branchId);
 
-                            trackingNumber = (int) cmd.ExecuteScalar();
+                            trackingNumber = (int)cmd.ExecuteScalar();
                         }
                         query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
@@ -69,7 +66,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.ExecuteNonQuery();
                         }
                         tx.Commit();
-                    } 
+                    }
                     catch (SqlException e)
                     {
                         Debug.WriteLine(e.Message);
@@ -362,7 +359,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.Parameters.AddWithValue("@NBID", nextBranchId);
                             cmd.Parameters.AddWithValue("@DEPDT", DateTime.Now);
                             cmd.Parameters.AddWithValue("@PN", carNumber);
-                            transitId = ((Guid) cmd.ExecuteScalar()).ToString();
+                            transitId = ((Guid)cmd.ExecuteScalar()).ToString();
                         }
 
                         query = "insert into transit_parcel values ";
@@ -407,8 +404,8 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //end an incoming transit(to in branch)
-        // if branchId is null end delivery to home
-        public static void EndTransit(string branchId, string carNumber, List<int> trackingNumberList)
+        // if incomingBranchId is null end delivery to home
+        public static void EndTransit(string branchId, string incomingBranchId, string carNumber, List<int> trackingNumberList)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -417,7 +414,7 @@ namespace BestLogisticAdmin.Controllers
                 {
                     try
                     {
-                        string query = "update top 1 transit set arrival_datetime=@ARRDT where plate_number=@PN order by departure_datetime desc;";
+                        string query = "update transit set arrival_datetime=@ARRDT where transit_id = (select top 1 transit_id from transit where plate_number=@PN order by departure_datetime desc);";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@ARRDT", DateTime.Now);
@@ -425,7 +422,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.ExecuteNonQuery();
                         }
 
-                        if (branchId != null)
+                        if (incomingBranchId != null)
                         {
                             query = "insert into branch_parcel (branch, tracking_number) values ";
                             for (int i = 0; i < trackingNumberList.Count; i++)
@@ -454,7 +451,7 @@ namespace BestLogisticAdmin.Controllers
                         query += ");";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
-                            cmd.Parameters.AddWithValue("@STATUS", (branchId != null) ? 2 : 7);          // in branch or delivered
+                            cmd.Parameters.AddWithValue("@STATUS", (incomingBranchId != null) ? 2 : 7);          // in branch or delivered
                             cmd.ExecuteNonQuery();
                         }
 
