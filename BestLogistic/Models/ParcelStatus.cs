@@ -7,11 +7,11 @@ namespace BestLogistic.Models
 {
     public class ParcelStatus
     {
-        public DateTime date;
-        public DateTime time;
+        public string date;
+        public string time;
         public string status;
 
-        public ParcelStatus(DateTime date, DateTime time, string status)
+        public ParcelStatus(string date, string time, string status)
         {
             this.date = date;
             this.time = time;
