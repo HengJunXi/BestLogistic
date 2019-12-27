@@ -18,7 +18,8 @@ namespace BestLogisticAdmin
         Staff staff = Authentication.CurrentStaff;
         List<int> trackingNumList;
         string route;
-        public EndTrip(string branchName, string route, List<int> trackingNumList)
+        Best_Logistic_Administrator admin;
+        public EndTrip(Best_Logistic_Administrator admin, string branchName, string route, List<int> trackingNumList)
         {
             InitializeComponent();
             branchId = staff.BranchId;
@@ -26,6 +27,7 @@ namespace BestLogisticAdmin
             label1.Text = branchName;
             this.trackingNumList = trackingNumList;
             this.route = route;
+            this.admin = admin;
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
@@ -47,6 +49,7 @@ namespace BestLogisticAdmin
                 string carNumber = carNo.Text;
                 ParcelController.EndTransit(branchId, route, carNumber, trackingNumList);
                 this.Close();
+                admin.ViewIncomingParcel();
             }
         }
 
