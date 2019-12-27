@@ -336,10 +336,10 @@ namespace BestLogisticAdmin
             {
                 changeStatus.Enabled = false;
             }
-
+            int j = 2;
             for (int i = 0; i < list.Count; i++)
             {
-                int j = 2;
+                
                 if (comboBox1.SelectedIndex == j)
                 {
 
@@ -355,7 +355,6 @@ namespace BestLogisticAdmin
                     dataGridView1.DataSource = dt1;
 
                 }
-
                 j++;
             }
         }
@@ -382,10 +381,10 @@ namespace BestLogisticAdmin
                     "receiver_location", "receiver_postcode", "plate_number");
                 dataGridView1.DataSource = dt1;
             }
-
+            int j = 1;
             for (int i = 0; i < list.Count; i++)
             {
-                int j = 1;
+                
                 if (comboBox3.SelectedIndex == j)
                 {
                     DataTable dt = ParcelController.GetAllOutgoingParcels(branchId, list[i].Id);

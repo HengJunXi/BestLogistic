@@ -380,7 +380,7 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //start an outgoing transit(from in branch)
-        // if branchId is null start delivery to home
+        // if nextBranchId is null start delivery to home
         public static void StartTransit(string branchId, string nextBranchId, string carNumber, List<int> trackingNumberList)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
@@ -411,7 +411,10 @@ namespace BestLogisticAdmin.Controllers
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@BID", branchId);
-                            cmd.Parameters.AddWithValue("@NBID", nextBranchId);
+                            if (nextBranchId == null)
+                                cmd.Parameters.AddWithValue("@NBID", DBNull.Value);
+                            else
+                                cmd.Parameters.AddWithValue("@NBID", nextBranchId);
                             cmd.Parameters.AddWithValue("@DEPDT", DateTime.Now);
                             cmd.Parameters.AddWithValue("@PN", carNumber);
                             transitId = ((Guid)cmd.ExecuteScalar()).ToString();
