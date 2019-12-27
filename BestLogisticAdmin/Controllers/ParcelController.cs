@@ -115,7 +115,7 @@ namespace BestLogisticAdmin.Controllers
             }
         }
 
-        public static void RegisterOnlinePickUp(int trackingNumber, string branchId)
+        public static void RegisterOnlinePickUp(List<int> trackingNumberList, string branchId)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -124,26 +124,39 @@ namespace BestLogisticAdmin.Controllers
                 {
                     try
                     {
-                        string query = "update parcel set status=@STATUS, register_at=@RAT where tracking_number=@TN;";
+                        string query = "update parcel set status=@STATUS, register_at=@RAT where tracking_number in (";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        query += ");";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@STATUS", 2);
                             cmd.Parameters.AddWithValue("@RAT", branchId);
-                            cmd.Parameters.AddWithValue("@TN", trackingNumber);
                             cmd.ExecuteNonQuery();
                         }
-                        query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
+                        query = "insert into branch_parcel (branch, tracking_number) VALUES ";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                        {
+                            query += "(@BID, " + trackingNumberList[i] + ")" + (i < trackingNumberList.Count - 1 ? "," : ";");
+                        }
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@BID", branchId);
-                            cmd.Parameters.AddWithValue("@TN", trackingNumber);
                             cmd.ExecuteNonQuery();
                         }
-                        query = "update pick_up_info set status=@STATUS WHERE tracking_number=@TN;";
+                        query = "update pick_up_info set status=@STATUS WHERE tracking_number in (";
+                        for (int i = 0; i < trackingNumberList.Count; i++)
+                            if (i < trackingNumberList.Count - 1)
+                                query += trackingNumberList[i] + ",";
+                            else
+                                query += trackingNumberList[i];
+                        query += ");";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
                             cmd.Parameters.AddWithValue("@STATUS", 1);          // picked up
-                            cmd.Parameters.AddWithValue("@TN", trackingNumber);
                             cmd.ExecuteNonQuery();
                         }
                         tx.Commit();
@@ -156,6 +169,48 @@ namespace BestLogisticAdmin.Controllers
                 }
             }
         }
+
+        //public static void RegisterOnlinePickUp(int trackingNumber, string branchId)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(Repository.connectionString))
+        //    {
+        //        conn.Open();
+        //        using (SqlTransaction tx = conn.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                string query = "update parcel set status=@STATUS, register_at=@RAT where tracking_number=@TN;";
+        //                using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@STATUS", 2);
+        //                    cmd.Parameters.AddWithValue("@RAT", branchId);
+        //                    cmd.Parameters.AddWithValue("@TN", trackingNumber);
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //                query = "insert into branch_parcel (branch, tracking_number) VALUES (@BID, @TN);";
+        //                using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@BID", branchId);
+        //                    cmd.Parameters.AddWithValue("@TN", trackingNumber);
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //                query = "update pick_up_info set status=@STATUS WHERE tracking_number=@TN;";
+        //                using (SqlCommand cmd = new SqlCommand(query, conn, tx))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@STATUS", 1);          // picked up
+        //                    cmd.Parameters.AddWithValue("@TN", trackingNumber);
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //                tx.Commit();
+        //            }
+        //            catch (SqlException e)
+        //            {
+        //                Debug.WriteLine(e.Message);
+        //                tx.Rollback();
+        //            }
+        //        }
+        //    }
+        //}
 
         //view all parcels need to pick up
         public static DataTable GetAllParcelsToPickUp()
@@ -526,7 +581,7 @@ namespace BestLogisticAdmin.Controllers
 
         public static void Delete(List<int> trackingNumberList)
         {
-            string query = "update parcel set deleted=1 where tracking_number in (";
+            string query = "update parcel set deleted=@DEL where tracking_number in (";
             for (int i = 0; i < trackingNumberList.Count; i++)
                 if (i < trackingNumberList.Count - 1)
                     query += trackingNumberList[i] + ",";
@@ -534,11 +589,11 @@ namespace BestLogisticAdmin.Controllers
                     query += trackingNumberList[i];
             query += ");";
             Debug.WriteLine(query);
-            Console.WriteLine(query);
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 conn.Open();
+                cmd.Parameters.AddWithValue("@DEL", 1);
                 cmd.ExecuteNonQuery();
             }
         }
