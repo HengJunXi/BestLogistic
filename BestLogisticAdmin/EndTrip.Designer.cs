@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.status = new System.Windows.Forms.Label();
-            this.dbstatus = new System.Windows.Forms.ComboBox();
+            this.carNo = new System.Windows.Forms.ComboBox();
             this.ConfirmBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,38 +37,38 @@
             // 
             // status
             // 
-            this.status.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.status.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.status.AutoSize = true;
             this.status.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.status.Location = new System.Drawing.Point(73, 54);
+            this.status.Location = new System.Drawing.Point(73, 52);
             this.status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(175, 37);
+            this.status.Size = new System.Drawing.Size(213, 37);
             this.status.TabIndex = 0;
-            this.status.Text = "End Trip to";
+            this.status.Text = "End Trip from";
             this.status.Click += new System.EventHandler(this.Status_Click);
             // 
-            // dbstatus
+            // carNo
             // 
-            this.dbstatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.carNo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dbstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dbstatus.FormattingEnabled = true;
-            this.dbstatus.ItemHeight = 25;
-            this.dbstatus.Location = new System.Drawing.Point(239, 124);
-            this.dbstatus.Margin = new System.Windows.Forms.Padding(2);
-            this.dbstatus.Name = "dbstatus";
-            this.dbstatus.Size = new System.Drawing.Size(114, 33);
-            this.dbstatus.TabIndex = 1;
-            this.dbstatus.SelectedIndexChanged += new System.EventHandler(this.Dbstatus_SelectedIndexChanged);
+            this.carNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carNo.FormattingEnabled = true;
+            this.carNo.ItemHeight = 25;
+            this.carNo.Location = new System.Drawing.Point(239, 124);
+            this.carNo.Margin = new System.Windows.Forms.Padding(2);
+            this.carNo.Name = "carNo";
+            this.carNo.Size = new System.Drawing.Size(114, 33);
+            this.carNo.TabIndex = 1;
+            this.carNo.SelectedIndexChanged += new System.EventHandler(this.Dbstatus_SelectedIndexChanged);
             // 
             // ConfirmBtn
             // 
-            this.ConfirmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.ConfirmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ConfirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfirmBtn.Location = new System.Drawing.Point(364, 188);
@@ -82,12 +82,12 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(252, 54);
+            this.label1.Location = new System.Drawing.Point(280, 52);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 37);
@@ -96,8 +96,8 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -108,7 +108,7 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Vehicel plate:";
             // 
-            // ChangeStatus
+            // EndTrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -117,11 +117,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ConfirmBtn);
-            this.Controls.Add(this.dbstatus);
+            this.Controls.Add(this.carNo);
             this.Controls.Add(this.status);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(520, 400);
-            this.Name = "ChangeStatus";
+            this.Name = "EndTrip";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ChangeStatus";
             this.ResumeLayout(false);
@@ -132,7 +132,7 @@
         #endregion
 
         private System.Windows.Forms.Label status;
-        private System.Windows.Forms.ComboBox dbstatus;
+        private System.Windows.Forms.ComboBox carNo;
         private System.Windows.Forms.Button ConfirmBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
