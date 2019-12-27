@@ -15,7 +15,8 @@ namespace BestLogistic
     {
         bool serType;
         bool parType;
-        //string SenderEmail, ReceiverEmail;
+        
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,6 +24,7 @@ namespace BestLogistic
             {
                 if (!IsPostBack && PreviousPage is SendPackage)
                     GetData();
+                //Response.Write(serType);
 
             }
             catch (ThreadAbortException)
@@ -72,7 +74,7 @@ namespace BestLogistic
                     PickUpTime.Text = HttpContext.Current.Items["PickUpTime"].ToString();
                     Remarks.Text = HttpContext.Current.Items["Remarks"].ToString();
                 }
-
+                //Response.Write(serType);
                 ReceiverName.Text = HttpContext.Current.Items["ReceiverName"].ToString();
                 ReceiverPhoneNo.Text = HttpContext.Current.Items["ReceiverContactNo"].ToString();
                 ReceiverMail.Text = HttpContext.Current.Items["ReceiverEmail"].ToString();
@@ -117,6 +119,24 @@ namespace BestLogistic
             try
             {
                 
+                Response.Write(serType);
+                if (ServiceType.Text == "Lodge In")
+                {
+                    serType = false;
+                }
+                else
+                {
+                    serType = true;
+                }
+                    
+               if (ParcelType.Text == "Parcel")
+                {
+                    parType = false;
+                }
+                else
+                {
+                    parType = true;
+                }
                 PersonInfo senderInfo = new PersonInfo(SenderName.Text, SenderMail.Text, SenderPhoneNo.Text, addressCheckout.Text,
                     postcodeCheckout.Text, locationCheckout.Text, cityCheckout.Text, stateCheckout.Text);
                
@@ -136,12 +156,12 @@ namespace BestLogistic
                     ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo,parcelInfo,null);
                     Response.Redirect("OrderSummary.aspx");
                 }
-                else
+                else if (serType == true)
                 {
                     DateTime pud;
 
 
-                    if (!DateTime.TryParseExact(PickUpDate.Text, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out pud))
+                    if (!DateTime.TryParseExact(PickUpDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out pud))
                     {
                         Response.Write("Problem with date");
                         return;
@@ -149,12 +169,11 @@ namespace BestLogistic
 
                     DateTime put;
 
-                    if (!DateTime.TryParseExact(PickUpTime.Text, "HHmmssfff", CultureInfo.InvariantCulture, DateTimeStyles.None, out put))
+                    if (!DateTime.TryParseExact(PickUpTime.Text, "HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out put))
                     {
                         Response.Write("Problem with time");
                         return;
                     }
-
                     PickUpInfo pickInfo = new PickUpInfo(pud, put, Remarks.Text, true);
                     ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo, parcelInfo, pickInfo);
                     Response.Redirect("OrderSummary.aspx");
@@ -169,11 +188,11 @@ namespace BestLogistic
                     Response.Write("Payment Not Successfully!");
                 }
 
-                if (ex is ThreadAbortException)
-                {
-                    //ignore
+                //if (ex is ThreadAbortException)
+                //{
+                //    //ignore
                     
-                }
+                //}
 
             }
            

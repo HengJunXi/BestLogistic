@@ -141,8 +141,7 @@
                 </div>
             </div>
             <div class="m-3 d-flex justify-content-end">
-                <asp:Button ID="btnUpdate" runat="server" Text="Pay" CssClass="btn btn-default" Width="128px" Font-Size="X-Large" OnClick="btnUpdate_Click" 
-                  />
+                <asp:Button ID="btnUpdate" runat="server" Text="Pay" CssClass="btn btn-default" Width="128px" Font-Size="X-Large" OnClick="btnUpdate_Click" />
             </div>
         </div>
          </ContentTemplate>
@@ -152,4 +151,5 @@
     </asp:UpdatePanel>
        
     </div>
+ </div>
 </asp:Content>

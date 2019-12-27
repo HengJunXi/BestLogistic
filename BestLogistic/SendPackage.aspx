@@ -167,7 +167,7 @@
                         <div class="form-group form-group-default required">
                             <asp:Label AssociatedControlID="ParcelRTime" runat="server" Text="PARCEL READY TIME"></asp:Label>
 
-                            <asp:TextBox ID="ParcelRTime" runat="server" TextMode="DateTime" CssClass="form-control" Height="25px" OnLoad="ParcelRTime_Load"></asp:TextBox>
+                            <asp:TextBox ID="ParcelRTime" runat="server" TextMode="DateTime" CssClass="form-control" Height="25px" OnLoad="ParcelRTime_Load" placeholder="HH:mm:ss"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Parcel ready time cannot be empty" ControlToValidate="ParcelRTime"
                                 Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                         </div>
