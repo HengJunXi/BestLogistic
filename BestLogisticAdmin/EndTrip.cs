@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BestLogisticAdmin.Controllers;
+using BestLogisticAdmin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +14,24 @@ namespace BestLogisticAdmin
 {
     public partial class EndTrip : Form
     {
-        public EndTrip()
+        String branchId;
+        Staff staff = Authentication.CurrentStaff;
+        List<int> trackingNumList;
+        string route;
+        public EndTrip(string branchName, string route, List<int> trackingNumList)
         {
             InitializeComponent();
+            branchId = staff.BranchId;
+                    
+            label1.Text = branchName;
+            this.trackingNumList = trackingNumList;
+            this.route = route;
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-            const string message = "Confirm change status? ";
-            const string caption = "Change Status";
+            const string message = "Confirm end trip? ";
+            const string caption = "End Trip";
             var result = MessageBox.Show(message, caption,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
@@ -33,6 +44,8 @@ namespace BestLogisticAdmin
             }
             else
             {
+                string carNumber = carNo.Text;
+                ParcelController.EndTransit(branchId, route, carNumber, trackingNumList);
                 this.Close();
             }
         }
