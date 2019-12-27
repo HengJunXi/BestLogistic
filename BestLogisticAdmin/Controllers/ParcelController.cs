@@ -253,7 +253,7 @@ namespace BestLogisticAdmin.Controllers
             if (nextBranchId == null) // in delivery
             {
                 string query = "select * from parcel P inner join transit_parcel TP on P.tracking_number=TP.tracking_number inner join transit T on TP.transit_id=T.transit_id " +
-                    "WHERE T.departure_point=@BID AND T.arrival_point IS NULL AND T.arrival_datetime IS NULL;";
+                    "WHERE T.departure_point=@BID AND T.departure_datetime IS NOT NULL AND T.arrival_point IS NULL AND T.arrival_datetime IS NULL;";
                 using (SqlConnection conn = new SqlConnection(Repository.connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -524,12 +524,17 @@ namespace BestLogisticAdmin.Controllers
             }
         }
 
-        public static void Delete(int[] trackingNumberList)
+        public static void Delete(List<int> trackingNumberList)
         {
             string query = "update parcel set deleted=1 where tracking_number in (";
-            for (int i = 0; i < trackingNumberList.Length; i++)
-                query += trackingNumberList[i] + ",";
+            for (int i = 0; i < trackingNumberList.Count; i++)
+                if (i < trackingNumberList.Count - 1)
+                    query += trackingNumberList[i] + ",";
+                else
+                    query += trackingNumberList[i];
             query += ");";
+            Debug.WriteLine(query);
+            Console.WriteLine(query);
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {

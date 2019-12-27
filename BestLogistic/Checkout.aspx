@@ -5,25 +5,28 @@
             <div class="px-4">
                 <h2>Checkout</h2>
             </div>
+             
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+              <ContentTemplate>
             <div class="row">
                 <div class="col-lg-7 col-md-6">
                 </div>
                 <div class="col-lg-5 col-md-6 ">
                     <div>
-                        <h4><asp:Label ID="Label1" runat="server" Text="Your Order Summary" CssClass="font-bold"></asp:Label></h4>
+                        <h4><asp:Label ID="CheckOut" runat="server" Text="Your Order Summary" CssClass="font-bold"></asp:Label></h4>
                     </div>
                     <div class="row">
                         <div class="col-9">
-                            <h5><asp:Label ID="Label2" runat="server" Text="Delivery / Item Charges (RM) : "></asp:Label></h5>
+                            <h5><asp:Label ID="DeliveryItemCharges" runat="server" Text="Delivery / Item Charges (RM) : "></asp:Label></h5>
                         </div>
                         <div class="col-3">
-                            <h5><asp:Label ID="price" runat="server" Text=""></asp:Label></h5>
+                            <h5><asp:Label ID="price" runat="server" Text="" ForeColor="Red"></asp:Label></h5>
                         </div>
                         <div class="col-9">
-                            <h5><asp:Label ID="Label4" runat="server" Text="Pickup Fee (RM): "></asp:Label></h5>
+                            <h5><asp:Label ID="PUFee" runat="server" Text="Pickup Fee (RM): "></asp:Label></h5>
                         </div>
                         <div class="col-3">
-                            <h5><asp:Label ID="pickUpPrice" runat="server" Text=""></asp:Label></h5>
+                            <h5><asp:Label ID="pickUpPrice" runat="server" Text="" ForeColor="Red"></asp:Label></h5>
                         </div>
                     </div>
                 </div>
@@ -34,7 +37,7 @@
                         <div class="dashboard-upper text-white p-8">
                             <div class="row">
                                 <div class="col-lg-9 col-md-7 col-sm-6 vertical-center">
-                                    <asp:Label ID="Label8" runat="server" Text="Order #123" Font-Size="large" CssClass="profile-title-text"></asp:Label>
+                                    <asp:Label ID="Label8" runat="server" Text="Your Order" Font-Size="large" CssClass="profile-title-text"></asp:Label>
                                 </div>
                                 <div class="row col-lg-3 col-md-5 col-sm-6">
                                     <div class="col-6">
@@ -44,7 +47,7 @@
                                         <asp:Label ID="priceOrder" runat="server" Text=""></asp:Label>
                                     </div>
                                     <div class="col-6">
-                                        <asp:Label ID="PickUpPriceTitle" runat="server" Text="PICK UP(RM): "></asp:Label>
+                                        <asp:Label ID="PickUpPriceTitle" runat="server" Text="PICK UP: "></asp:Label>
                                     </div>
                                     <div class="col-6">
                                         <asp:Label ID="pickUpPriceOrder" runat="server" Text=""></asp:Label>
@@ -61,6 +64,9 @@
                                 <div><asp:Label ID="SPhoneno" runat="server" Text="Contact No: "></asp:Label>
                                     <asp:Label ID="SenderPhoneNo" runat="server" Text=""></asp:Label>
                                 </div>
+                                 <div><asp:Label ID="EmailTitle" runat="server" Text="Email:"></asp:Label>
+                                      <asp:Label ID="SenderMail" runat="server" Text=""></asp:Label>
+                                 </div>
                                 <div><asp:Label ID="AddTitle" runat="server" Text="Address:"></asp:Label></div>
                                 <div><asp:Label ID="addressCheckout" runat="server" Text=""></asp:Label></div>
                                 <div><asp:Label ID="postcodeCheckout" runat="server" Text=""></asp:Label></div>
@@ -89,7 +95,7 @@
                         <a href="#detail" data-toggle="collapse" class="text-decoration-none">
                             <div class="dashboard-upper text-white p-8">
                                 <div class="vertical-center">
-                                    <asp:Label ID="Label15" runat="server" Text="Detail #123" Font-Size="large" CssClass="profile-title-text text-white"></asp:Label>
+                                    <asp:Label ID="Label15" runat="server" Text="More Details" Font-Size="large" CssClass="profile-title-text text-white"></asp:Label>
                                 </div>
                             </div>
                         </a>
@@ -102,6 +108,9 @@
                                 <div><asp:Label ID="ReceiverPhoneNoTitle" runat="server" Text="Contact No: "></asp:Label>
                                     <asp:Label ID="ReceiverPhoneNo" runat="server" Text=""></asp:Label>
                                 </div>
+                                 <div><asp:Label ID="RmailTitle" runat="server" Text="Email:"></asp:Label>
+                                      <asp:Label ID="ReceiverMail" runat="server" Text=""></asp:Label>
+                                 </div>
                                 <div><asp:Label ID="ReceiverAddTitle" runat="server" Text="Address"></asp:Label></div>
                                 <div><asp:Label ID="ReceiverAddress" runat="server" Text=""></asp:Label></div>
                                 <div><asp:Label ID="ReceiverPostal" runat="server" Text=""></asp:Label></div>
@@ -133,9 +142,14 @@
             </div>
             <div class="m-3 d-flex justify-content-end">
                 <asp:Button ID="btnUpdate" runat="server" Text="Pay" CssClass="btn btn-default" Width="128px" Font-Size="X-Large" OnClick="btnUpdate_Click" 
-                   PostbackURL="~/OrderSummary.aspx"
-                    />
+                  />
             </div>
         </div>
+         </ContentTemplate>
+                <Triggers>
+                <asp:PostBackTrigger ControlID="btnUpdate" />
+            </Triggers>
+    </asp:UpdatePanel>
+       
     </div>
 </asp:Content>

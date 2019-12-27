@@ -255,7 +255,7 @@
             <br />
             <div class="col-12 d-flex justify-content-end">
                 <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" OnClick="QuoteBtn_Click" 
-                    ValidationGroup="vgSendPackage" OnClientClick="return confirm('Are you sure you want to confirm');" />
+                    ValidationGroup="vgSendPackage"  OnClientClick="return confirm('Are you sure you want to confirm');"/>
             </div>
     </div>
     <script>

@@ -70,6 +70,7 @@
             // 
             this.changeStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.changeStatus.AutoSize = true;
+            this.changeStatus.Enabled = false;
             this.changeStatus.Location = new System.Drawing.Point(293, 43);
             this.changeStatus.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.changeStatus.MaximumSize = new System.Drawing.Size(150, 25);
@@ -85,6 +86,7 @@
             // 
             this.changeRoute.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.changeRoute.AutoSize = true;
+            this.changeRoute.Enabled = false;
             this.changeRoute.Location = new System.Drawing.Point(115, 43);
             this.changeRoute.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.changeRoute.MaximumSize = new System.Drawing.Size(150, 25);
@@ -100,6 +102,7 @@
             // 
             this.deleteParcel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.deleteParcel.AutoSize = true;
+            this.deleteParcel.Enabled = false;
             this.deleteParcel.Location = new System.Drawing.Point(695, 12);
             this.deleteParcel.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.deleteParcel.MaximumSize = new System.Drawing.Size(150, 25);
@@ -113,6 +116,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -149,6 +153,7 @@
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.AutoSize = true;
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(498, 12);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.button1.MaximumSize = new System.Drawing.Size(150, 25);
@@ -163,6 +168,7 @@
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.AutoSize = true;
+            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(498, 43);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
             this.button2.MaximumSize = new System.Drawing.Size(150, 25);

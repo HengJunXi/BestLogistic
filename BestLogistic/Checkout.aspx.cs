@@ -1,6 +1,10 @@
-﻿using System;
+﻿using BestLogistic.Controllers;
+using BestLogistic.Models;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,11 +13,25 @@ namespace BestLogistic
 {
     public partial class Checkout : System.Web.UI.Page
     {
+        bool serType;
+        bool parType;
+        //string SenderEmail, ReceiverEmail;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                GetData();
-          
+
+            try
+            {
+                if (!IsPostBack && PreviousPage is SendPackage)
+                    GetData();
+
+            }
+            catch (ThreadAbortException)
+            {
+                // Exception ignored: Thread Abort = discontinue processing on the current page
+            }
+
+
+            
         }
 
         private void GetData()
@@ -21,7 +39,7 @@ namespace BestLogistic
 
             try
             {
-                
+
                 price.Text = HttpContext.Current.Items["DeliveryFee"].ToString();
                 pickUpPrice.Text = HttpContext.Current.Items["PickUpFee"].ToString();
 
@@ -29,6 +47,7 @@ namespace BestLogistic
                 pickUpPriceOrder.Text = HttpContext.Current.Items["PickUpFee"].ToString();
                 SenderName.Text = HttpContext.Current.Items["SenderName"].ToString();
                 SenderPhoneNo.Text = HttpContext.Current.Items["SenderContactNo"].ToString();
+                SenderMail.Text = HttpContext.Current.Items["SenderEmail"].ToString();
                 addressCheckout.Text = HttpContext.Current.Items["SenderAddress"].ToString();
                 postcodeCheckout.Text = HttpContext.Current.Items["SenderPostal"].ToString();
                 locationCheckout.Text = HttpContext.Current.Items["SenderLocation"].ToString();
@@ -37,16 +56,18 @@ namespace BestLogistic
 
 
                 string Stype = HttpContext.Current.Items["ServiceType"].ToString();
-                if (Stype == "True")
+                if (Stype == "False")
                 {
                     ServiceType.Text = "Lodge In";
+                    serType = false;
                     PickUpDateTitle.Visible = false;
                     PickUpTimeTitle.Visible = false;
                     RemarksTitle.Visible = false;
                 }
-                else if (Stype == "False")
+                else if (Stype == "True")
                 {
                     ServiceType.Text = "Pick Up";
+                    serType = true;
                     PickUpDate.Text = HttpContext.Current.Items["PickUpDate"].ToString();
                     PickUpTime.Text = HttpContext.Current.Items["PickUpTime"].ToString();
                     Remarks.Text = HttpContext.Current.Items["Remarks"].ToString();
@@ -54,6 +75,7 @@ namespace BestLogistic
 
                 ReceiverName.Text = HttpContext.Current.Items["ReceiverName"].ToString();
                 ReceiverPhoneNo.Text = HttpContext.Current.Items["ReceiverContactNo"].ToString();
+                ReceiverMail.Text = HttpContext.Current.Items["ReceiverEmail"].ToString();
                 ReceiverAddress.Text = HttpContext.Current.Items["ReceiverAddress"].ToString();
                 ReceiverPostal.Text = HttpContext.Current.Items["ReceiverPostal"].ToString();
                 ReceiverLocation.Text = HttpContext.Current.Items["ReceiverLocation"].ToString();
@@ -61,18 +83,24 @@ namespace BestLogistic
                 ReceiverState.Text = HttpContext.Current.Items["ReceiverState"].ToString();
 
                 string Ptype = HttpContext.Current.Items["ParcelType"].ToString();
-                if (Ptype == "True")
+                if (Ptype == "False")
                 {
                     ParcelType.Text = "Parcel";
+                    parType = false;
                 }
                 else
+                {
                     ParcelType.Text = "Document";
+                    parType = true;
+                }
+
 
                 Piece.Text = HttpContext.Current.Items["Pieces"].ToString();
                 Content.Text = HttpContext.Current.Items["Content"].ToString();
                 Value.Text = HttpContext.Current.Items["ValueofContent"].ToString();
                 Weight.Text = HttpContext.Current.Items["Weight"].ToString();
 
+                
             }
             catch (NullReferenceException){
 
@@ -86,7 +114,69 @@ namespace BestLogistic
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            Server.Transfer("OrderSummary.aspx",true);
+            try
+            {
+                
+                PersonInfo senderInfo = new PersonInfo(SenderName.Text, SenderMail.Text, SenderPhoneNo.Text, addressCheckout.Text,
+                    postcodeCheckout.Text, locationCheckout.Text, cityCheckout.Text, stateCheckout.Text);
+               
+                PersonInfo receiverInfo = new PersonInfo(ReceiverName.Text, ReceiverMail.Text, ReceiverPhoneNo.Text, ReceiverAddress.Text, ReceiverPostal.Text,
+                    ReceiverLocation.Text, ReceiverCity.Text, ReceiverState.Text);
+                
+                ParcelInfo parcelInfo = new ParcelInfo(serType,parType,Convert.ToByte(Piece.Text),Content.Text,Convert.ToDecimal(Value.Text),Convert.ToSingle(Weight.Text),
+                    Convert.ToDecimal(price.Text),Convert.ToDecimal(pickUpPrice.Text));
+              
+                string uid = Authentication.GetUid();
+                byte userIDType = Repository.GetUserIDType(uid);
+                string userIDNo = Convert.ToString(Repository.GetUserIDNumber(uid));
+                
+
+                if (serType == false)
+                {
+                    ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo,parcelInfo,null);
+                    Response.Redirect("OrderSummary.aspx");
+                }
+                else
+                {
+                    DateTime pud;
+
+
+                    if (!DateTime.TryParseExact(PickUpDate.Text, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out pud))
+                    {
+                        Response.Write("Problem with date");
+                        return;
+                    }
+
+                    DateTime put;
+
+                    if (!DateTime.TryParseExact(PickUpTime.Text, "HHmmssfff", CultureInfo.InvariantCulture, DateTimeStyles.None, out put))
+                    {
+                        Response.Write("Problem with time");
+                        return;
+                    }
+
+                    PickUpInfo pickInfo = new PickUpInfo(pud, put, Remarks.Text, true);
+                    ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo, parcelInfo, pickInfo);
+                    Response.Redirect("OrderSummary.aspx");
+                }
+  
+            }
+            catch (Exception ex)
+            {
+                if (ex is NullReferenceException)
+                {
+
+                    Response.Write("Payment Not Successfully!");
+                }
+
+                if (ex is ThreadAbortException)
+                {
+                    //ignore
+                    
+                }
+
+            }
+           
         }
     }
 }
