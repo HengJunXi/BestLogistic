@@ -57,7 +57,7 @@ namespace BestLogisticAdmin
                 }
             }
             
-            StartTrip statusPage = new StartTrip(comboBox1.Text, comboBox1.SelectedValue.ToString(), list);
+            StartTrip statusPage = new StartTrip(this, comboBox1.Text, comboBox1.SelectedValue.ToString(), list);
             statusPage.ShowDialog();
         }
 
@@ -300,7 +300,7 @@ namespace BestLogisticAdmin
 
         //view all parcels in branch(not assigned, each route, pending delivery)
 
-        public void DataBindAfterAssignRoute()
+        public void ViewParcelInBranch()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
@@ -361,16 +361,17 @@ namespace BestLogisticAdmin
         }
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataBindAfterAssignRoute();
+            ViewParcelInBranch();
         }
 
         //view all outgoing parcels(each route, delivery)
-        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void ViewOutGoingParcel()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
 
-            if(comboBox3.SelectedIndex == 0)
+            if (comboBox3.SelectedIndex == 0)
             {
                 DataTable dt = ParcelController.GetAllOutgoingParcels(branchId, null);
                 DataTable dt1 = new DataTable();
@@ -396,13 +397,17 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
-                   
+
                 }
                 j++;
             }
         }
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewOutGoingParcel();
+        }
 
-        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public void ViewIncomingParcel()
         {
             branchId = staff.BranchId;
             list = RouteController.GetRoutesForBranch(branchId);
@@ -421,8 +426,12 @@ namespace BestLogisticAdmin
 
                     dataGridView1.DataSource = dt1;
                 }
-                
+
             }
+        }
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewIncomingParcel();
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
