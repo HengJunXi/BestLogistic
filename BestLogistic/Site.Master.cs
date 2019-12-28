@@ -22,7 +22,9 @@ namespace BestLogistic
             if (!Authentication.IsSignedIn() 
                 && !path.Equals("/default.aspx")
                 && !path.Equals("/SendPackage.aspx")
-                && !path.Equals("/Tracking.aspx"))
+                && !path.Equals("/Tracking.aspx")
+                && !path.Equals("/SendPackage")
+                && !path.Equals("/Tracking"))
             {
                 Response.Redirect("~/", true);
             }
