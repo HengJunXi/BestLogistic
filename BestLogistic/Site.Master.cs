@@ -54,6 +54,7 @@ namespace BestLogistic
 
         protected void SignOutBtn_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine("Sign out");
             Authentication.SignOutUser();
             Response.Redirect("~/");
         }

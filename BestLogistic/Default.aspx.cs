@@ -76,5 +76,19 @@ namespace BestLogistic
                 ToState.Text = arr[1];
             }
         }
+
+        protected void QuoteBtn_Click(object sender, EventArgs e)
+        {
+            string senderPostcode = FromPostCode.Text;
+            string senderLocation = FromLocation.SelectedValue;
+            string receiverPostcode = ToPostCode.Text;
+            string receiverLocation = ToLocation.SelectedValue;
+            float parcelWeight = Convert.ToSingle(Weight.Text);
+            Decimal quotedPrice = ParcelController.Quote(senderLocation, senderPostcode, receiverLocation, receiverPostcode,
+                new Models.ParcelInfo(false, false, 1, "", 0, parcelWeight, 0, 0), null);
+
+            QuotedPrice.Text = "RM " + quotedPrice.ToString("N2");
+            QuotedPrice.Visible = true;
+        }
     }
 }

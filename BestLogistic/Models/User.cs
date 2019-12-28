@@ -17,8 +17,8 @@ namespace BestLogistic.Models
         public string Address { get; private set; }
         public string Location { get; private set; }
         public string Postcode { get; private set; }
-        public string PhoneNumber { get;private set; }
-        public string HomeNumber { get;private set; }
+        public string PhoneNumber { get; private set; }
+        public string HomeNumber { get; private set; }
 
         public string PictureUrl { get; private set; }
 
