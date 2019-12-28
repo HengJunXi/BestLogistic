@@ -163,9 +163,9 @@ namespace BestLogistic.Controllers
         }
 
 
-        public void UpdateUserAddress(string userId, string address, string postcode, string location)
+        public static void UpdateUserAddress(string userId, string address, string postcode, string location)
         {
-            string query = "update user set address=@ADDRESS, postcode=@POSTCODE, location=@LOCATION where uid=@UID;";
+            string query = "update [user] set address=@ADDRESS, postcode=@POSTCODE, location=@LOCATION where uid=@UID;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -179,7 +179,7 @@ namespace BestLogistic.Controllers
             }
         }
 
-        public void UpdateUserPassword(string userId, string userEmail, string oldPassword, string newPassword)
+        public bool UpdateUserPassword(string userId, string userEmail, string oldPassword, string newPassword)
         {
             string hashSalt = this.GetHashSalt(userEmail);
 
@@ -195,7 +195,7 @@ namespace BestLogistic.Controllers
                     string[] result = this.SignInUser(userEmail, passwordHash);
 
                     if (result == null)
-                        return;
+                        return false;
 
                     // create new salt
                     new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
@@ -206,15 +206,17 @@ namespace BestLogistic.Controllers
                     passwordHash = Convert.ToBase64String(hash);
                     hashSalt = Convert.ToBase64String(salt);
 
-                    string query = "update user set password_hash=@PWDHASH, salt=@SALT where uid=@UID;";
+                    string query = "update [user] set password_hash=@PWDHASH, hash_salt=@SALT where uid=@UID;";
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        conn.Open();
                         cmd.Parameters.AddWithValue("@PWDHASH", passwordHash);
                         cmd.Parameters.AddWithValue("@SALT", hashSalt);
                         cmd.Parameters.AddWithValue("@UID", userId);
 
                         cmd.ExecuteNonQuery();
+                        return true;
                     }
                 }
                 catch (SqlException e)
@@ -222,11 +224,12 @@ namespace BestLogistic.Controllers
                     Debug.WriteLine(e.Message);
                 }
             }
+            return false;
         }
 
         public static void UpdateUserMobileNumber(string userId, string mobileNumber)
         {
-            string query = "update user set phone_number=@PN where uid=@UID;";
+            string query = "update [user] set phone_number=@PN where uid=@UID;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -240,7 +243,7 @@ namespace BestLogistic.Controllers
 
         public static void UpdateUserHomeNumber(string userId, string homeNumber)
         {
-            string query = "update user set home_number=@HN where uid=@UID;";
+            string query = "update [user] set home_number=@HN where uid=@UID;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
