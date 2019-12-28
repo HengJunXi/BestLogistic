@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="BestLogistic._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container px-1 px-sm-3">
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="container px-1 px-sm-3">
         <div class="col-md-12 col-lg-5 quote p-0">
             <h3 class="font-weight-bolder my-3">Quote Your Parcel Here!</h3>
             <div class="quote-content px-sm-3">
@@ -74,13 +76,17 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
-                    <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" />
+                    <asp:Label runat="server" ID="QuotedPrice" CssClass="mr-5 font-weight-bolder h4" Visible="false"/>
+                    <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" OnClick="QuoteBtn_Click" />
                 </div>
             </div>
         </div>
     </div>
+            
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <script>
-        $(document).ready(function () {
+        function initialiseSelect2() {
             $('#MainContent_FromLocation').select2({
                 placeholder: {
                     id: '',
@@ -93,6 +99,10 @@
                     text: 'Postcode is required'
                 }
             });
+        }
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(initialiseSelect2);
+            initialiseSelect2();
         });
     </script>
 </asp:Content>
