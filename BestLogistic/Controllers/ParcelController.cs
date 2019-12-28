@@ -288,7 +288,7 @@ namespace BestLogistic.Controllers
                                 "from transit T " +
                                 "inner join transit_parcel TP on T.transit_id=TP.transit_id " +
                                 "inner join point P1 on T.departure_point=P1.place_id " +
-                                "inner join point P2 on T.arrival_point=P2.place_id " +
+                                "left join point P2 on T.arrival_point=P2.place_id " +
                                 "where TP.tracking_number=@TN " +
                                 "order by T.departure_datetime desc;";
                             using (SqlCommand cmd = new SqlCommand(query, conn, tx))

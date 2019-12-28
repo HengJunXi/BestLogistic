@@ -42,6 +42,15 @@ namespace BestLogistic
         protected global::System.Web.UI.WebControls.TextBox TrackingNumber;
 
         /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessage;
+
+        /// <summary>
         /// TrackBtn control.
         /// </summary>
         /// <remarks>
@@ -78,6 +87,15 @@ namespace BestLogistic
         protected global::System.Web.UI.WebControls.TextBox DepBranch;
 
         /// <summary>
+        /// DepBranchName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DepBranchName;
+
+        /// <summary>
         /// ArrBranch control.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,15 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ArrBranch;
+
+        /// <summary>
+        /// ArrBranchName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ArrBranchName;
 
         /// <summary>
         /// ParcelStatus control.
