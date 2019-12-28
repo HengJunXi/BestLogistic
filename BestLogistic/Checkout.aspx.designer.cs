@@ -157,6 +157,42 @@ namespace BestLogistic {
         protected global::System.Web.UI.WebControls.Label SenderPhoneNo;
         
         /// <summary>
+        /// SIDType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SIDType;
+        
+        /// <summary>
+        /// SenderIDType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SenderIDType;
+        
+        /// <summary>
+        /// SIDNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SIDNumber;
+        
+        /// <summary>
+        /// SenderIDNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SenderIDNumber;
+        
+        /// <summary>
         /// EmailTitle control.
         /// </summary>
         /// <remarks>

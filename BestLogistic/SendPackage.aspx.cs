@@ -120,7 +120,7 @@ namespace BestLogistic
                 parcelType = false;
             else
                 parcelType = true;
-
+           
             ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
                 Convert.ToSingle(Weight.Text), 0, PickupPrice);
             
@@ -140,6 +140,8 @@ namespace BestLogistic
             HttpContext.Current.Items.Add("PickUpFee", PickupPrice);
             HttpContext.Current.Items.Add("SenderName", SenderName.Text);
             HttpContext.Current.Items.Add("SenderContactNo", SenderContactNo.Text);
+            HttpContext.Current.Items.Add("IDType", IDType.Text);
+            HttpContext.Current.Items.Add("SenderIDNo", SenderIDNo.Text);
             HttpContext.Current.Items.Add("SenderAddress", SenderAdd.Text);
             HttpContext.Current.Items.Add("SenderPostal", SenderPostal.Text);
             HttpContext.Current.Items.Add("SenderLocation", SenderLocation.Text);
