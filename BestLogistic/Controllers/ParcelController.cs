@@ -193,7 +193,7 @@ namespace BestLogistic.Controllers
 
         public static DataTable GetPickUpInfo(int trackingNumber)
         {
-            string query = "select * from pick_up_info where tracking_number=@TN AND deleted=0;";
+            string query = "select * from pick_up_info where tracking_number=@TN";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {

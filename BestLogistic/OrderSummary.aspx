@@ -58,6 +58,12 @@
                                 <div><asp:Label ID="SenderPNoTitle" runat="server" Text="Contact No: "></asp:Label>
                                     <asp:Label ID="SenderPhoneNo" runat="server" Text=""></asp:Label>
                                 </div>
+                                <div><asp:Label ID="SIDType" runat="server" Text="ID Type: "></asp:Label>
+                                    <asp:Label ID="IDType" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div><asp:Label ID="SIDNumber" runat="server" Text="ID Number: "></asp:Label>
+                                    <asp:Label ID="IDNo" runat="server" Text=""></asp:Label>
+                                </div>
                                 <div><asp:Label ID="Label7" runat="server" Text="Address"></asp:Label></div>
                                 <div><asp:Label ID="addressCheckout" runat="server" Text=""></asp:Label></div>
                                 <div><asp:Label ID="postcodeCheckout" runat="server" Text=""></asp:Label></div>

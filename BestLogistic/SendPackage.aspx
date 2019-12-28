@@ -13,7 +13,7 @@
                                 <h4 class="font-weight-bold text-left">Sender Details</h4>
                             </div>
                             <div class="col-6 text-right">
-                                <asp:CheckBox ID="CheckBox1" runat="server" Text="Use Default Address" CssClass="checkbox-default" />
+                                <asp:CheckBox ID="cbDefaultAddress" runat="server" Text="Use Default Address" CssClass="checkbox-default" />
                             </div>
                         </div>
 
@@ -29,6 +29,26 @@
                             <asp:RequiredFieldValidator ID="SNoValid" runat="server" ErrorMessage="Contact Number cannot be empty" ControlToValidate="SenderContactNo"
                                 Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                         </div>
+
+                        <div class="form-group form-group-default required">
+                            <asp:Label runat="server" AssociatedControlID="IDType" Text="ID TYPE" />
+                            <asp:DropDownList ID="IDType" runat="server" CssClass="form-control" Height="25px"
+                                AutoPostBack="True">
+                                <asp:ListItem>IC Number</asp:ListItem>
+                                <asp:ListItem>Old IC Number</asp:ListItem>
+                                <asp:ListItem>Passport</asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="IDTypeValid" runat="server" ErrorMessage="ID Type cannot be empty" ControlToValidate="IDType"
+                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                        </div>
+
+                        <div class="form-group form-group-default required">
+                            <asp:Label runat="server" AssociatedControlID="SenderIDNo" Text="ID NUMBER" />
+                            <asp:TextBox runat="server" ID="SenderIDNo" TextMode="Phone" CssClass="form-control" Height="25px" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="ID Number cannot be empty" ControlToValidate="SenderIDNo"
+                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                        </div>
+
                         <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="SenderEmail" Text="EMAIL" />
                             <asp:TextBox runat="server" ID="SenderEmail" TextMode="Email" CssClass="form-control" Height="25px" />
