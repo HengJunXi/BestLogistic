@@ -33,11 +33,25 @@ namespace BestLogistic
                 decimal pickUpfee = result.Rows[0].Field<decimal>("pick_up_fee");
                 pickUpPriceOrder.Text = pickUpfee.ToString();
                 totalPayment.Text = (deliveryFee + pickUpfee).ToString();
-                SenderName.Text = result.Rows[0].Field<string>(11);
-                SenderPhoneNo.Text = result.Rows[0].Field<string>(14);
-                addressCheckout.Text = result.Rows[0].Field<string>(16);
-                postcodeCheckout.Text = result.Rows[0].Field<string>(18);
-                locationCheckout.Text = result.Rows[0].Field<string>(17);
+                SenderName.Text = result.Rows[0].Field<string>("sender_name");
+                SenderPhoneNo.Text = result.Rows[0].Field<string>("sender_phone");
+                byte SIDType = result.Rows[0].Field<byte>("sender_id_type");
+                if (SIDType == 1)
+                {
+                    IDType.Text = "IC Number";               
+                }
+                else if (SIDType == 2)
+                {
+                    IDType.Text = "Old IC Number";
+                }
+                else
+                {
+                    IDType.Text = "Passport";
+                }
+                IDNo.Text = result.Rows[0].Field<string>("sender_id_number");
+                addressCheckout.Text = result.Rows[0].Field<string>("sender_address");
+                postcodeCheckout.Text = result.Rows[0].Field<string>("sender_postcode");
+                locationCheckout.Text = result.Rows[0].Field<string>("sender_location");
 
                 Repository repository = new Repository();
                 string[] arr = repository.GetCityAndStateFromPostCodeAndLocation(postcodeCheckout.Text, locationCheckout.Text);
@@ -56,9 +70,9 @@ namespace BestLogistic
                 {
                     ServiceType.Text = "Pick Up";
                     DataTable result2 = ParcelController.GetPickUpInfo(Convert.ToInt32(trackingNo));
-                    PickUpDate.Text= result2.Rows[0].Field<DateTime>(2).ToString();
-                    PickUpTime.Text = result2.Rows[0].Field<DateTime>(3).ToString();
-                    Remarks.Text = result2.Rows[0].Field<string>(4);
+                    PickUpDate.Text = result2.Rows[0].Field<DateTime>("pick_up_date").ToShortDateString();
+                    PickUpTime.Text = result2.Rows[0].Field<TimeSpan>("pick_up_time").ToString();
+                    Remarks.Text = result2.Rows[0].Field<string>("remark");
                 }
                    
 

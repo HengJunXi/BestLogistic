@@ -15,7 +15,7 @@ namespace BestLogistic
     {
         bool serType;
         bool parType;
-        
+        byte idNo;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +49,8 @@ namespace BestLogistic
                 pickUpPriceOrder.Text = HttpContext.Current.Items["PickUpFee"].ToString();
                 SenderName.Text = HttpContext.Current.Items["SenderName"].ToString();
                 SenderPhoneNo.Text = HttpContext.Current.Items["SenderContactNo"].ToString();
+                SenderIDType.Text = HttpContext.Current.Items["IDType"].ToString();
+                SenderIDNumber.Text = HttpContext.Current.Items["SenderIDNo"].ToString();
                 SenderMail.Text = HttpContext.Current.Items["SenderEmail"].ToString();
                 addressCheckout.Text = HttpContext.Current.Items["SenderAddress"].ToString();
                 postcodeCheckout.Text = HttpContext.Current.Items["SenderPostal"].ToString();
@@ -119,7 +121,6 @@ namespace BestLogistic
             try
             {
                 
-                Response.Write(serType);
                 if (ServiceType.Text == "Lodge In")
                 {
                     serType = false;
@@ -137,6 +138,20 @@ namespace BestLogistic
                 {
                     parType = true;
                 }
+
+               if (SenderIDType.Text =="IC Number")
+                {
+                    idNo = 1;
+                }
+               else if (SenderIDType.Text =="Old IC Number")
+                {
+                    idNo = 2;
+                }
+                else
+                {
+                    idNo = 3;
+                }
+
                 PersonInfo senderInfo = new PersonInfo(SenderName.Text, SenderMail.Text, SenderPhoneNo.Text, addressCheckout.Text,
                     postcodeCheckout.Text, locationCheckout.Text, cityCheckout.Text, stateCheckout.Text);
                
@@ -147,13 +162,13 @@ namespace BestLogistic
                     Convert.ToDecimal(price.Text),Convert.ToDecimal(pickUpPrice.Text));
               
                 string uid = Authentication.GetUid();
-                byte userIDType = Repository.GetUserIDType(uid);
-                string userIDNo = Convert.ToString(Repository.GetUserIDNumber(uid));
+                //byte userIDType = Repository.GetUserIDType(uid);
+               // string userIDNo = Convert.ToString(Repository.GetUserIDNumber(uid));
                 
 
                 if (serType == false)
                 {
-                    int trackingNo = ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo,parcelInfo,null);
+                    int trackingNo = ParcelController.Create(uid, idNo, SenderIDNumber.Text, senderInfo, receiverInfo,parcelInfo,null);
                     Response.Redirect("OrderSummary.aspx?trackNo="+trackingNo);
                 }
                 else if (serType == true)
@@ -175,7 +190,7 @@ namespace BestLogistic
                         return;
                     }
                     PickUpInfo pickInfo = new PickUpInfo(pud, put, Remarks.Text, false);
-                    int trackingNo= ParcelController.Create(uid, userIDType, userIDNo, senderInfo, receiverInfo, parcelInfo, pickInfo);
+                    int trackingNo= ParcelController.Create(uid, idNo, SenderIDNumber.Text, senderInfo, receiverInfo, parcelInfo, pickInfo);
                     Response.Redirect("OrderSummary.aspx?trackNo="+trackingNo);
                     
                 }

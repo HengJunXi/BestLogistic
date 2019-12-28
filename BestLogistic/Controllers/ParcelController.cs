@@ -193,7 +193,7 @@ namespace BestLogistic.Controllers
 
         public static DataTable GetPickUpInfo(int trackingNumber)
         {
-            string query = "select * from pick_up_info where tracking_number=@TN AND deleted=0;";
+            string query = "select * from pick_up_info where tracking_number=@TN";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -330,19 +330,20 @@ namespace BestLogistic.Controllers
 
         public static decimal Quote(string senderLocation, string senderPostCode, string receiverLocation, string receiverPostCode, ParcelInfo parcel, PickUpInfo pickUp)
         {
-            decimal fee = new decimal(10 + (pickUp == null ? 0 : 5));
-            if (parcel.Weight > 5)
-                fee += 5;
-            else if (parcel.Weight > 10)
-                fee += 10;
-            else if (parcel.Weight > 15)
-                fee += 15;
-            else if (parcel.Weight > 20)
-                fee += 20;
-            else if (parcel.Weight > 25)
-                fee += 25;
-            else if (parcel.Weight > 30)
-                fee += 30;
+            decimal fee = new decimal(11 + (pickUp == null ? 0 : 5)); // if pick up add 5
+            // base 11 if <= 0.5
+            // + 1.4 each 0.5 kg
+            double extraCharges = 0;
+            if (parcel.Weight > 0.5)
+            {
+                float weight = parcel.Weight;
+                while (weight > 0.5)
+                {
+                    extraCharges += 1.4;
+                    weight -= 0.5f;
+                }
+            }
+            fee += new decimal(extraCharges);
             return fee;
         }
     }
