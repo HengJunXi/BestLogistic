@@ -252,6 +252,7 @@
     <Compile Include="Controllers\Credential.cs" />
     <Compile Include="Controllers\ParcelController.cs" />
     <Compile Include="Controllers\Repository.cs" />
+    <Compile Include="Controllers\Utility.cs" />
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
