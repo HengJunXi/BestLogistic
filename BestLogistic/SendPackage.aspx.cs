@@ -3,6 +3,7 @@ using BestLogistic.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -100,6 +101,8 @@ namespace BestLogistic
         
         protected void QuoteBtn_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine("hello");
+
             try
             {
                 decimal PickupPrice = 0, deliveryfee;
@@ -229,6 +232,11 @@ namespace BestLogistic
                     SenderState.Text = "";
                 }
             }
+        }
+
+        protected void ParcelRTime_Init(object sender, EventArgs e)
+        {
+            //ParcelRTime.Text = "00:00:00";
         }
     }
 }
