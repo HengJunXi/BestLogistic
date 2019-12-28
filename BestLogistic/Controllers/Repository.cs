@@ -309,5 +309,41 @@ namespace BestLogistic.Controllers
             }
             return null;
         }
+
+        public List<ShipmentRecord> GetShipmentHistory (string userId)
+        {
+            string query = "select * from parcel where user_uid=@UID;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                cmd.Parameters.AddWithValue("@UID", userId);
+
+                using (DataSet ds = new DataSet())
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(ds);
+                    List<ShipmentRecord> list = new List<ShipmentRecord>();
+                    
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        list.Add(new ShipmentRecord(
+                            ds.Tables[0].Rows[i].Field<int>("tracking_number"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_name"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_address"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_location"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_postcode"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_name"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_address"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_location"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_postcode"),
+                            ds.Tables[0].Rows[i].Field<DateTime?>("delivered_date")));
+                    }   
+
+                    return list;
+                }
+            }
+        }
     }
 }

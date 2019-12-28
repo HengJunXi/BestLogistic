@@ -126,8 +126,6 @@
                             travelMode: google.maps.TravelMode.DRIVING,
                             provideRouteAlternatives: false,
                         }, function (response, status) {
-                            console.log(status);
-                            console.log(response);
                             if (status == google.maps.DirectionsStatus.OK) {
                                 directionsRenderer.setDirections(response);
                                 mapElement.style.display = "block";
@@ -150,8 +148,6 @@
                         } else {
                             return;
                         }
-                        console.log(startUrl);
-                        console.log(endUrl);
                         var myRoute = directionResult.routes[0].legs[0];
                         var size = new google.maps.Size(25, 25);
                         

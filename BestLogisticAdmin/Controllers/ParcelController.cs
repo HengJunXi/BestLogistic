@@ -498,7 +498,7 @@ namespace BestLogisticAdmin.Controllers
                             }
                         }
 
-                        query = "update parcel set status=@STATUS where tracking_number in (";
+                        query = "update parcel set status=@STATUS, delivered_date=@DDATE where tracking_number in (";
                         for (int i = 0; i < trackingNumberList.Count; i++)
                         {
                             if (i < trackingNumberList.Count - 1)
@@ -509,7 +509,8 @@ namespace BestLogisticAdmin.Controllers
                         query += ");";
                         using (SqlCommand cmd = new SqlCommand(query, conn, tx))
                         {
-                            cmd.Parameters.AddWithValue("@STATUS", (incomingBranchId != null) ? 2 : 7);          // in branch or delivered
+                            cmd.Parameters.AddWithValue("@STATUS", (incomingBranchId != null) ? 2 : 7);          // in branch or delivered   
+                            cmd.Parameters.AddWithValue("@DDATE", (incomingBranchId == null ? (object)DateTime.Now : DBNull.Value));
                             cmd.ExecuteNonQuery();
                         }
 
