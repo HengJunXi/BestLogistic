@@ -163,9 +163,9 @@ namespace BestLogistic.Controllers
         }
 
 
-        public void UpdateUserAddress(string userId, string address, string postcode, string location)
+        public static void UpdateUserAddress(string userId, string address, string postcode, string location)
         {
-            string query = "update user set address=@ADDRESS, postcode=@POSTCODE, location=@LOCATION where uid=@UID;";
+            string query = "update [user] set address=@ADDRESS, postcode=@POSTCODE, location=@LOCATION where uid=@UID;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -179,7 +179,7 @@ namespace BestLogistic.Controllers
             }
         }
 
-        public void UpdateUserPassword(string userId, string userEmail, string oldPassword, string newPassword)
+        public bool UpdateUserPassword(string userId, string userEmail, string oldPassword, string newPassword)
         {
             string hashSalt = this.GetHashSalt(userEmail);
 
@@ -195,7 +195,7 @@ namespace BestLogistic.Controllers
                     string[] result = this.SignInUser(userEmail, passwordHash);
 
                     if (result == null)
-                        return;
+                        return false;
 
                     // create new salt
                     new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
@@ -206,15 +206,17 @@ namespace BestLogistic.Controllers
                     passwordHash = Convert.ToBase64String(hash);
                     hashSalt = Convert.ToBase64String(salt);
 
-                    string query = "update user set password_hash=@PWDHASH, salt=@SALT where uid=@UID;";
+                    string query = "update [user] set password_hash=@PWDHASH, hash_salt=@SALT where uid=@UID;";
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        conn.Open();
                         cmd.Parameters.AddWithValue("@PWDHASH", passwordHash);
                         cmd.Parameters.AddWithValue("@SALT", hashSalt);
                         cmd.Parameters.AddWithValue("@UID", userId);
 
                         cmd.ExecuteNonQuery();
+                        return true;
                     }
                 }
                 catch (SqlException e)
@@ -222,11 +224,12 @@ namespace BestLogistic.Controllers
                     Debug.WriteLine(e.Message);
                 }
             }
+            return false;
         }
 
         public static void UpdateUserMobileNumber(string userId, string mobileNumber)
         {
-            string query = "update user set phone_number=@PN where uid=@UID;";
+            string query = "update [user] set phone_number=@PN where uid=@UID;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -240,7 +243,7 @@ namespace BestLogistic.Controllers
 
         public static void UpdateUserHomeNumber(string userId, string homeNumber)
         {
-            string query = "update user set home_number=@HN where uid=@UID;";
+            string query = "update [user] set home_number=@HN where uid=@UID;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -312,7 +315,15 @@ namespace BestLogistic.Controllers
 
         public List<ShipmentRecord> GetShipmentHistory (string userId)
         {
-            string query = "select * from parcel where user_uid=@UID;";
+            string query = "select P.*, " +
+                "P1.area as sender_city, P1.state_code as sender_state, " +
+                "P2.area as receiver_city, P2.state_code as receiver_state " +
+                "from parcel P " +
+                "inner join postcode P1 " +
+                "on (P.sender_postcode=P1.postcode AND P.sender_location=P1.area) " +
+                "inner join postcode P2 " +
+                "on (P.receiver_postcode=P2.postcode AND P.receiver_location=P2.area) " +
+                "where user_uid=@UID order by P.tracking_number desc;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -326,7 +337,7 @@ namespace BestLogistic.Controllers
                     adapter.Fill(ds);
                     List<ShipmentRecord> list = new List<ShipmentRecord>();
                     
-                    for (int i = 0; i < list.Count; i++)
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         list.Add(new ShipmentRecord(
                             ds.Tables[0].Rows[i].Field<int>("tracking_number"),
@@ -334,10 +345,14 @@ namespace BestLogistic.Controllers
                             ds.Tables[0].Rows[i].Field<string>("sender_address"),
                             ds.Tables[0].Rows[i].Field<string>("sender_location"),
                             ds.Tables[0].Rows[i].Field<string>("sender_postcode"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_city"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_state"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_name"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_address"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_location"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_postcode"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_city"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_state"),
                             ds.Tables[0].Rows[i].Field<DateTime?>("delivered_date")));
                     }   
 

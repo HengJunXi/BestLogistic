@@ -14,11 +14,11 @@ namespace BestLogistic.Models
         public readonly int IdType;
         public readonly string IdNumber;
         public readonly DateTime DateOfBirth;
-        private string Address { get; set; }
-        private string Location { get; set; }
-        private string Postcode { get; set; }
-        private string PhoneNumber { get; set; }
-        private string HomeNumber { get; set; }
+        public string Address { get; private set; }
+        public string Location { get; private set; }
+        public string Postcode { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string HomeNumber { get; private set; }
 
         public string PictureUrl { get; private set; }
 

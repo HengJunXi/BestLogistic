@@ -8,90 +8,97 @@
             <div class="p-3 background-grey">
                 <div class="row m-0">
                     <div class="col-lg-6 p-3">
-                        <div class="row">
-                            <div class="col-6">
-                                <h4 class="font-weight-bold text-left">Sender Details</h4>
-                            </div>
-                            <div class="col-6 text-right">
-                                <asp:CheckBox ID="cbDefaultAddress" runat="server" Text="Use Default Address" CssClass="checkbox-default" />
-                            </div>
-                        </div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="font-weight-bold text-left">Sender Details</h4>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <asp:CheckBox ID="cbDefaultAddress" runat="server" Text="Use Default Address" CssClass="checkbox-default" AutoPostBack="True" OnCheckedChanged="cbDefaultAddress_CheckedChanged" />
+                                    </div>
+                                </div>
 
-                        <div class="form-group form-group-default required">
-                            <asp:Label AssociatedControlID="SenderName" runat="server" Text="NAME"></asp:Label>
-                            <asp:TextBox ID="SenderName" runat="server" TextMode="SingleLine" CssClass="form-control" Height="25px"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="SNameValid" runat="server" ErrorMessage="Name cannot be empty" ControlToValidate="SenderName"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SenderContactNo" Text="CONTACT NUMBER" />
-                            <asp:TextBox runat="server" ID="SenderContactNo" TextMode="Phone" CssClass="form-control" Height="25px" />
-                            <asp:RequiredFieldValidator ID="SNoValid" runat="server" ErrorMessage="Contact Number cannot be empty" ControlToValidate="SenderContactNo"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
+                        
+                                <div class="form-group form-group-default required">
+                                    <asp:Label AssociatedControlID="SenderName" runat="server" Text="NAME"></asp:Label>
+                                    <asp:TextBox ID="SenderName" runat="server" TextMode="SingleLine" CssClass="form-control" Height="25px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="SNameValid" runat="server" ErrorMessage="Name cannot be empty" ControlToValidate="SenderName"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="SenderContactNo" Text="CONTACT NUMBER" />
+                                    <asp:TextBox runat="server" ID="SenderContactNo" TextMode="Phone" CssClass="form-control" Height="25px" />
+                                    <asp:RequiredFieldValidator ID="SNoValid" runat="server" ErrorMessage="Contact Number cannot be empty" ControlToValidate="SenderContactNo"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
 
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="IDType" Text="ID TYPE" />
-                            <asp:DropDownList ID="IDType" runat="server" CssClass="form-control" Height="25px"
-                                AutoPostBack="True">
-                                <asp:ListItem>IC Number</asp:ListItem>
-                                <asp:ListItem>Old IC Number</asp:ListItem>
-                                <asp:ListItem>Passport</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="IDTypeValid" runat="server" ErrorMessage="ID Type cannot be empty" ControlToValidate="IDType"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
+                                <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="IDType" Text="ID TYPE" />
+                                    <asp:DropDownList ID="IDType" runat="server" CssClass="form-control" Height="25px"
+                                        AutoPostBack="True">
+                                        <asp:ListItem>IC Number</asp:ListItem>
+                                        <asp:ListItem>Old IC Number</asp:ListItem>
+                                        <asp:ListItem>Passport</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="IDTypeValid" runat="server" ErrorMessage="ID Type cannot be empty" ControlToValidate="IDType"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
 
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SenderIDNo" Text="ID NUMBER" />
-                            <asp:TextBox runat="server" ID="SenderIDNo" TextMode="Phone" CssClass="form-control" Height="25px" />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="ID Number cannot be empty" ControlToValidate="SenderIDNo"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
+                                <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="SenderIDNo" Text="ID NUMBER" />
+                                    <asp:TextBox runat="server" ID="SenderIDNo" TextMode="Phone" CssClass="form-control" Height="25px" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="ID Number cannot be empty" ControlToValidate="SenderIDNo"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
 
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SenderEmail" Text="EMAIL" />
-                            <asp:TextBox runat="server" ID="SenderEmail" TextMode="Email" CssClass="form-control" Height="25px" />
-                            <asp:RequiredFieldValidator ID="SEmailValid" runat="server" ErrorMessage="Email cannot be empty" ControlToValidate="SenderEmail"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator runat="server" ID="SEmail" ControlToValidate="SenderEmail"
-                                ErrorMessage="Invalid email format" ValidationGroup="vgSendPackage" ForeColor="Red"
-                                ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
-                        </div>
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SenderAdd" Text="ADDRESS" />
-                            <asp:TextBox runat="server" ID="SenderAdd" TextMode="SingleLine" CssClass="form-control" Height="25px" />
-                            <asp:RequiredFieldValidator ID="SAddValid" runat="server" ErrorMessage="Address cannot be empty" ControlToValidate="SenderAdd"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
+                                <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="SenderEmail" Text="EMAIL" />
+                                    <asp:TextBox runat="server" ID="SenderEmail" TextMode="Email" CssClass="form-control" Height="25px" />
+                                    <asp:RequiredFieldValidator ID="SEmailValid" runat="server" ErrorMessage="Email cannot be empty" ControlToValidate="SenderEmail"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator runat="server" ID="SEmail" ControlToValidate="SenderEmail"
+                                        ErrorMessage="Invalid email format" ValidationGroup="vgSendPackage" ForeColor="Red"
+                                        ValidationExpression="^\S+@\S+\.\S+$" Display="Dynamic" />
+                                </div>
+                                <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="SenderAdd" Text="ADDRESS" />
+                                    <asp:TextBox runat="server" ID="SenderAdd" TextMode="SingleLine" CssClass="form-control" Height="25px" />
+                                    <asp:RequiredFieldValidator ID="SAddValid" runat="server" ErrorMessage="Address cannot be empty" ControlToValidate="SenderAdd"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
 
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SenderPostal" Text="POSTAL CODE" />
-                            <asp:TextBox runat="server" ID="SenderPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"
-                                AutoPostBack="true" OnTextChanged="SenderPostal_TextChanged" />
-                            <asp:RequiredFieldValidator ID="SPosValid" runat="server" ErrorMessage="Postal code cannot be empty" ControlToValidate="SenderPostal"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group form-group-default required">
-                            <asp:Label runat="server" AssociatedControlID="SenderLocation" Text="LOCATION" />
-                            <asp:DropDownList ID="SenderLocation" runat="server" CssClass="form-control" Height="25px"
-                                AutoPostBack="True" OnSelectedIndexChanged="SenderLocation_SelectedIndexChanged">
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="SLocationValid" runat="server" ErrorMessage="Location cannot be empty" ControlToValidate="SenderLocation"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group form-group-default required">
-                            <label>CITY</label>
-                            <asp:TextBox runat="server" ID="SenderCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="SenderCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="SenderCity"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group form-group-default required">
-                            <label>STATE</label>
-                            <asp:TextBox runat="server" ID="SenderState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="SenderStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="SenderState"
-                                Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
-                        </div>
+                        
+                                 <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="SenderPostal" Text="POSTAL CODE" />
+                                    <asp:TextBox runat="server" ID="SenderPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"
+                                        AutoPostBack="true" OnTextChanged="SenderPostal_TextChanged" />
+                                    <asp:RequiredFieldValidator ID="SPosValid" runat="server" ErrorMessage="Postal code cannot be empty" ControlToValidate="SenderPostal"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group form-group-default required">
+                                    <asp:Label runat="server" AssociatedControlID="SenderLocation" Text="LOCATION" />
+                                    <asp:DropDownList ID="SenderLocation" runat="server" CssClass="form-control" Height="25px"
+                                        AutoPostBack="True" OnSelectedIndexChanged="SenderLocation_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="SLocationValid" runat="server" ErrorMessage="Location cannot be empty" ControlToValidate="SenderLocation"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group form-group-default required">
+                                    <label>CITY</label>
+                                    <asp:TextBox runat="server" ID="SenderCity" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="SenderCityValid" runat="server" ErrorMessage="City cannot be empty" ControlToValidate="SenderCity"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group form-group-default required">
+                                    <label>STATE</label>
+                                    <asp:TextBox runat="server" ID="SenderState" Height="25px" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="SenderStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="SenderState"
+                                        Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                       
 
                     </div>
                     <div class="col-lg-6 p-3">
@@ -124,7 +131,9 @@
                                 Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                         </div>
 
-                        <div class="form-group form-group-default required">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div class="form-group form-group-default required">
                             <asp:Label runat="server" AssociatedControlID="ReceiverPostal" Text="POSTAL CODE" />
                             <asp:TextBox runat="server" ID="ReceiverPostal" TextMode="SingleLine" CssClass="form-control" Height="25px"
                                 AutoPostBack="true" OnTextChanged="ReceiverPostal_TextChanged" />
@@ -151,6 +160,9 @@
                             <asp:RequiredFieldValidator ID="ReceiverStateValid" runat="server" ErrorMessage="State cannot be empty" ControlToValidate="ReceiverState"
                                 Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                         </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        
                     </div>
 
                 </div>
@@ -187,8 +199,8 @@
                         <div class="form-group form-group-default required">
                             <asp:Label AssociatedControlID="ParcelRTime" runat="server" Text="PARCEL READY TIME"></asp:Label>
 
-                            <asp:TextBox ID="ParcelRTime" runat="server" TextMode="DateTime" CssClass="form-control" Height="25px" OnLoad="ParcelRTime_Load" placeholder="HH:mm:ss"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Parcel ready time cannot be empty" ControlToValidate="ParcelRTime"
+                            <asp:TextBox ID="ParcelRTime" runat="server" TextMode="DateTime" CssClass="form-control" Height="25px" OnLoad="ParcelRTime_Load" placeholder="HH:mm:ss" OnInit="ParcelRTime_Init"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="PickUpTimeValid" runat="server" ErrorMessage="Parcel ready time cannot be empty" ControlToValidate="ParcelRTime"
                                 Display="Dynamic" ForeColor="Red" ValidationGroup="vgSendPackage"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -274,12 +286,12 @@
             </div>
             <br />
             <div class="col-12 d-flex justify-content-end">
-                <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" OnClick="QuoteBtn_Click" 
-                    ValidationGroup="vgSendPackage"  OnClientClick="return confirm('Are you sure you want to confirm');"/>
+                <asp:Button runat="server" ID="QuoteBtn" Text="Quote" CssClass="quote-btn" OnClick="QuoteBtn_Click" OnClientClick="return validate();" 
+                 />
             </div>
     </div>
     <script>
-        $(document).ready(function () {
+        function initializeSelect2() {
             $('#MainContent_SenderLocation').select2({
                 placeholder: {
                     id: '',
@@ -292,6 +304,23 @@
                     text: 'Postal code is required'
                 }
             });
+        }
+        function validate() {
+            console.log($('#MainContent_LodgeUpBtn')[0].checked);
+            if ($('#MainContent_LodgeUpBtn')[0].checked) {
+                var value = $('#MainContent_ParcelRTime').val();
+                if (value == '') {
+                    $('#MainContent_ParcelRTime').val('00:00:00');
+                }
+            }
+            if (Page_ClientValidate("vgSendPackage"))
+                    return confirm('Are you sure want to confirm?');
+            else
+                return false;
+        }
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(initializeSelect2);
+            initializeSelect2();
             $('#MainContent_LodgeUpBtn').click(function (){
                 if ($("#MainContent_LodgeUpBtn").is(":checked")) {
                     $("#parcelPickUpdetails").hide();
@@ -304,7 +333,6 @@
                     $("#pickUpTitle").show();
                 }
             });
-
         });
     </script>
 </asp:Content>

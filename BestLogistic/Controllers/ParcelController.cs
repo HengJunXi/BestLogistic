@@ -91,7 +91,7 @@ namespace BestLogistic.Controllers
 
         public static int CalculatePendingParcels(string userUid)
         {
-            string query = "select count(*) from parcel where user_uid=@UID AND status=0;";
+            string query = "select count(*) as num from parcel where user_uid=@UID AND status=0;";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -101,14 +101,14 @@ namespace BestLogistic.Controllers
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(ds);
-                    return ds.Tables[0].Rows.Count;
+                    return ds.Tables[0].Rows[0].Field<int>("num");
                 }
             }
         }
 
         public static int CalculatePickUpParcels(string userUid)
         {
-            string query = "select count(*) from parcel where user_uid=@UID AND status=1;";
+            string query = "select count(*) as num from parcel where user_uid=@UID AND status=1;";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -118,14 +118,14 @@ namespace BestLogistic.Controllers
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(ds);
-                    return ds.Tables[0].Rows.Count;
+                    return ds.Tables[0].Rows[0].Field<int>("num");
                 }
             }
         }
 
         public static int CalculateInTransitParcels(string userUid)
         {
-            string query = "select count(*) from parcel where user_uid=@UID AND (status=2 OR status=3 OR status=4 OR status=5);";
+            string query = "select count(*) as num from parcel where user_uid=@UID AND (status=2 OR status=3 OR status=4 OR status=5);";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -135,14 +135,14 @@ namespace BestLogistic.Controllers
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(ds);
-                    return ds.Tables[0].Rows.Count;
+                    return ds.Tables[0].Rows[0].Field<int>("num");
                 }
             }
         }
 
         public static int CalculateDeliveringParcels(string userUid)
         {
-            string query = "select count(*) from parcel where user_uid=@UID AND status=6;";
+            string query = "select count(*) as num from parcel where user_uid=@UID AND status=6;";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -152,14 +152,14 @@ namespace BestLogistic.Controllers
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(ds);
-                    return ds.Tables[0].Rows.Count;
+                    return ds.Tables[0].Rows[0].Field<int>("num");
                 }
             }
         }
 
         public static int CalculateDeliveredParcels(string userUid)
         {
-            string query = "select count(*) from parcel where user_uid=@UID AND status=7;";
+            string query = "select count(*) as num from parcel where user_uid=@UID AND status=7;";
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -169,7 +169,7 @@ namespace BestLogistic.Controllers
                 using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                 {
                     adapter.Fill(ds);
-                    return ds.Tables[0].Rows.Count;
+                    return ds.Tables[0].Rows[0].Field<int>("num");
                 }
             }
         }
