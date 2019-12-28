@@ -100,77 +100,85 @@ namespace BestLogistic
         
         protected void QuoteBtn_Click(object sender, EventArgs e)
         {
-            
-            decimal PickupPrice=0,deliveryfee;
-            bool serviceType = true;
-            if (LodgeUpBtn.Checked)
+            try
             {
-                serviceType = false;
-                PickupPrice = 0;
+                decimal PickupPrice = 0, deliveryfee;
+                bool serviceType = true;
+                if (LodgeUpBtn.Checked)
+                {
+                    serviceType = false;
+                    PickupPrice = 0;
+                }
+                else if (PickUpBtn.Checked)
+                {
+                    serviceType = true;
+                    PickupPrice = 5;
+                }
+
+
+                bool parcelType = true;
+                if (TypeofParcel.SelectedItem.ToString() == "Parcel")
+                    parcelType = false;
+                else
+                    parcelType = true;
+
+                ParcelInfo parcelInfo = new ParcelInfo(serviceType, parcelType, Convert.ToByte(Pieces.Text), Content.Text, Convert.ToDecimal(ValueofContent.Text),
+                    Convert.ToSingle(Weight.Text), 0, PickupPrice);
+
+                if (LodgeUpBtn.Checked)
+                {
+                    deliveryfee = ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, null);
+                }
+                else
+                {
+                    PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarksNote.Text, true);
+                    deliveryfee = ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
+                }
+
+
+                //Response.Redirect("Checkout.aspx");
+                HttpContext.Current.Items.Add("DeliveryFee", deliveryfee);
+                HttpContext.Current.Items.Add("PickUpFee", PickupPrice);
+                HttpContext.Current.Items.Add("SenderName", SenderName.Text);
+                HttpContext.Current.Items.Add("SenderContactNo", SenderContactNo.Text);
+                HttpContext.Current.Items.Add("IDType", IDType.Text);
+                HttpContext.Current.Items.Add("SenderIDNo", SenderIDNo.Text);
+                HttpContext.Current.Items.Add("SenderAddress", SenderAdd.Text);
+                HttpContext.Current.Items.Add("SenderPostal", SenderPostal.Text);
+                HttpContext.Current.Items.Add("SenderLocation", SenderLocation.Text);
+                HttpContext.Current.Items.Add("SenderCity", SenderCity.Text);
+                HttpContext.Current.Items.Add("SenderState", SenderState.Text);
+                HttpContext.Current.Items.Add("SenderEmail", SenderEmail.Text);
+
+                HttpContext.Current.Items.Add("ServiceType", serviceType);
+                if (serviceType == true)
+                {
+                    HttpContext.Current.Items.Add("PickUpDate", dbPickUpDate.Text);
+                    HttpContext.Current.Items.Add("PickUpTime", ParcelRTime.Text);
+                    HttpContext.Current.Items.Add("Remarks", remarksNote.Text);
+                }
+
+                HttpContext.Current.Items.Add("ReceiverName", ReceiverName.Text);
+                HttpContext.Current.Items.Add("ReceiverContactNo", ReceiverContactNo.Text);
+                HttpContext.Current.Items.Add("ReceiverAddress", ReceiverAdd.Text);
+                HttpContext.Current.Items.Add("ReceiverPostal", ReceiverPostal.Text);
+                HttpContext.Current.Items.Add("ReceiverLocation", ReceiverLocation.Text);
+                HttpContext.Current.Items.Add("ReceiverCity", ReceiverCity.Text);
+                HttpContext.Current.Items.Add("ReceiverState", ReceiverState.Text);
+                HttpContext.Current.Items.Add("ReceiverEmail", ReceiverEmail.Text);
+
+                HttpContext.Current.Items.Add("ParcelType", parcelType);
+                HttpContext.Current.Items.Add("Pieces", Pieces.Text);
+                HttpContext.Current.Items.Add("Content", Content.Text);
+                HttpContext.Current.Items.Add("ValueofContent", ValueofContent.Text);
+                HttpContext.Current.Items.Add("Weight", Weight.Text);
+
             }
-            else if(PickUpBtn.Checked)
+            catch (NullReferenceException)
             {
-                serviceType = true;
-                PickupPrice = 5;
-            }
-                
 
-            bool parcelType = true;
-            if (TypeofParcel.SelectedItem.ToString() == "Parcel")
-                parcelType = false;
-            else
-                parcelType = true;
-           
-            ParcelInfo parcelInfo = new ParcelInfo(serviceType,parcelType,Convert.ToByte(Pieces.Text),Content.Text,Convert.ToDecimal(ValueofContent.Text),
-                Convert.ToSingle(Weight.Text), 0, PickupPrice);
-            
-            if (LodgeUpBtn.Checked)
-            {
-                deliveryfee= ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, null);
-            }
-            else
-            {
-                PickUpInfo pickupInfo = new PickUpInfo(Convert.ToDateTime(dbPickUpDate.Text), Convert.ToDateTime(ParcelRTime.Text), remarksNote.Text, true);
-                deliveryfee = ParcelController.Quote(SenderLocation.Text, SenderPostal.Text, ReceiverLocation.Text, ReceiverPostal.Text, parcelInfo, pickupInfo);
             }
 
-
-            //Response.Redirect("Checkout.aspx");
-            HttpContext.Current.Items.Add("DeliveryFee", deliveryfee);
-            HttpContext.Current.Items.Add("PickUpFee", PickupPrice);
-            HttpContext.Current.Items.Add("SenderName", SenderName.Text);
-            HttpContext.Current.Items.Add("SenderContactNo", SenderContactNo.Text);
-            HttpContext.Current.Items.Add("IDType", IDType.Text);
-            HttpContext.Current.Items.Add("SenderIDNo", SenderIDNo.Text);
-            HttpContext.Current.Items.Add("SenderAddress", SenderAdd.Text);
-            HttpContext.Current.Items.Add("SenderPostal", SenderPostal.Text);
-            HttpContext.Current.Items.Add("SenderLocation", SenderLocation.Text);
-            HttpContext.Current.Items.Add("SenderCity", SenderCity.Text);
-            HttpContext.Current.Items.Add("SenderState", SenderState.Text);
-            HttpContext.Current.Items.Add("SenderEmail", SenderEmail.Text);
-
-            HttpContext.Current.Items.Add("ServiceType", serviceType);
-            if (serviceType == true)
-            {
-                HttpContext.Current.Items.Add("PickUpDate", dbPickUpDate.Text);
-                HttpContext.Current.Items.Add("PickUpTime", ParcelRTime.Text);
-                HttpContext.Current.Items.Add("Remarks", remarksNote.Text);
-            }
-
-            HttpContext.Current.Items.Add("ReceiverName", ReceiverName.Text);
-            HttpContext.Current.Items.Add("ReceiverContactNo", ReceiverContactNo.Text);
-            HttpContext.Current.Items.Add("ReceiverAddress", ReceiverAdd.Text);
-            HttpContext.Current.Items.Add("ReceiverPostal", ReceiverPostal.Text);
-            HttpContext.Current.Items.Add("ReceiverLocation", ReceiverLocation.Text);
-            HttpContext.Current.Items.Add("ReceiverCity", ReceiverCity.Text);
-            HttpContext.Current.Items.Add("ReceiverState", ReceiverState.Text);
-            HttpContext.Current.Items.Add("ReceiverEmail", ReceiverEmail.Text);
-
-            HttpContext.Current.Items.Add("ParcelType", parcelType);
-            HttpContext.Current.Items.Add("Pieces", Pieces.Text);
-            HttpContext.Current.Items.Add("Content", Content.Text);
-            HttpContext.Current.Items.Add("ValueofContent", ValueofContent.Text);
-            HttpContext.Current.Items.Add("Weight", Weight.Text);
 
             try
             {
@@ -182,8 +190,45 @@ namespace BestLogistic
             }
         }
 
-     
+        protected void cbDefaultAddress_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (Authentication.GetUid() != null)
+            {
+                if (cbDefaultAddress.Checked)
+                {
+                    Repository repository = new Repository();
+                    User senderDefault = repository.GetUser(Authentication.GetUid());
+                    SenderName.Text = senderDefault.Name;
+                    SenderContactNo.Text = senderDefault.PhoneNumber;
+                    IDType.SelectedValue = senderDefault.IdType.ToString();
+                    
+                    SenderIDNo.Text = senderDefault.IdNumber;
+                    SenderEmail.Text = senderDefault.Email;
+                    SenderAdd.Text = senderDefault.Address;
+                    SenderPostal.Text = senderDefault.Postcode;
 
-       
+                    ArrayList arr = repository.GetAreaFromPostCode(senderDefault.Postcode);
+                    SenderLocation.Items.Clear();
+                    SenderLocation.DataSource = arr;
+                    SenderLocation.DataBind();
+                    string[] arr2 = repository.GetCityAndStateFromPostCodeAndLocation(SenderPostal.Text, SenderLocation.Text);
+                    SenderCity.Text = arr2[0];
+                    SenderState.Text = arr2[1];
+                }
+                else
+                {
+                    SenderName.Text = "";
+                    SenderContactNo.Text = "";
+                    SenderIDNo.Text = "";
+                    SenderEmail.Text = "";
+                    SenderAdd.Text = "";
+                    SenderPostal.Text = "";
+                    SenderLocation.Items.Clear();
+                    SenderCity.Text = "";
+                    SenderState.Text = "";
+                }
+            }
+        }
     }
 }
