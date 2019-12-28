@@ -315,7 +315,15 @@ namespace BestLogistic.Controllers
 
         public List<ShipmentRecord> GetShipmentHistory (string userId)
         {
-            string query = "select * from parcel where user_uid=@UID;";
+            string query = "select P.*, " +
+                "P1.area as sender_city, P1.state_code as sender_state, " +
+                "P2.area as receiver_city, P2.state_code as receiver_state " +
+                "from parcel P " +
+                "inner join postcode P1 " +
+                "on (P.sender_postcode=P1.postcode AND P.sender_location=P1.area) " +
+                "inner join postcode P2 " +
+                "on (P.receiver_postcode=P2.postcode AND P.receiver_location=P2.area) " +
+                "where user_uid=@UID order by P.tracking_number desc;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -329,7 +337,7 @@ namespace BestLogistic.Controllers
                     adapter.Fill(ds);
                     List<ShipmentRecord> list = new List<ShipmentRecord>();
                     
-                    for (int i = 0; i < list.Count; i++)
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         list.Add(new ShipmentRecord(
                             ds.Tables[0].Rows[i].Field<int>("tracking_number"),
@@ -337,10 +345,14 @@ namespace BestLogistic.Controllers
                             ds.Tables[0].Rows[i].Field<string>("sender_address"),
                             ds.Tables[0].Rows[i].Field<string>("sender_location"),
                             ds.Tables[0].Rows[i].Field<string>("sender_postcode"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_city"),
+                            ds.Tables[0].Rows[i].Field<string>("sender_state"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_name"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_address"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_location"),
                             ds.Tables[0].Rows[i].Field<string>("receiver_postcode"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_city"),
+                            ds.Tables[0].Rows[i].Field<string>("receiver_state"),
                             ds.Tables[0].Rows[i].Field<DateTime?>("delivered_date")));
                     }   
 

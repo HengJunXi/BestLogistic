@@ -15,7 +15,7 @@
                             Pending
                         </div>
                         <div class="text-center">
-                            0
+                            <asp:Label ID="pendingNum" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                             Pick-Up
                         </div>
                         <div class="text-center">
-                            0
+                            <asp:Label ID="pickUpNum" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             In transit
                         </div>
                         <div class="text-center">
-                            0
+                            <asp:Label ID="inTransitNum" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             Out of delivery
                         </div>
                         <div class="text-center">
-                            0
+                            <asp:Label ID="outOfDeliveryNum" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             Delivered
                         </div>
                         <div class="text-center">
-                            0
+                            <asp:Label ID="deliveredNum" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                 </div>
@@ -70,18 +70,48 @@
                     Shipment history
                 </div>
                 <div class="row">
-                    <div class="col-3 text-center" >
-                        <asp:Label ID="Label1" runat="server" Text="Tracking Number"></asp:Label>
-                    </div>
-                    <div class="col-3 text-center" >
-                        <asp:Label ID="Label2" runat="server" Text="Sender Infomation"></asp:Label>
-                    </div>
-                    <div class="col-3 text-center" >
-                        <asp:Label ID="Label3" runat="server" Text="Receiver Infomation"></asp:Label>
-                    </div>
-                    <div class="col-3 text-center" >
-                        <asp:Label ID="Label4" runat="server" Text="Delivered Date"></asp:Label>
-                    </div>
+                    <asp:Repeater ID="ShipmentHistory" runat="server">
+                        <HeaderTemplate>
+                            <div class="col-2 text-center font-weight-bold" >
+                                <asp:Label ID="Label1" runat="server" Text="Tracking Number"></asp:Label>
+                            </div>
+                            <div class="col-2 text-center font-weight-bold" >
+                                <asp:Label ID="Label2" runat="server" Text="Sender Name"></asp:Label>
+                            </div>
+                            <div class="col-2 text-center font-weight-bold" >
+                                <asp:Label ID="Label3" runat="server" Text="Receiver Name"></asp:Label>
+                            </div>
+                            <div class="col-4 text-center font-weight-bold" >
+                                <asp:Label ID="Label5" runat="server" Text="Receiver Address"></asp:Label>
+                            </div>
+                            <div class="col-2 text-center font-weight-bold" >
+                                <asp:Label ID="Label4" runat="server" Text="Delivered Date"></asp:Label>
+                            </div>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <div class="col-2 text-center" >
+                                <asp:Label ID="Label1" runat="server" Text=" <%# ((BestLogistic.Models.ShipmentRecord)Container.DataItem).TrackingNumber %>"></asp:Label>
+                            </div>
+                            <div class="col-2 text-center" >
+                                <asp:Label ID="Label2" runat="server" Text=" <%# ((BestLogistic.Models.ShipmentRecord)Container.DataItem).SenderName %>"></asp:Label>
+                            </div>
+                            <div class="col-2 text-center" >
+                                <asp:Label ID="Label3" runat="server" Text=" <%# ((BestLogistic.Models.ShipmentRecord)Container.DataItem).ReceiverName %>"></asp:Label>
+                            </div>
+                            <div class="col-4 text-center" >
+                                <asp:Label ID="Label5" runat="server" Text=" <%# ((BestLogistic.Models.ShipmentRecord)Container.DataItem).ReceiverAddress %>"></asp:Label>
+                            </div>
+                            <div class="col-2 text-center" >
+                                <asp:Label ID="Label4" runat="server" Text= <%# ((BestLogistic.Models.ShipmentRecord)Container.DataItem).DeliveredDate %>></asp:Label>
+                            </div>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                                
+                        </FooterTemplate>
+                    </asp:Repeater>
+
+                   
+                    
                 </div>
             </div>
         </div>

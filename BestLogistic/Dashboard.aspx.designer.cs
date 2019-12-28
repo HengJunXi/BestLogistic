@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BestLogistic
-{
-
-
-    public partial class Dashboard
-    {
-
+namespace BestLogistic {
+    
+    
+    public partial class Dashboard {
+        
         /// <summary>
         /// Username control.
         /// </summary>
@@ -22,41 +20,59 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Username;
-
+        
         /// <summary>
-        /// Label1 control.
+        /// pendingNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
+        protected global::System.Web.UI.WebControls.Label pendingNum;
+        
         /// <summary>
-        /// Label2 control.
+        /// pickUpNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
+        protected global::System.Web.UI.WebControls.Label pickUpNum;
+        
         /// <summary>
-        /// Label3 control.
+        /// inTransitNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
+        protected global::System.Web.UI.WebControls.Label inTransitNum;
+        
         /// <summary>
-        /// Label4 control.
+        /// outOfDeliveryNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label outOfDeliveryNum;
+        
+        /// <summary>
+        /// deliveredNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label deliveredNum;
+        
+        /// <summary>
+        /// ShipmentHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ShipmentHistory;
     }
 }
