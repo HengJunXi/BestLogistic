@@ -41,6 +41,9 @@
                             </div>
                         </div>               
                     </div>
+                    <div>
+                        <asp:Label ID="Print" runat="server" Text="*Please print this order summary as your consignment note and paste it on your parcel." ForeColor="Red"></asp:Label>
+                    </div>
                     <div class="col-lg-12 p-0 collapse-border thick-border ">
                         <a href="#detail" data-toggle="collapse" class="text-decoration-none">
                             <div class="dashboard-upper text-white p-8">
