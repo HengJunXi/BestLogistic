@@ -151,6 +151,7 @@
     <Content Include="Icons\truck-solid.svg" />
     <Content Include="Icons\user-solid.svg" />
     <Content Include="Icons\warehouse-solid.svg" />
+    <Content Include="Images\background.png" />
     <Content Include="Images\done.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\pic.png" />
