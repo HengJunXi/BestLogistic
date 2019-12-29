@@ -141,11 +141,6 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Database\best_logistic.sql" />
     <Content Include="Database\best_logistic_demo.sql" />
-    <Content Include="Database\create_database.sql" />
-    <Content Include="Database\create_route.sql" />
-    <Content Include="Database\create_state_postcode.sql" />
-    <Content Include="Database\database_operation.sql" />
-    <Content Include="Database\create_point.sql" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -288,7 +283,6 @@
     <Compile Include="OrderSummary.aspx.designer.cs">
       <DependentUpon>OrderSummary.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdType.cs" />
     <Compile Include="Models\ParcelStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Profile.aspx.cs">

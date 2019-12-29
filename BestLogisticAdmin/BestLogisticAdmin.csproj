@@ -100,7 +100,6 @@
     <Compile Include="Models\PersonInfo.cs" />
     <Compile Include="Models\PickUpInfo.cs" />
     <Compile Include="Models\Staff.cs" />
-    <Compile Include="Models\Trip.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateParcelDetails.cs">
