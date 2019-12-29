@@ -47,6 +47,8 @@ namespace BestLogistic
         protected void TrackBtn_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("Track!");
+            ImageDisplay.Visible = false;
+            MapDisplayPanel.Visible = true;
             ErrorMessage.Visible = false;
             statusList.Clear();
 
@@ -131,6 +133,9 @@ namespace BestLogistic
                                     records[i].ArrivalDateTime?.ToShortDateString(),
                                     records[i].ArrivalDateTime?.ToShortTimeString(),
                                     status);
+                                ImageDisplay.ImageUrl = "Images/delivered.png";
+                                ImageDisplay.Visible = true;
+                                MapDisplayPanel.Visible = false;
                             }
                         }
                         else        // previous transit
@@ -145,6 +150,9 @@ namespace BestLogistic
                 } 
                 else
                 {
+                    ImageDisplay.ImageUrl = "Images/pending.png";
+                    ImageDisplay.Visible = true;
+                    MapDisplayPanel.Visible = false;
                     ErrorMessage.ForeColor = System.Drawing.Color.Red;
                     ErrorMessage.Text = "Parcel is pending";
                     ErrorMessage.Visible = true;
@@ -152,6 +160,9 @@ namespace BestLogistic
             } 
             else
             {
+                ImageDisplay.ImageUrl = "Images/not-found.png";
+                ImageDisplay.Visible = true;
+                MapDisplayPanel.Visible = false;
                 ParcelStatusRepeater.Visible = false;
                 ShowMoreBtn.Visible = false;
                 MapPanel.Visible = false;

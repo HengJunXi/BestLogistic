@@ -123,6 +123,24 @@ namespace BestLogistic
         protected global::System.Web.UI.WebControls.TextBox ParcelStatus;
 
         /// <summary>
+        /// ImageDisplay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageDisplay;
+
+        /// <summary>
+        /// MapDisplayPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MapDisplayPanel;
+
+        /// <summary>
         /// MapPanel control.
         /// </summary>
         /// <remarks>
