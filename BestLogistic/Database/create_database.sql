@@ -166,6 +166,10 @@ INSERT INTO staff (uid, password_hash, hash_salt, branch_id, name) VALUES
 ('6F99B241-7C39-4957-8A9B-7EEEE8A7BF2A', '/o+xUzI3ZR6l/G8d15q/wv6ySgY=', 'Qx8Pk3B1ZSc19pZCFLChvw==', 'ChIJ7ciSyEquSjARqdvRktxutKI', 'Loh Shu Yi'),
 ('C1713FC0-118D-4650-9314-26480E210F8D', 'yCV9BB0Zha9pMyuZ7Bn/4Py1Qqk=', 'lavcNAWHs5Nr7722Lxw6gg==', 'ChIJTfBUxjVs2jER3vZ-g6U8JkI', 'Lim Carol');
 
+INSERT INTO staff (uid, password_hash, hash_salt, branch_id, name) VALUES 
+('E838E791-8779-4C63-BA96-F383573651D6', 'vDpHEVhmiQ/6tCbLgZHqc1Krseo=', 'gVUyyKRBN8QDqDNCQ/wtpw==', 'ChIJIeom6DpOzDERFh89Ox4KCig', 'Lee Rou'),
+('4BD77DA5-F12E-4D0F-82F8-69C0A2397489', 'yJSZm7i+2WS4VPHj3KWie7rc/2c=', 'xmnA0ThQMxqPLh+/CgkN1g==', 'ChIJoxijCENpzDERzC5DDRq2J8E', 'Chong Kai Xin');
+
 --INSERT INTO parcel (user_uid, sender_id_type, type, pieces, value, weight, delivery_fee, service, pick_up_fee, sender_postcode, sender_location, receiver_postcode, receiver_location) VALUES
 --(null, 1, 0, 1, 10, 1, 5, 0, 0, '50460', 'Wisma Putra', '81800', 'Kampung AC Batu 18'),
 --(null, 1, 0, 5, 10, 4, 10, 1, 5, '81800', 'Kampung AC Batu 18', '14300', 'Taman Pekaka'),

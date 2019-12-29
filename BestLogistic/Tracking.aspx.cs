@@ -13,7 +13,7 @@ namespace BestLogistic
     public partial class Tracking : System.Web.UI.Page
     {
         static List<ParcelStatus> statusList = new List<ParcelStatus>();
-        readonly int limit = 3;
+        readonly int limit = 2;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace BestLogistic
                     for (int i = 0; i < records.Count; i++)
                     {
                         ParcelStatus parcelStatus;
-                        if (i == 0 && tr.Status != 4)
+                        if (i == 0)
                         {
                             string status = string.Empty;
                             if (tr.Status == 2 || tr.Status == 3 || tr.Status == 5)
@@ -97,6 +97,17 @@ namespace BestLogistic
                                 }
                                 parcelStatus = new ParcelStatus("...", "...", status);
                             } 
+                            else if (tr.Status == 4)
+                            {
+                                parcelStatus = new ParcelStatus(
+                                    records[i].DepartureDateTime?.ToShortDateString(),
+                                    records[i].DepartureDateTime?.ToShortTimeString(),
+                                    "Transiting from " + records[i].Departure + " to " + records[i].Arrival);
+                                DepBranch.Text = records[i].DeparturePoint;
+                                DepBranchName.Text = records[i].Departure + " Branch";
+                                ArrBranch.Text = records[i].ArrivalPoint;
+                                ArrBranchName.Text = records[i].Arrival + " Branch";
+                            }
                             else if (tr.Status == 6)
                             {
                                 status = "Delivering from " + records[i].Departure + " to receiver address";
@@ -122,7 +133,7 @@ namespace BestLogistic
                                     status);
                             }
                         }
-                        else        // 4 & previous transit
+                        else        // previous transit
                         {
                             parcelStatus = new ParcelStatus(
                                 records[i].ArrivalDateTime?.ToShortDateString(),
