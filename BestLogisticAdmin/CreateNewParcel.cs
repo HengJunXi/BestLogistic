@@ -19,9 +19,11 @@ namespace BestLogisticAdmin
 {
     public partial class CreateNewParcel : Form
     {
-        public CreateNewParcel()
+        Best_Logistic_Administrator admin;
+        public CreateNewParcel(Best_Logistic_Administrator admin)
         {
             InitializeComponent();
+            this.admin = admin;
         }
 
         private void SenderContactNo_LocationChanged(object sender, EventArgs e)
@@ -74,6 +76,8 @@ namespace BestLogisticAdmin
                 
                 ParcelController.Create(Convert.ToByte(senderIDType),tbSenderidNumber.Text,sender1,receiver1,parcelInfo,Authentication.CurrentStaff.BranchId);
                 MessageBox.Show("Add Success!");
+                this.Close();
+                admin.registerHereLoad();
             }
             
         }

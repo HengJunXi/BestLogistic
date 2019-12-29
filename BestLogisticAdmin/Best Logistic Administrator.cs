@@ -42,7 +42,7 @@ namespace BestLogisticAdmin
 
         private void add_Click(object sender, EventArgs e)
         {
-            CreateNewParcel addPage = new CreateNewParcel();
+            CreateNewParcel addPage = new CreateNewParcel(this);
             addPage.ShowDialog();
         }
 
