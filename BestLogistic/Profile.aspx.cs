@@ -57,16 +57,21 @@ namespace BestLogistic
             homeNumber.Text = user.HomeNumber;
             mobileNumber.Text = user.PhoneNumber;
 
-            ArrayList arr = repository.GetAreaFromPostCode(user.Postcode);
-            userLocation.Items.Clear();
-            userLocation.DataSource = arr;
-            userLocation.DataBind();
+            if (user.Postcode != null || user.Location != null)
+            {
+                ArrayList arr = repository.GetAreaFromPostCode(user.Postcode);
+                userLocation.Items.Clear();
+                userLocation.DataSource = arr;
+                userLocation.DataBind();
 
-            string[] array = repository.GetCityAndStateFromPostCodeAndLocation(user.Postcode, user.Location);
-            city.Text = array[0];
-            state.Text = array[1];
+                string[] array = repository.GetCityAndStateFromPostCodeAndLocation(user.Postcode, user.Location);
+                city.Text = array[0];
+                state.Text = array[1];
 
-            userLocation.SelectedValue = user.Location;
+                userLocation.SelectedValue = user.Location;
+            }
+
+            
 
 
         }
@@ -112,6 +117,7 @@ namespace BestLogistic
             else
             {
                 Repository.UpdateUserAddress(user.Uid, address.Text, postCode.Text, userLocation.SelectedValue);
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "alert('Update address successful');", true);
             }
         }
 

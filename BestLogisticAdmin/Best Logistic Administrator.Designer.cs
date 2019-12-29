@@ -202,6 +202,7 @@
             // 
             // radioButton6
             // 
+            this.radioButton6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton6.AutoSize = true;
             this.radioButton6.Location = new System.Drawing.Point(120, 30);
             this.radioButton6.Name = "radioButton6";
