@@ -1,16 +1,26 @@
 # BestLogistic
 Course Name: Programming Elective II (2)
+
 Course Code: SWE310
+
 Lecturer: Dr. Xiao Han
+
 Academic Session: 2019/09
+
 
 Project Name: Best Logistic
 
+
 Team Member:
+
 (Name) (Student Id) (Github Account)
+
 Heng Jun Xi SWE1704023 HengJunXi
+
 Loh Shu Yi SWE1704010 Loh-Shuyi
+
 Lim Carol SWE1704205 carol8888
+
 
 
 Steps to run the project:
