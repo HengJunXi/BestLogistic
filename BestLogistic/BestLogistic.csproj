@@ -152,8 +152,11 @@
     <Content Include="Icons\user-solid.svg" />
     <Content Include="Icons\warehouse-solid.svg" />
     <Content Include="Images\background.png" />
+    <Content Include="Images\delivered.png" />
     <Content Include="Images\done.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\not-found.png" />
+    <Content Include="Images\pending.png" />
     <Content Include="Images\pic.png" />
     <Content Include="OrderSummary.aspx" />
     <Content Include="Profile.aspx" />

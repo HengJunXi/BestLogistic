@@ -50,14 +50,16 @@
                 </asp:UpdatePanel>
                 
             </div>
-            
             <asp:TextBox runat="server" ID="DepBranch" hidden/>
             <asp:TextBox runat="server" ID="DepBranchName" hidden/>
             <asp:TextBox runat="server" ID="ArrBranch" hidden/>
             <asp:TextBox runat="server" ID="ArrBranchName" hidden/>
             <asp:TextBox runat="server" ID="ParcelStatus" hidden/>
+            <asp:Image runat="server" Visible="false" ID="ImageDisplay" Height="450px"/>
+            <asp:Panel runat="server" CssClass="col-lg-6" ID="MapDisplayPanel">
+                <div id="map" class="" style="height: 450px;"></div>
+            </asp:Panel>
 
-            <div id="map" class="col-lg-6" style="height: 450px;"></div>
         </div>
     </div>
 
@@ -75,6 +77,9 @@
                     arrBranch = depBranch;
                 var parcelStatus = document.getElementById('MainContent_ParcelStatus').value;
 
+                if (parcelStatus == 7) {
+                    return;
+                }
 
                 var mapElement = document.getElementById('map');
                 mapElement.style.display = "none";
