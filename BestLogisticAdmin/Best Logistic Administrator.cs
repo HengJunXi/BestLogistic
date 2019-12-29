@@ -285,6 +285,7 @@ namespace BestLogisticAdmin
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
+
                 //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
             }
             else
@@ -393,6 +394,9 @@ namespace BestLogisticAdmin
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode");
                 dataGridView1.DataSource = dt1;
+
+                dataGridView1.Columns["plate_number"].DisplayIndex = 2;
+
                 endTripBtn.Enabled = true;
             }
             else
@@ -415,7 +419,7 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
-
+                    dataGridView1.Columns["plate_number"].DisplayIndex = 2;
                 }
                 j++;
             }
@@ -443,6 +447,7 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
+                    dataGridView1.Columns["plate_number"].DisplayIndex = 2;
                 }
 
             }
@@ -462,12 +467,12 @@ namespace BestLogisticAdmin
                 DataTable dt1 = new DataTable();
 
                 dt1 = dt.DefaultView.ToTable(
-                    true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
+                    true, "tracking_number", "delivered_date", "pieces", "weight", "date_created", "sender_name",
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
-
+                dataGridView1.Columns["delivered_date"].DisplayIndex = 2;
             }
         }
 
