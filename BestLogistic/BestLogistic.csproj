@@ -140,6 +140,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Database\best_logistic.sql" />
+    <Content Include="Database\best_logistic_demo.sql" />
     <Content Include="Database\create_database.sql" />
     <Content Include="Database\create_route.sql" />
     <Content Include="Database\create_state_postcode.sql" />
