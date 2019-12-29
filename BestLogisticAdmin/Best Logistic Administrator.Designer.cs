@@ -33,11 +33,12 @@
             this.changeRoute = new System.Windows.Forms.Button();
             this.deleteParcel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.checkAll = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.registerOnline = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.endTripBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.check = new System.Windows.Forms.Button();
+            this.branchName = new System.Windows.Forms.Label();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -47,7 +48,7 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.pickUpRB = new System.Windows.Forms.RadioButton();
-            this.branchName = new System.Windows.Forms.Label();
+            this.uncheckBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -122,18 +123,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.checkAll});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 178);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 203);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(860, 363);
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.Size = new System.Drawing.Size(860, 338);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_RowHeaderMouseDoubleClick);
-            // 
-            // checkAll
-            // 
-            this.checkAll.HeaderText = " ";
-            this.checkAll.Name = "checkAll";
             // 
             // registerOnline
             // 
@@ -201,6 +196,26 @@
             this.groupBox1.Size = new System.Drawing.Size(855, 98);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            // 
+            // check
+            // 
+            this.check.Location = new System.Drawing.Point(18, 174);
+            this.check.Name = "check";
+            this.check.Size = new System.Drawing.Size(75, 23);
+            this.check.TabIndex = 12;
+            this.check.Text = "Check all";
+            this.check.UseVisualStyleBackColor = true;
+            this.check.Click += new System.EventHandler(this.Check_Click);
+            // 
+            // branchName
+            // 
+            this.branchName.AutoSize = true;
+            this.branchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.branchName.Location = new System.Drawing.Point(-5, 66);
+            this.branchName.Name = "branchName";
+            this.branchName.Size = new System.Drawing.Size(186, 31);
+            this.branchName.TabIndex = 11;
+            this.branchName.Text = "Sungai Buloh";
             // 
             // radioButton6
             // 
@@ -318,21 +333,23 @@
             this.pickUpRB.UseVisualStyleBackColor = true;
             this.pickUpRB.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
-            // branchName
+            // uncheckBtn
             // 
-            this.branchName.AutoSize = true;
-            this.branchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.branchName.Location = new System.Drawing.Point(-5, 66);
-            this.branchName.Name = "branchName";
-            this.branchName.Size = new System.Drawing.Size(186, 31);
-            this.branchName.TabIndex = 11;
-            this.branchName.Text = "Sungai Buloh";
+            this.uncheckBtn.Location = new System.Drawing.Point(115, 174);
+            this.uncheckBtn.Name = "uncheckBtn";
+            this.uncheckBtn.Size = new System.Drawing.Size(75, 23);
+            this.uncheckBtn.TabIndex = 13;
+            this.uncheckBtn.Text = "Uncheck all";
+            this.uncheckBtn.UseVisualStyleBackColor = true;
+            this.uncheckBtn.Click += new System.EventHandler(this.UncheckBtn_Click);
             // 
             // Best_Logistic_Administrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 553);
+            this.Controls.Add(this.uncheckBtn);
+            this.Controls.Add(this.check);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.endTripBtn);
             this.Controls.Add(this.button1);
@@ -364,7 +381,6 @@
         private System.Windows.Forms.Button changeRoute;
         private System.Windows.Forms.Button deleteParcel;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn checkAll;
         private System.Windows.Forms.Button registerOnline;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button endTripBtn;
@@ -379,5 +395,7 @@
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.Label branchName;
+        private System.Windows.Forms.Button check;
+        private System.Windows.Forms.Button uncheckBtn;
     }
 }

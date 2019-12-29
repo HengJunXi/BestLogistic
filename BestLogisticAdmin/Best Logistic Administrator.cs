@@ -177,6 +177,8 @@ namespace BestLogisticAdmin
             branchName.Text = staff.Branch;
 
             registerHereLoad();
+            dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
+            
         }
 
         private void DataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -285,8 +287,8 @@ namespace BestLogisticAdmin
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
+                
 
-                //dataGridView1.Columns.Insert(0, new DataGridViewCheckBoxColumn());
             }
             else
             {
@@ -331,6 +333,7 @@ namespace BestLogisticAdmin
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
+                
                 changeStatus.Enabled = false;
             }
             else if (comboBox1.SelectedIndex == 1)
@@ -344,6 +347,7 @@ namespace BestLogisticAdmin
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
+                
                 changeStatus.Enabled = true;
             }
             else
@@ -367,6 +371,7 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
+                    
 
                 }
                 j++;
@@ -396,7 +401,7 @@ namespace BestLogisticAdmin
                 dataGridView1.DataSource = dt1;
 
                 dataGridView1.Columns["plate_number"].DisplayIndex = 2;
-
+                
                 endTripBtn.Enabled = true;
             }
             else
@@ -419,6 +424,7 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
+                    
                     dataGridView1.Columns["plate_number"].DisplayIndex = 2;
                 }
                 j++;
@@ -447,6 +453,7 @@ namespace BestLogisticAdmin
                         "receiver_location", "receiver_postcode");
 
                     dataGridView1.DataSource = dt1;
+                    
                     dataGridView1.Columns["plate_number"].DisplayIndex = 2;
                 }
 
@@ -472,6 +479,7 @@ namespace BestLogisticAdmin
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
+                
                 dataGridView1.Columns["delivered_date"].DisplayIndex = 2;
             }
         }
@@ -505,6 +513,22 @@ namespace BestLogisticAdmin
                 MessageBox.Show("Added Successful");
 
                 ViewOnlinePickUpRequest();
+            }
+        }
+
+        private void Check_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = true;
+            }
+        }
+
+        private void UncheckBtn_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = false;
             }
         }
     }
