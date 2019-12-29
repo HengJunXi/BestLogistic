@@ -199,14 +199,22 @@ namespace BestLogisticAdmin
                     list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
                 }
             }
-
-            EndTrip endTripForm = new EndTrip(this, comboBox2.Text,comboBox2.SelectedValue.ToString(), list);
-            endTripForm.ShowDialog();
+            if (comboBox3.Text == "Home")
+            {
+                EndTrip endTripForm1 = new EndTrip(this, comboBox3.Text, null, list);
+                endTripForm1.ShowDialog();
+            }
+            else
+            {
+                EndTrip endTripForm = new EndTrip(this, comboBox2.Text, comboBox2.SelectedValue.ToString(), list);
+                endTripForm.ShowDialog();
+            }
+            
         }
 
         private void RegisterOnline_Click(object sender, EventArgs e)
         {
-            OnlineLodge lodge = new OnlineLodge();
+            OnlineLodge lodge = new OnlineLodge(this);
             lodge.ShowDialog();
         }
 
@@ -380,6 +388,7 @@ namespace BestLogisticAdmin
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode", "plate_number");
                 dataGridView1.DataSource = dt1;
+                button2.Enabled = true;
             }
             int j = 1;
             for (int i = 0; i < list.Count; i++)

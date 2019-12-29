@@ -24,10 +24,17 @@ namespace BestLogisticAdmin
             InitializeComponent();
             branchId = staff.BranchId;
                     
-            label1.Text = branchName;
             this.trackingNumList = trackingNumList;
             this.route = route;
             this.admin = admin;
+            if (route == null)
+            {
+                status.Text = "End trip to " + branchName;
+            }
+            else
+            {
+                status.Text = "End trip from " + branchName;
+            }
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)

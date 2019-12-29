@@ -56,8 +56,7 @@
     <div class="container">
         <div class="row dashboard-margin">
             <div class="col-lg-12 p-0 dashboard-border ">
-                <asp:UpdatePanel runat="server" >
-                    <ContentTemplate>
+
                         <div class="dashboard-upper text-white p-8">
                             <asp:Label ID="Label8" runat="server" Text="Primary Address" Font-Size="large" CssClass="profile-title-text"></asp:Label>
                         </div>
@@ -65,6 +64,8 @@
                             <asp:Label ID="Label3" runat="server" Text="Address" Font-Bold="true"></asp:Label><br />
                             <asp:TextBox ID="address" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                         </div>
+                                <asp:UpdatePanel runat="server" >
+                    <ContentTemplate>
                         <div class="row p-3">
                             <div class=" col-md-3 col-sm-6 form-group">
                                 <asp:Label ID="Label4" runat="server" Text="Post Code" Font-Bold="true"></asp:Label><br />
@@ -83,11 +84,12 @@
                                 <asp:TextBox ID="state" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
+                        
+                    </ContentTemplate>
+                </asp:UpdatePanel>
                         <div class="px-3 pb-3 d-flex justify-content-end">
                             <asp:Button ID="btnUpdate" runat="server" Text="Update primary address" CssClass="btn btn-default" OnClick="btnUpdate_Click" />
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
             </div>
         </div>
     </div>
@@ -103,17 +105,17 @@
                         <div class="col-6">
                             <asp:Label ID="Label11" runat="server" Text="Mobile Number" Font-Bold="true"></asp:Label><br />
                             <asp:TextBox ID="mobileNumber" runat="server" Text="" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="mobileNumber" Display="Static" ForeColor="Red" runat="server" ErrorMessage="Home number cannot be empty"></asp:RequiredFieldValidator>                            
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="mobileNumber" ValidationGroup="vgMobile" Display="Static" ForeColor="Red" runat="server" ErrorMessage="Home number cannot be empty"></asp:RequiredFieldValidator>                            
                             <div class="py-3 d-flex justify-content-end">
-                                <asp:Button ID="updateMobile" runat="server" Text="Update mobile number" CssClass="btn btn-default" OnClick="updateMobile_Click"/>
+                                <asp:Button ID="updateMobile" runat="server" Text="Update mobile number" CssClass="btn btn-default" ValidationGroup="vgMobile" OnClick="updateMobile_Click"/>
                             </div>
                         </div>
                         <div class="col-6">
                             <asp:Label ID="Label10" runat="server" Text="Home Number" Font-Bold="true"></asp:Label><br />
                             <asp:TextBox ID="homeNumber" runat="server" Text="" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="homeNumber" Display="Static" ForeColor="Red" runat="server" ErrorMessage="Home number cannot be empty"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="homeNumber" ValidationGroup="vgHome" Display="Static" ForeColor="Red" runat="server" ErrorMessage="Home number cannot be empty"></asp:RequiredFieldValidator>
                             <div class="py-3 d-flex justify-content-end">
-                                <asp:Button ID="updateHomeNumber" runat="server" Text="Update home number" CssClass="btn btn-default" OnClick="updateHomeNumber_Click" />
+                                <asp:Button ID="updateHomeNumber" runat="server" Text="Update home number" ValidationGroup="vgHome" CssClass="btn btn-default" OnClick="updateHomeNumber_Click" />
                             </div>
                         </div>
                     </div>
