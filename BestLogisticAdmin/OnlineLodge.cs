@@ -16,9 +16,11 @@ namespace BestLogisticAdmin
     {
         public String branchId;
         Staff staff = Authentication.CurrentStaff;
-        public OnlineLodge()
+        Best_Logistic_Administrator home;
+        public OnlineLodge(Best_Logistic_Administrator home)
         {
             InitializeComponent();
+            this.home = home;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -26,10 +28,20 @@ namespace BestLogisticAdmin
             branchId = staff.BranchId;
             int trackingNum = Convert.ToInt32(textBox1.Text);
 
-            ParcelController.RegisterOnlineLodgeIn(trackingNum, branchId);
+            if (ParcelController.RegisterOnlineLodgeIn(trackingNum, branchId) == true)
+            {
+                MessageBox.Show("Successful Added");
+                textBox1.Text = "";
+                home.registerHereLoad();
+            }
+            else
+            {
+                MessageBox.Show("Fail to add, please check again the tracking number");
+                textBox1.Text = "";
+            }
 
-            MessageBox.Show("Successful Added");
-            textBox1.Text = "";
+            
+            
         }
     }
 }

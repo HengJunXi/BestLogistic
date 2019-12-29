@@ -31,10 +31,10 @@ namespace BestLogisticAdmin
             {
                 nextBranch = null;
             }
-            label1.Text = route;
             this.nextBranch = nextBranch;
             this.trackingNumList = trackingNumList;
             this.admin = admin;
+            status.Text = "Start trip to " + route;
 
         }
 

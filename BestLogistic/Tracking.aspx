@@ -101,7 +101,7 @@
                                     position: place.geometry.location,
                                     title: depBranchName,
                                     icon: {
-                                        url: 'Icons\\warehouse-solid.svg',
+                                        url: (parcelStatus == 6 ? 'Icons\\truck-solid.svg' : 'Icons\\warehouse-solid.svg'),
                                         scaledSize: new google.maps.Size(25, 25)
                                     },
                                     animation: google.maps.Animation.DROP

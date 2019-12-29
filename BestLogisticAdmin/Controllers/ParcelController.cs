@@ -77,7 +77,7 @@ namespace BestLogisticAdmin.Controllers
         }
 
         //register online parcel
-        public static void RegisterOnlineLodgeIn(int trackingNumber, string branchId)
+        public static bool RegisterOnlineLodgeIn(int trackingNumber, string branchId)
         {
             using (SqlConnection conn = new SqlConnection(Repository.connectionString))
             {
@@ -102,6 +102,7 @@ namespace BestLogisticAdmin.Controllers
                             cmd.ExecuteNonQuery();
                         }
                         tx.Commit();
+                        return true;
                     }
                     catch (SqlException e)
                     {
@@ -109,6 +110,7 @@ namespace BestLogisticAdmin.Controllers
                         tx.Rollback();
                     }
                 }
+                return false;
             }
         }
 

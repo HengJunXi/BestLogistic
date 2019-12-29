@@ -204,7 +204,21 @@ namespace BestLogistic
                     User senderDefault = repository.GetUser(Authentication.GetUid());
                     SenderName.Text = senderDefault.Name;
                     SenderContactNo.Text = senderDefault.PhoneNumber;
-                    IDType.SelectedValue = senderDefault.IdType.ToString();
+
+                    switch (senderDefault.IdType)
+                    {
+                        case 1:
+                            IDType.Text = "IC Number";
+                            break;
+                        case 2:
+                            IDType.Text = "Old IC Number";
+                            break;
+                        case 3:
+                            IDType.Text = "Passport";
+                            break;
+                    }
+
+                    //IDType.SelectedValue = (senderDefault.IdType + 1).ToString();
                     
                     SenderIDNo.Text = senderDefault.IdNumber;
                     SenderEmail.Text = senderDefault.Email;

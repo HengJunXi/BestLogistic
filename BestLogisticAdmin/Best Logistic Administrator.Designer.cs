@@ -36,7 +36,7 @@
             this.checkAll = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.registerOnline = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.endTripBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -46,7 +46,8 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.pickUpRB = new System.Windows.Forms.RadioButton();
+            this.branchName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -165,26 +166,27 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // button2
+            // endTripBtn
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button2.AutoSize = true;
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(498, 43);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
-            this.button2.MaximumSize = new System.Drawing.Size(150, 25);
-            this.button2.MinimumSize = new System.Drawing.Size(100, 25);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 25);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "End trip";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.endTripBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.endTripBtn.AutoSize = true;
+            this.endTripBtn.Enabled = false;
+            this.endTripBtn.Location = new System.Drawing.Point(498, 43);
+            this.endTripBtn.Margin = new System.Windows.Forms.Padding(3, 3, 75, 3);
+            this.endTripBtn.MaximumSize = new System.Drawing.Size(150, 25);
+            this.endTripBtn.MinimumSize = new System.Drawing.Size(100, 25);
+            this.endTripBtn.Name = "endTripBtn";
+            this.endTripBtn.Size = new System.Drawing.Size(119, 25);
+            this.endTripBtn.TabIndex = 9;
+            this.endTripBtn.Text = "End trip";
+            this.endTripBtn.UseVisualStyleBackColor = true;
+            this.endTripBtn.Click += new System.EventHandler(this.Button2_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.branchName);
             this.groupBox1.Controls.Add(this.radioButton6);
             this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.comboBox2);
@@ -193,7 +195,7 @@
             this.groupBox1.Controls.Add(this.radioButton4);
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.pickUpRB);
             this.groupBox1.Location = new System.Drawing.Point(17, 74);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(855, 98);
@@ -202,6 +204,7 @@
             // 
             // radioButton6
             // 
+            this.radioButton6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButton6.AutoSize = true;
             this.radioButton6.Location = new System.Drawing.Point(120, 30);
             this.radioButton6.Name = "radioButton6";
@@ -302,18 +305,28 @@
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
-            // radioButton1
+            // pickUpRB
             // 
-            this.radioButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(28, 30);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(61, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "Pick up";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            this.pickUpRB.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pickUpRB.AutoSize = true;
+            this.pickUpRB.Location = new System.Drawing.Point(28, 30);
+            this.pickUpRB.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
+            this.pickUpRB.Name = "pickUpRB";
+            this.pickUpRB.Size = new System.Drawing.Size(61, 17);
+            this.pickUpRB.TabIndex = 0;
+            this.pickUpRB.Text = "Pick up";
+            this.pickUpRB.UseVisualStyleBackColor = true;
+            this.pickUpRB.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            // 
+            // branchName
+            // 
+            this.branchName.AutoSize = true;
+            this.branchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.branchName.Location = new System.Drawing.Point(-5, 66);
+            this.branchName.Name = "branchName";
+            this.branchName.Size = new System.Drawing.Size(186, 31);
+            this.branchName.TabIndex = 11;
+            this.branchName.Text = "Sungai Buloh";
             // 
             // Best_Logistic_Administrator
             // 
@@ -321,7 +334,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 553);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.endTripBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.registerOnline);
             this.Controls.Add(this.dataGridView1);
@@ -332,7 +345,7 @@
             this.MinimumSize = new System.Drawing.Size(900, 575);
             this.Name = "Best_Logistic_Administrator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Best_Logistic_Administrator";
+            this.Text = "Best Logistic Administrator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Best_Logistic_Administrator_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Best_Logistic_Administrator_FormClosed);
             this.Load += new System.EventHandler(this.Best_Logistic_Administrator_Load);
@@ -354,16 +367,17 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkAll;
         private System.Windows.Forms.Button registerOnline;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button endTripBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton pickUpRB;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.Label branchName;
     }
 }
