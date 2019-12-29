@@ -193,22 +193,25 @@ namespace BestLogisticAdmin
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            List<int> list = new List<int>();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
-                {
-                    list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
-                }
-            }
+            //List<int> list = new List<int>();
+            //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            //{
+            //    if (Convert.ToBoolean(dataGridView1.Rows[i].Cells[0].Value) == true)
+            //    {
+            //        list.Add(Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value));
+            //    }
+            //}
+
+
+
             if (comboBox3.Text == "Home")
             {
-                EndTrip endTripForm1 = new EndTrip(this, comboBox3.Text, null, list);
+                EndTrip endTripForm1 = new EndTrip(this, comboBox3.Text, null, dataGridView1);
                 endTripForm1.ShowDialog();
             }
             else
             {
-                EndTrip endTripForm = new EndTrip(this, comboBox2.Text, comboBox2.SelectedValue.ToString(), list);
+                EndTrip endTripForm = new EndTrip(this, comboBox2.Text, comboBox2.SelectedValue.ToString(), dataGridView1);
                 endTripForm.ShowDialog();
             }
             

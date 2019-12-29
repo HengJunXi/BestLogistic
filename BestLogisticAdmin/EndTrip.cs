@@ -16,15 +16,15 @@ namespace BestLogisticAdmin
     {
         String branchId;
         Staff staff = Authentication.CurrentStaff;
-        List<int> trackingNumList;
+        DataGridView dataGridView;
         string route;
         Best_Logistic_Administrator admin;
-        public EndTrip(Best_Logistic_Administrator admin, string branchName, string route, List<int> trackingNumList)
+        public EndTrip(Best_Logistic_Administrator admin, string branchName, string route, DataGridView dataGridView)
         {
             InitializeComponent();
             branchId = staff.BranchId;
                     
-            this.trackingNumList = trackingNumList;
+            this.dataGridView = dataGridView;
             this.route = route;
             this.admin = admin;
             if (route == null)
@@ -45,6 +45,15 @@ namespace BestLogisticAdmin
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
 
+            List<int> list = new List<int>();
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[2].Value.ToString() == carNo.Text)
+                {
+                    list.Add(Convert.ToInt32(dataGridView.Rows[i].Cells[1].Value));
+                }
+            }
+
             // If the no button was pressed ...
             if (result == DialogResult.No)
             {
@@ -54,14 +63,14 @@ namespace BestLogisticAdmin
             else if (route == null)
             {
                 string carNumber = carNo.Text;
-                ParcelController.EndTransit(branchId, route, carNumber, trackingNumList);
+                ParcelController.EndTransit(branchId, route, carNumber, list);
                 this.Close();
                 admin.ViewOutGoingParcel();
             }
             else
             {
                 string carNumber = carNo.Text;
-                ParcelController.EndTransit(branchId, route, carNumber, trackingNumList);
+                ParcelController.EndTransit(branchId, route, carNumber, list);
                 this.Close();
                 admin.ViewIncomingParcel();
             }
