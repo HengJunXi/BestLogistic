@@ -25,7 +25,7 @@ namespace BestLogisticAdmin
                 comboSource.Add(list[i].Id, list[i].Name);
             }
             comboSource.Add("NULL", "Home");
-            comboSource.Add("NA", "Not Assign");
+            comboSource.Add("NA", "Not Assigned");
             dbroute.DataSource = new BindingSource(comboSource, null);
             dbroute.DisplayMember = "Value";
             dbroute.ValueMember = "Key";

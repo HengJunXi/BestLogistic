@@ -173,6 +173,8 @@ namespace BestLogisticAdmin
             comboBox2.SelectedItem = null;
             comboBox3.SelectedItem = null;
 
+            Text = "Best Logistic Admin: " + staff.Branch;
+            branchName.Text = staff.Branch;
 
             registerHereLoad();
         }
@@ -240,13 +242,13 @@ namespace BestLogisticAdmin
             if (radioButton3.Checked)
             {
                 comboBox2.Enabled = true;
-                button2.Enabled = true;
+                endTripBtn.Enabled = true;
                 ViewIncomingParcel();
             }
             else
             {
                 comboBox2.Enabled = false;
-                button2.Enabled = false;
+                endTripBtn.Enabled = false;
             }
         }
 
@@ -266,7 +268,7 @@ namespace BestLogisticAdmin
         
         public void ViewOnlinePickUpRequest()
         {
-            if (radioButton1.Checked)
+            if (pickUpRB.Checked)
             {
                 branchId = staff.BranchId;
                 button1.Enabled = true;
@@ -275,8 +277,8 @@ namespace BestLogisticAdmin
                 DataTable dt1 = new DataTable();
 
                 dt1 = dt.DefaultView.ToTable(
-                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
-                    "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
+                    true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
+                    "sender_phone", "sender_address", "sender_location", "sender_postcode", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode");
 
                 dataGridView1.DataSource = dt1;
@@ -384,12 +386,17 @@ namespace BestLogisticAdmin
                 DataTable dt1 = new DataTable();
 
                 dt1 = dt.DefaultView.ToTable(
-                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    true, "tracking_number", "plate_number", "pieces", "weight", "date_created", "sender_name",
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
-                    "receiver_location", "receiver_postcode", "plate_number");
+                    "receiver_location", "receiver_postcode");
                 dataGridView1.DataSource = dt1;
-                button2.Enabled = true;
+                endTripBtn.Enabled = true;
             }
+            else
+            {
+                endTripBtn.Enabled = false;
+            }
+            
             int j = 1;
             for (int i = 0; i < list.Count; i++)
             {
@@ -428,7 +435,7 @@ namespace BestLogisticAdmin
                     DataTable dt1 = new DataTable();
 
                     dt1 = dt.DefaultView.ToTable(
-                        true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                        true, "tracking_number", "plate_number", "pieces", "weight", "date_created", "sender_name",
                         "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                         "receiver_location", "receiver_postcode");
 
