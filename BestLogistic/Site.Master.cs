@@ -40,7 +40,14 @@ namespace BestLogistic
             string idNumber = RegisterIdNumber.Text;
             string dateOfBirth = RegisterDob.Text;
 
-            Authentication.RegisterUser(email, password, fullName, idType, idNumber, dateOfBirth);
+            if (Authentication.RegisterUser(email, password, fullName, idType, idNumber, dateOfBirth))
+            {
+                Page.ClientScript.RegisterStartupScript(GetType(), "hwa", "alert('Register success. Please sign in.');", true);
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(GetType(), "hwa", "alert('Register fail.');", true);
+            }
         }
 
         protected void SignInBtn_Click(object sender, EventArgs e)
