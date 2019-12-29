@@ -136,9 +136,15 @@ Index
 
 .quote-content {
     background-color: var(--primary-color);
-    border-radius: 16px;
     padding: 24px 0;
     color: white;
+    border-bottom-left-radius: 32px;
+    border-top-left-radius: 32px;
+}
+
+.default-background {
+    border-bottom-right-radius: 32px;
+    border-top-right-radius: 32px;
 }
 
 @media screen and (max-width: 1199px) {

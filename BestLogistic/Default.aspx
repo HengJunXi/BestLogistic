@@ -4,6 +4,7 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div class="container px-1 px-sm-3">
+                <div class="row">
         <div class="col-md-12 col-lg-5 quote p-0">
             <h3 class="font-weight-bolder my-3">Quote Your Parcel Here!</h3>
             <div class="quote-content px-sm-3">
@@ -81,6 +82,8 @@
                 </div>
             </div>
         </div>
+                <asp:Image ID="Background" runat="server" ImageUrl="~/Images/background.png" CssClass="col-12 col-lg-7 mt-lg-5 p-0 pt-3 default-background"/>
+                    </div>
     </div>
             
         </ContentTemplate>

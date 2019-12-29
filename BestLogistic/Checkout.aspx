@@ -40,16 +40,16 @@
                                     <asp:Label ID="Label8" runat="server" Text="Your Order" Font-Size="large" CssClass="profile-title-text"></asp:Label>
                                 </div>
                                 <div class="row col-lg-3 col-md-5 col-sm-6">
-                                    <div class="col-6">
-                                        <asp:Label ID="PriceTitle" runat="server" Text="PRICE:"></asp:Label>
+                                    <div class="col-7">
+                                        <asp:Label ID="PriceTitle" runat="server" Text="PRICE (RM) : "></asp:Label>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <asp:Label ID="priceOrder" runat="server" Text=""></asp:Label>
                                     </div>
-                                    <div class="col-6">
-                                        <asp:Label ID="PickUpPriceTitle" runat="server" Text="PICK UP: "></asp:Label>
+                                    <div class="col-7">
+                                        <asp:Label ID="PickUpPriceTitle" runat="server" Text="PICK UP (RM) : "></asp:Label>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <asp:Label ID="pickUpPriceOrder" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>

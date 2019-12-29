@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BestLogistic
-{
-
-
-    public partial class _Default
-    {
-
+namespace BestLogistic {
+    
+    
+    public partial class _Default {
+        
         /// <summary>
         /// FromPostCode control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox FromPostCode;
-
+        
         /// <summary>
         /// FromLocation control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList FromLocation;
-
+        
         /// <summary>
         /// FromCity control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label FromCity;
-
+        
         /// <summary>
         /// FromState control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label FromState;
-
+        
         /// <summary>
         /// ToPostCode control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ToPostCode;
-
+        
         /// <summary>
         /// ToLocation control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ToLocation;
-
+        
         /// <summary>
         /// ToCity control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ToCity;
-
+        
         /// <summary>
         /// ToState control.
         /// </summary>
@@ -85,7 +83,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ToState;
-
+        
         /// <summary>
         /// Weight control.
         /// </summary>
@@ -94,7 +92,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Weight;
-
+        
         /// <summary>
         /// rbtPackageType control.
         /// </summary>
@@ -103,7 +101,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rbtPackageType;
-
+        
         /// <summary>
         /// QuotedPrice control.
         /// </summary>
@@ -112,7 +110,7 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label QuotedPrice;
-
+        
         /// <summary>
         /// QuoteBtn control.
         /// </summary>
@@ -121,5 +119,14 @@ namespace BestLogistic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button QuoteBtn;
+        
+        /// <summary>
+        /// Background control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Background;
     }
 }
