@@ -123,7 +123,7 @@ namespace BestLogisticAdmin
             DataTable dt1 = new DataTable();
 
             dt1 = dt.DefaultView.ToTable(
-                true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
                 "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                 "receiver_location", "receiver_postcode");
 
@@ -322,7 +322,7 @@ namespace BestLogisticAdmin
                 DataTable dt1 = new DataTable();
 
                 dt1 = dt.DefaultView.ToTable(
-                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode");
 
@@ -335,7 +335,7 @@ namespace BestLogisticAdmin
                 DataTable dt1 = new DataTable();
 
                 dt1 = dt.DefaultView.ToTable(
-                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode");
 
@@ -358,7 +358,7 @@ namespace BestLogisticAdmin
                     DataTable dt1 = new DataTable();
 
                     dt1 = dt.DefaultView.ToTable(
-                        true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                        true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
                         "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                         "receiver_location", "receiver_postcode");
 
@@ -407,7 +407,7 @@ namespace BestLogisticAdmin
                     DataTable dt1 = new DataTable();
 
                     dt1 = dt.DefaultView.ToTable(
-                        true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                        true, "tracking_number", "plate_number", "pieces", "weight", "date_created", "sender_name",
                         "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                         "receiver_location", "receiver_postcode");
 
@@ -459,7 +459,7 @@ namespace BestLogisticAdmin
                 DataTable dt1 = new DataTable();
 
                 dt1 = dt.DefaultView.ToTable(
-                    true, "tracking_number", "type", "pieces", "weight", "date_created", "sender_name",
+                    true, "tracking_number", "pieces", "weight", "date_created", "sender_name",
                     "sender_phone", "receiver_name", "receiver_phone", "receiver_address",
                     "receiver_location", "receiver_postcode");
 

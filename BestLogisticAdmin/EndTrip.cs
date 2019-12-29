@@ -51,6 +51,13 @@ namespace BestLogisticAdmin
                 // cancel the closure of the form.
                 this.Close();
             }
+            else if (route == null)
+            {
+                string carNumber = carNo.Text;
+                ParcelController.EndTransit(branchId, route, carNumber, trackingNumList);
+                this.Close();
+                admin.ViewOutGoingParcel();
+            }
             else
             {
                 string carNumber = carNo.Text;
