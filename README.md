@@ -21,7 +21,13 @@ Loh Shu Yi SWE1704010 Loh-Shuyi
 
 Lim Carol SWE1704205 carol8888
 
+<br />
 
+Home Page
+
+![](/screenshots/home.png)
+
+<br />
 
 Steps to run the project:
 1) Install and configure Microsoft Visual Studio 2019 and Microsoft SQL Server
