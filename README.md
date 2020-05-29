@@ -23,12 +23,6 @@ Lim Carol SWE1704205 carol8888
 
 <br />
 
-Home Page
-
-![](/screenshots/home.png)
-
-<br />
-
 Steps to run the project:
 1) Install and configure Microsoft Visual Studio 2019 and Microsoft SQL Server
    Management Studio.
@@ -45,3 +39,48 @@ Steps to run the project:
 7) Solution (both projects) is successfully run.
 8) Access the customer interface through the website with (localhost:port/)
 9) Access the staff interface through the WinForm application
+
+<br />
+
+## Screenshots
+
+### Website (for customer)
+
+Home Page
+![](/screenshots/home.png)
+
+Sign In
+![](/screenshots/sign-in.png)
+
+Register
+![](/screenshots/register.png)
+
+User Profile
+![](/screenshots/profile.png)
+
+Send Package
+![](/screenshots/send-package.png)
+![](/screenshots/send-package2.png)
+![](/screenshots/send-package3.png)
+
+Check Out
+![](/screenshots/check-out.png)
+![](/screenshots/check-out2.png)
+
+Order Summary
+![](/screenshots/order-summary.png)
+
+Dashboard
+![](/screenshots/dashboard.png)
+
+Tracking
+![](/screenshots/tracking.png)
+
+<br />
+
+### Desktop Application (for staffs)
+Sign In
+![](/screenshots/management-login.png)
+
+Home
+![](/screenshots/management-home.png)
